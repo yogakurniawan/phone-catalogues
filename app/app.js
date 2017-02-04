@@ -46,11 +46,11 @@ import './global-styles';
 // Import routes
 import createRoutes from './routes';
 
-// Observe loading of Open Sans (to remove open sans, remove the <link> tag in
+// Observe loading of Montserrat (to remove Montserrat, remove the <link> tag in
 // the index.html file and this observer)
-const openSansObserver = new FontFaceObserver('Open Sans', {});
+const openSansObserver = new FontFaceObserver('Montserrat', {});
 
-// When Open Sans is loaded, add a font-family using Open Sans to the body
+// When Montserrat is loaded, add a font-family using Montserrat to the body
 openSansObserver.load().then(() => {
   document.body.classList.add('fontLoaded');
 }, () => {
