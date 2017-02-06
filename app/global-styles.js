@@ -9,7 +9,7 @@ injectGlobal`
   }
 
   body {
-    font-family: 'Montserrat', sans-serif;
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
   }
 
   body.fontLoaded {
@@ -24,7 +24,7 @@ injectGlobal`
 
   p,
   label {
-    font-family: 'Montserrat', sans-serif;
+    font-family: inherit;
     line-height: 1.5em;   
   }
 
