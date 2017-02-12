@@ -52,9 +52,22 @@ export default function createRoutes(store) {
       path: '/',
       name: 'brands',
       getComponent(nextState, cb) {
-        import('containers/BrandsPage')
-          .then(loadModule(cb))
-          .catch(errorLoading);
+        const importModules = Promise.all([
+          import('containers/BrandsPage/reducer'),
+          import('containers/BrandsPage/sagas'),
+          import('containers/BrandsPage'),
+        ]);
+
+        const renderRoute = loadModule(cb);
+
+        importModules.then(([reducer, sagas, component]) => {
+          injectReducer('brands', reducer.default);
+          injectSagas(sagas.default);
+
+          renderRoute(component);
+        });
+
+        importModules.catch(errorLoading);
       },
     },
     {

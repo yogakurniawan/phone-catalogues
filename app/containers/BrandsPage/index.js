@@ -5,12 +5,29 @@
  */
 import React from 'react';
 import Helmet from 'react-helmet';
+import { connect } from 'react-redux';
+import { createStructuredSelector } from 'reselect';
 
-import Tile from 'components/Tile';
+import ContentList from 'components/ContentList';
+import BrandTile from 'components/BrandTile';
 
-export default class BrandsPage extends React.Component { // eslint-disable-line react/prefer-stateless-function
+import { makeSelectBrands, makeSelectLoading, makeSelectError } from './selectors';
+import { loadBrands } from './actions';
+
+class BrandsPage extends React.Component { // eslint-disable-line react/prefer-stateless-function
+
+  componentDidMount() {
+    this.props.loadBrands();
+  }
 
   render() {
+    const { loading, error, brands } = this.props;
+    const contentListProps = {
+      loading,
+      error,
+      component: BrandTile,
+      brands,
+    };
     return (
       <div>
         <Helmet
@@ -19,17 +36,36 @@ export default class BrandsPage extends React.Component { // eslint-disable-line
             { name: 'description', content: 'Brands page contains list of smartphone brands' },
           ]}
         />
-        <Tile
-          title="Samsung Galaxy J1 mini prime"
-          imgUrl="http://cdn2.gsmarena.com/vv/bigpic/samsung-galaxy-j1-nxt.jpg"
-          description="Samsung Galaxy J1 mini prime Android smartphone. Announced 2016, December. Features 3G, 4.0″ TFT capacitive touchscreen, 5 MP camera, Wi-Fi, GPS, Bluetooth."
-        />
-        <Tile
-          title="Samsung Galaxy J3 Emerge"
-          imgUrl="http://cdn2.gsmarena.com/vv/bigpic/samsung-galaxy-j3-emerge-.jpg"
-          description="Samsung Galaxy J3 Emerge Android smartphone. Announced 2017, January. Features 5.0″ Capacitive touchscreen, 5 MP camera, Wi-Fi, GPS, Bluetooth."
-        />
+        <ContentList {...contentListProps} />
       </div>
     );
   }
 }
+
+BrandsPage.propTypes = {
+  loading: React.PropTypes.bool,
+  error: React.PropTypes.oneOfType([
+    React.PropTypes.object,
+    React.PropTypes.bool,
+  ]),
+  brands: React.PropTypes.oneOfType([
+    React.PropTypes.array,
+    React.PropTypes.bool,
+  ]),
+  loadBrands: React.PropTypes.func,
+};
+
+export function mapDispatchToProps(dispatch) {
+  return {
+    loadBrands: () => dispatch(loadBrands()),
+  };
+}
+
+const mapStateToProps = createStructuredSelector({
+  brands: makeSelectBrands(),
+  loading: makeSelectLoading(),
+  error: makeSelectError(),
+});
+
+// Wrap the component to inject dispatch and state into it
+export default connect(mapStateToProps, mapDispatchToProps)(BrandsPage);
