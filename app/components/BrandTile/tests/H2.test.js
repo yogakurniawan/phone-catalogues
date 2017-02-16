@@ -1,27 +1,27 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 
-import H4 from '../index';
+import H2 from '../H2';
 
-describe('<H4 />', () => {
-  it('renders a <h4>', () => {
+describe('<H2 />', () => {
+  it('renders a <h2>', () => {
     const renderedComponent = shallow(
-      <h4></h4>
+      <H2></H2>
     );
-    expect(renderedComponent.find('h4').node).toBeDefined();
+    expect(renderedComponent.find('h2').node).toBeDefined();
   });
 
-  it('should render an <h4> tag', () => {
+  it('should render an <h2> tag', () => {
     const renderedComponent = shallow(
-      <h4></h4>
+      <H2></H2>
     );
-    expect(renderedComponent.type()).toEqual('h4');
+    expect(renderedComponent.type()).toEqual('h2');
   });
 
   it('should render a prop', () => {
     const id = 'testId';
     const renderedComponent = shallow(
-      <H4 id={id} />
+      <H2 id={id} />
     );
     expect(renderedComponent.prop('id')).toEqual(id);
   });
@@ -29,7 +29,7 @@ describe('<H4 />', () => {
   it('should render its text', () => {
     const children = 'Text';
     const renderedComponent = shallow(
-      <H4>{children}</H4>
+      <H2>{children}</H2>
     );
     expect(renderedComponent.contains(children)).toBe(true);
   });
