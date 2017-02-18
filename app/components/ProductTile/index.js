@@ -5,17 +5,17 @@ import RoundedBox from 'components/RoundedBox';
 import H4 from './H4';
 import Img from './Img';
 
-function Element({ imgUrl, description, title }) { // eslint-disable-line react/prefer-stateless-function
+function Element({ item }) { // eslint-disable-line react/prefer-stateless-function
   return (
     <div className="row center-xs">
       <div className="col-xs-12 col-sm-6 col-md-6 col-lg-4" style={{ maxWidth: '30rem' }}>
         <RoundedBox className="row">
           <div className="col-xs-3">
-            <Img src={imgUrl} />
+            <Img src={item.imageurl} />
           </div>
           <div className="col-xs-9">
-            <H4>{title}</H4>
-            <P>{description}</P>
+            <H4>{item.name}</H4>
+            <P>{item.description}</P>
           </div>
         </RoundedBox>
       </div>
@@ -24,9 +24,7 @@ function Element({ imgUrl, description, title }) { // eslint-disable-line react/
 }
 
 Element.propTypes = {
-  imgUrl: PropTypes.string.isRequired,
-  description: PropTypes.string.isRequired,
-  title: PropTypes.string.isRequired,
+  item: PropTypes.object,
 };
 
 export default Element;
