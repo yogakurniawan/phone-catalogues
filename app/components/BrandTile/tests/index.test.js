@@ -24,9 +24,4 @@ describe('<BrandTile />', () => {
   it('should render a <RoundedBox />', () => {
     expect(renderedComponent.find(RoundedBox)).toBeDefined();
   });
-
-  it('should have className "center-xs"', () => {
-    const className = 'center-xs';
-    expect(renderedComponent.find('div').first().hasClass(className)).toEqual(true);
-  });
 });

@@ -22,4 +22,16 @@ describe('<List />', () => {
     );
     expect(renderedComponent.find(items)).toBeDefined();
   });
+
+  it('should have className "center-xs"', () => {
+    const className = 'center-xs';
+    const items = [
+      'Hello',
+      'World',
+    ];
+    const renderedComponent = render(
+      <List items={items} component={ListItem} />
+    );
+    expect(renderedComponent.find('div').first().hasClass(className)).toEqual(true);
+  });
 });

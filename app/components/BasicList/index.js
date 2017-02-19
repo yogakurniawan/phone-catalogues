@@ -15,7 +15,7 @@ function Element(props) {
   }
 
   return (
-    <div>
+    <div className="row center-xs">
       {content}
     </div>
   );

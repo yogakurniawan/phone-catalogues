@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 const Element = styled.div`
-  padding: 10px 0 0 0;
+  padding: 10px 0;
   background: #f9f9f9;
   box-shadow: 0 0 1px rgba(0, 0, 0, 0.2), 0 2px 4px rgba(0, 0, 0, 0.1);
   border-radius: 5px;
@@ -12,7 +12,7 @@ const Element = styled.div`
   &:hover {
     cursor: pointer;
     background-color: #dd5555;
-    h2 {
+    h2, h4 {
       color: white;
     }
   }
