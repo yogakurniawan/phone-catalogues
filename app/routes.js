@@ -49,11 +49,12 @@ export default function createRoutes(store) {
       },
     },
     {
-      path: '/:kampret',
+      path: '/:slug',
       name: 'brands',
       getComponent(nextState, cb) {
         console.log(nextState);
         const importModules = Promise.all([
+          import('containers/BrandsPage/actions'),
           import('containers/BrandsPage/reducer'),
           import('containers/BrandsPage/sagas'),
           import('containers/BrandsPage'),
@@ -61,11 +62,11 @@ export default function createRoutes(store) {
 
         const renderRoute = loadModule(cb);
 
-        importModules.then(([reducer, sagas, component]) => {
+        importModules.then(([actions, reducer, sagas, component]) => {
           injectReducer('brands', reducer.default);
           injectSagas(sagas.default);
-
           renderRoute(component);
+          store.dispatch(actions.loadBrands(nextState.params.slug));
         });
 
         importModules.catch(errorLoading);

@@ -6,7 +6,7 @@ import H2 from './H2';
 
 function Element({ item, onClick = () => {} }) { // eslint-disable-line react/prefer-stateless-function
   return (
-    <div className="col-xs-8 col-sm-6 col-md-3 col-lg-3">
+    <div className="col-xs-12 col-sm-6 col-md-3 col-lg-3">
       <RoundedBox className="row" onClick={onClick}>
         <div className="col-xs-12">
           <H2>{item.title}</H2>

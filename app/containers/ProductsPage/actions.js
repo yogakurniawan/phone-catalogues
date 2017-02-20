@@ -1,5 +1,5 @@
 /*
- * Brands Actions
+ * Products Actions
  *
  * Actions change things in your application
  * Since this boilerplate uses a uni-directional data flow, specifically redux,
@@ -16,46 +16,47 @@
  */
 
 import {
-  LOAD_BRANDS,
-  LOAD_BRANDS_SUCCESS,
-  LOAD_BRANDS_ERROR,
+  LOAD_PRODUCTS,
+  LOAD_PRODUCTS_SUCCESS,
+  LOAD_PRODUCTS_ERROR,
 } from './constants';
 
 /**
- * Load the brands list, this action starts the request saga
+ * Load the products list, this action starts the request saga
  *
- * @return {object} An action object with a type of LOAD_BRANDS
+ * @return {object} An action object with a type of LOAD_PRODUCTS
  */
-export function loadBrands() {
+export function loadProducts(brand) {
   return {
-    type: LOAD_BRANDS,
+    type: LOAD_PRODUCTS,
+    brand,
   };
 }
 
 /**
- * Dispatched when brands list are loaded by the request saga
+ * Dispatched when products list are loaded by the request saga
  *
- * @param  {array} brands Brands list
+ * @param  {array} Products Products list
  *
- * @return {object}      An action object with a type of LOAD_BRANDS_SUCCESS passing the brands
+ * @return {object}      An action object with a type of LOAD_PRODUCTS_SUCCESS passing the Products
  */
-export function brandsLoaded(brands) {
+export function productsLoaded(products) {
   return {
-    type: LOAD_BRANDS_SUCCESS,
-    brands,
+    type: LOAD_PRODUCTS_SUCCESS,
+    products,
   };
 }
 
 /**
- * Dispatched when loading brands list fails
+ * Dispatched when loading products list fails
  *
  * @param  {object} error The error
  *
- * @return {object}       An action object with a type of LOAD_BRANDS_ERROR passing the error
+ * @return {object}       An action object with a type of LOAD_PRODUCTS_ERROR passing the error
  */
-export function brandsLoadingError(error) {
+export function productsLoadingError(error) {
   return {
-    type: LOAD_BRANDS_ERROR,
+    type: LOAD_PRODUCTS_ERROR,
     error,
   };
 }

@@ -13,7 +13,7 @@ import { brandsLoaded, brandsLoadingError } from './actions';
  * Brands list request/response handler
  */
 export function* getBrands() {
-  const requestURL = 'http://52.221.230.61:9000/api/brands';
+  const requestURL = 'http://52.221.230.61:9000/api/items';
 
   try {
     // Call our request helper (see 'utils/request')

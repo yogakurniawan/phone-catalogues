@@ -26,9 +26,10 @@ import {
  *
  * @return {object} An action object with a type of LOAD_BRANDS
  */
-export function loadBrands() {
+export function loadBrands(slug) {
   return {
     type: LOAD_BRANDS,
+    slug,
   };
 }
 
