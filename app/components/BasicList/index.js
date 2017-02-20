@@ -1,13 +1,14 @@
-import React from 'react';
+import React, { PropTypes } from 'react';
 
 function Element(props) {
   const ComponentToRender = props.component;
+  const onClick = props.onClick || (() => {});
   let content = (<div></div>);
 
   // If we have items, render them
   if (props.items) {
     content = props.items.map((item, index) => (
-      <ComponentToRender key={`item-${index}`} item={item} />
+      <ComponentToRender key={`item-${index}`} item={item} onClick={onClick} />
     ));
   } else {
     // Otherwise render a single component
@@ -22,8 +23,9 @@ function Element(props) {
 }
 
 Element.propTypes = {
-  component: React.PropTypes.func.isRequired,
-  items: React.PropTypes.array,
+  onClick: PropTypes.func,
+  component: PropTypes.func.isRequired,
+  items: PropTypes.array,
 };
 
 export default Element;

@@ -4,10 +4,10 @@ import RoundedBox from 'components/RoundedBox';
 import H4 from 'components/H4';
 import H2 from './H2';
 
-function Element({ item }) { // eslint-disable-line react/prefer-stateless-function
+function Element({ item, onClick = () => {} }) { // eslint-disable-line react/prefer-stateless-function
   return (
     <div className="col-xs-8 col-sm-6 col-md-3 col-lg-3">
-      <RoundedBox className="row">
+      <RoundedBox className="row" onClick={onClick}>
         <div className="col-xs-12">
           <H2>{item.title}</H2>
           <H4>{item.totalProducts} products</H4>
@@ -19,6 +19,7 @@ function Element({ item }) { // eslint-disable-line react/prefer-stateless-funct
 
 Element.propTypes = {
   item: PropTypes.object,
+  onClick: PropTypes.func,
 };
 
 export default Element;

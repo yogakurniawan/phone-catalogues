@@ -4,7 +4,7 @@ import List from 'components/BasicList';
 import ListItem from 'components/ListItem';
 import LoadingIndicator from 'components/LoadingIndicator';
 
-function Element({ loading, error, component, brands }) {
+function Element({ loading, error, onClick = () => {}, component, brands }) {
   if (loading) {
     return <List component={LoadingIndicator} />;
   }
@@ -17,7 +17,7 @@ function Element({ loading, error, component, brands }) {
   }
 
   if (brands !== false) {
-    return <List items={brands} component={component} />;
+    return <List items={brands} component={component} onClick={onClick} />;
   }
 
   return null;
@@ -28,6 +28,7 @@ Element.propTypes = {
   error: PropTypes.any,
   brands: PropTypes.any,
   component: PropTypes.func,
+  onClick: PropTypes.func,
 };
 
 export default Element;

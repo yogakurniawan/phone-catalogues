@@ -49,9 +49,10 @@ export default function createRoutes(store) {
       },
     },
     {
-      path: '/',
+      path: '/:kampret',
       name: 'brands',
       getComponent(nextState, cb) {
+        console.log(nextState);
         const importModules = Promise.all([
           import('containers/BrandsPage/reducer'),
           import('containers/BrandsPage/sagas'),
