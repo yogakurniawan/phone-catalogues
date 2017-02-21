@@ -8,7 +8,7 @@ function Element(props) {
   // If we have items, render them
   if (props.items) {
     content = props.items.map((item, index) => (
-      <ComponentToRender key={`item-${index}`} item={item} onClick={onClick} />
+      <ComponentToRender key={`item-${index}`} item={item} onClick={onClick.bind(null, item)} />
     ));
   } else {
     // Otherwise render a single component

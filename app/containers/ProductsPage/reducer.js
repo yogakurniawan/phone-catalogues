@@ -14,7 +14,7 @@ import { fromJS } from 'immutable';
 import {
   LOAD_PRODUCTS,
   LOAD_PRODUCTS_SUCCESS,
-  LOAD_BRANDS_ERROR,
+  LOAD_PRODUCTS_ERROR,
 } from './constants';
 
 // The initial state of the App
@@ -37,7 +37,7 @@ function productsReducer(state = initialState, action) {
       return state
         .setIn(['data', 'products'], action.brands)
         .set('loading', false);
-    case LOAD_BRANDS_ERROR:
+    case LOAD_PRODUCTS_ERROR:
       return state
         .set('error', action.error)
         .set('loading', false);

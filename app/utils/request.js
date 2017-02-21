@@ -28,6 +28,12 @@ function checkStatus(response) {
   throw error;
 }
 
+function queryParams(params) {
+  return Object.keys(params)
+    .map((k) => `${encodeURIComponent(k)}=${encodeURIComponent(params[k])}`)
+    .join('&');
+}
+
 /**
  * Requests a URL, returning a promise
  *
@@ -36,8 +42,21 @@ function checkStatus(response) {
  *
  * @return {object}           The response data
  */
-export default function request(url, options) {
-  return fetch(url, options)
+export default function request(url, options = {}) {
+  const defaultOptions = {
+    // your default options
+    credentials: 'same-origin',
+    redirect: 'error',
+    ...options,
+  };
+  let thisUrl = url;
+
+  if (defaultOptions.queryParams) {
+    thisUrl = url + (url.indexOf('?') === -1 ? '?' : '&') + queryParams(defaultOptions.queryParams);
+    delete defaultOptions.queryParams;
+  }
+
+  return fetch(thisUrl, defaultOptions)
     .then(checkStatus)
     .then(parseJSON);
 }

@@ -6,22 +6,22 @@ import { take, call, put, cancel, takeLatest } from 'redux-saga/effects';
 import request from 'utils/request';
 import { LOCATION_CHANGE } from 'react-router-redux';
 
-import { LOAD_BRANDS } from './constants';
-import { brandsLoaded, brandsLoadingError } from './actions';
+import { LOAD_PRODUCTS } from './constants';
+import { productsLoaded, productsLoadingError } from './actions';
 
 /**
- * Brands list request/response handler
+ * Products list request/response handler
  */
 export function* getProducts(action) {
-  const brand = action.brand;
-  const requestURL = `http://52.221.230.61:9000/api/items/${brand}`;
+  const brandId = action.brandId;
+  const requestURL = `http://52.221.230.61:9000/api/brands/${brandId}/items`;
 
   try {
     // Call our request helper (see 'utils/request')
     const brands = yield call(request, requestURL);
-    yield put(brandsLoaded(brands));
+    yield put(productsLoaded(brands));
   } catch (err) {
-    yield put(brandsLoadingError(err));
+    yield put(productsLoadingError(err));
   }
 }
 
@@ -29,10 +29,10 @@ export function* getProducts(action) {
  * Root saga manages watcher lifecycle
  */
 export function* productsList() {
-  // Watches for LOAD_BRANDS actions and calls getProducts when one comes in.
+  // Watches for LOAD_PRODUCTS actions and calls getProducts when one comes in.
   // By using `takeLatest` only the result of the latest API call is applied.
   // It returns task descriptor (just like fork) so we can continue execution
-  const watcher = yield takeLatest(LOAD_BRANDS, getProducts);
+  const watcher = yield takeLatest(LOAD_PRODUCTS, getProducts);
 
   // Suspend execution until location changes
   yield take(LOCATION_CHANGE);

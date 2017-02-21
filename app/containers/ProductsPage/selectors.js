@@ -1,23 +1,23 @@
 /**
- * BrandsPage selectors
+ * Products Page selectors
  */
 
 import { createSelector } from 'reselect';
 
-const selectBrands = (state) => state.get('brands');
+const selectProducts = (state) => state.get('products');
 
 const makeSelectBrands = () => createSelector(
-  selectBrands,
+  selectProducts,
   (brandsState) => brandsState.getIn(['data', 'brands'])
 );
 
 const makeSelectLoading = () => createSelector(
-  selectBrands,
+  selectProducts,
   (brandsState) => brandsState.get('loading')
 );
 
 const makeSelectError = () => createSelector(
-  selectBrands,
+  selectProducts,
   (brandsState) => brandsState.get('error')
 );
 
