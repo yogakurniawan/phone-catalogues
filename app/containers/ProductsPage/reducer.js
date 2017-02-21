@@ -1,5 +1,5 @@
 /*
- * BrandsReducer
+ * Products Reducer
  *
  * The reducer takes care of our data. Using actions, we can change our
  * application state.
@@ -12,8 +12,8 @@
 import { fromJS } from 'immutable';
 
 import {
-  LOAD_BRANDS,
-  LOAD_BRANDS_SUCCESS,
+  LOAD_PRODUCTS,
+  LOAD_PRODUCTS_SUCCESS,
   LOAD_BRANDS_ERROR,
 } from './constants';
 
@@ -22,20 +22,20 @@ const initialState = fromJS({
   loading: false,
   error: false,
   data: {
-    brands: false,
+    products: false,
   },
 });
 
-function brandsReducer(state = initialState, action) {
+function productsReducer(state = initialState, action) {
   switch (action.type) {
-    case LOAD_BRANDS:
+    case LOAD_PRODUCTS:
       return state
         .set('loading', true)
         .set('error', false)
-        .setIn(['data', 'brands'], false);
-    case LOAD_BRANDS_SUCCESS:
+        .setIn(['data', 'products'], false);
+    case LOAD_PRODUCTS_SUCCESS:
       return state
-        .setIn(['data', 'brands'], action.brands)
+        .setIn(['data', 'products'], action.brands)
         .set('loading', false);
     case LOAD_BRANDS_ERROR:
       return state
@@ -46,5 +46,5 @@ function brandsReducer(state = initialState, action) {
   }
 }
 
-export default brandsReducer;
+export default productsReducer;
 

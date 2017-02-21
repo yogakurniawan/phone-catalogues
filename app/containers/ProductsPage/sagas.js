@@ -12,8 +12,9 @@ import { brandsLoaded, brandsLoadingError } from './actions';
 /**
  * Brands list request/response handler
  */
-export function* getBrands() {
-  const requestURL = 'http://52.221.230.61:9000/api/items';
+export function* getProducts(action) {
+  const brand = action.brand;
+  const requestURL = `http://52.221.230.61:9000/api/items/${brand}`;
 
   try {
     // Call our request helper (see 'utils/request')
@@ -27,11 +28,11 @@ export function* getBrands() {
 /**
  * Root saga manages watcher lifecycle
  */
-export function* brandsList() {
-  // Watches for LOAD_BRANDS actions and calls getBrands when one comes in.
+export function* productsList() {
+  // Watches for LOAD_BRANDS actions and calls getProducts when one comes in.
   // By using `takeLatest` only the result of the latest API call is applied.
   // It returns task descriptor (just like fork) so we can continue execution
-  const watcher = yield takeLatest(LOAD_BRANDS, getBrands);
+  const watcher = yield takeLatest(LOAD_BRANDS, getProducts);
 
   // Suspend execution until location changes
   yield take(LOCATION_CHANGE);
@@ -40,5 +41,5 @@ export function* brandsList() {
 
 // Bootstrap sagas
 export default [
-  brandsList,
+  productsList,
 ];

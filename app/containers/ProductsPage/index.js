@@ -12,12 +12,12 @@ import ContentList from 'components/ContentList';
 import BrandTile from 'components/BrandTile';
 
 import { makeSelectBrands, makeSelectLoading, makeSelectError } from './selectors';
-import { loadBrands } from './actions';
+import { loadProducts } from './actions';
 
-class BrandsPage extends React.Component { // eslint-disable-line react/prefer-stateless-function
+class ProductsPage extends React.Component { // eslint-disable-line react/prefer-stateless-function
 
   componentDidMount() {
-    this.props.loadBrands();
+    this.props.loadProducts();
   }
 
   showProducts() {
@@ -25,13 +25,13 @@ class BrandsPage extends React.Component { // eslint-disable-line react/prefer-s
   }
 
   render() {
-    const { loading, error, brands } = this.props;
+    const { loading, error, products } = this.props;
     const contentListProps = {
       loading,
       error,
       component: BrandTile,
       onClick: this.showProducts,
-      brands,
+      products,
     };
     return (
       <div>
@@ -47,30 +47,30 @@ class BrandsPage extends React.Component { // eslint-disable-line react/prefer-s
   }
 }
 
-BrandsPage.propTypes = {
+ProductsPage.propTypes = {
   loading: React.PropTypes.bool,
   error: React.PropTypes.oneOfType([
     React.PropTypes.object,
     React.PropTypes.bool,
   ]),
-  brands: React.PropTypes.oneOfType([
+  products: React.PropTypes.oneOfType([
     React.PropTypes.array,
     React.PropTypes.bool,
   ]),
-  loadBrands: React.PropTypes.func,
+  loadProducts: React.PropTypes.func,
 };
 
 export function mapDispatchToProps(dispatch) {
   return {
-    loadBrands: () => dispatch(loadBrands()),
+    loadProducts: () => dispatch(loadProducts()),
   };
 }
 
 const mapStateToProps = createStructuredSelector({
-  brands: makeSelectBrands(),
+  products: makeSelectBrands(),
   loading: makeSelectLoading(),
   error: makeSelectError(),
 });
 
 // Wrap the component to inject dispatch and state into it
-export default connect(mapStateToProps, mapDispatchToProps)(BrandsPage);
+export default connect(mapStateToProps, mapDispatchToProps)(ProductsPage);
