@@ -20,8 +20,8 @@ class ProductsPage extends React.Component { // eslint-disable-line react/prefer
     this.props.loadProducts();
   }
 
-  showProducts() {
-    console.log('it works');
+  showProducts(item) {
+    console.log(item);
   }
 
   render() {

@@ -20,8 +20,8 @@ class BrandsPage extends React.Component { // eslint-disable-line react/prefer-s
     this.props.loadBrands();
   }
 
-  showProducts(evt) {
-    console.log(evt.target);
+  showProducts(item) {
+    console.log(item);
     console.log('it works');
   }
 
