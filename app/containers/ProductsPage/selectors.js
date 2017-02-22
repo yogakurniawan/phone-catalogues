@@ -6,23 +6,23 @@ import { createSelector } from 'reselect';
 
 const selectProducts = (state) => state.get('products');
 
-const makeSelectBrands = () => createSelector(
+const makeSelectProducts = () => createSelector(
   selectProducts,
-  (brandsState) => brandsState.getIn(['data', 'brands'])
+  (productsState) => productsState.getIn(['data', 'products'])
 );
 
 const makeSelectLoading = () => createSelector(
   selectProducts,
-  (brandsState) => brandsState.get('loading')
+  (productsState) => productsState.get('loading')
 );
 
 const makeSelectError = () => createSelector(
   selectProducts,
-  (brandsState) => brandsState.get('error')
+  (productsState) => productsState.get('error')
 );
 
 export {
-  makeSelectBrands,
+  makeSelectProducts,
   makeSelectLoading,
   makeSelectError,
 };

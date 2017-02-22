@@ -9,9 +9,9 @@ import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
 
 import ContentList from 'components/ContentList';
-import BrandTile from 'components/BrandTile';
+import ProductTile from 'components/ProductTile';
 
-import { makeSelectBrands, makeSelectLoading, makeSelectError } from './selectors';
+import { makeSelectProducts, makeSelectLoading, makeSelectError } from './selectors';
 import { loadProducts } from './actions';
 
 class ProductsPage extends React.Component { // eslint-disable-line react/prefer-stateless-function
@@ -26,22 +26,23 @@ class ProductsPage extends React.Component { // eslint-disable-line react/prefer
 
   render() {
     const { loading, error, products } = this.props;
+    console.log(products);
     const contentListProps = {
       loading,
       error,
-      component: BrandTile,
+      component: ProductTile,
       onClick: this.showProducts,
-      products,
+      payload: products,
     };
     return (
       <div>
         <Helmet
-          title="Brands Page"
+          title="Products Page"
           meta={[
-            { name: 'description', content: 'Brands page contains list of smartphone brands' },
+            { name: 'description', content: 'Products page contains list of product smartphone' },
           ]}
         />
-        <ContentList {...contentListProps} />
+        {products && <ContentList {...contentListProps} />}
       </div>
     );
   }
@@ -67,7 +68,7 @@ export function mapDispatchToProps(dispatch) {
 }
 
 const mapStateToProps = createStructuredSelector({
-  products: makeSelectBrands(),
+  products: makeSelectProducts(),
   loading: makeSelectLoading(),
   error: makeSelectError(),
 });

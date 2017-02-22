@@ -13,13 +13,13 @@ import { productsLoaded, productsLoadingError } from './actions';
  * Products list request/response handler
  */
 export function* getProducts(action) {
-  const brandId = action.brandId;
+  const brandId = '58797ed4312455ba35347b55';
   const requestURL = `http://52.221.230.61:9000/api/brands/${brandId}/items`;
 
   try {
     // Call our request helper (see 'utils/request')
-    const brands = yield call(request, requestURL);
-    yield put(productsLoaded(brands));
+    const products = yield call(request, requestURL);
+    yield put(productsLoaded(products));
   } catch (err) {
     yield put(productsLoadingError(err));
   }

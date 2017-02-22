@@ -6,6 +6,7 @@ import H4 from './H4';
 import Img from './Img';
 
 function Element({ item }) { // eslint-disable-line react/prefer-stateless-function
+  console.log(item);
   return (
     <div className="row center-xs">
       <div className="col-xs-12 col-sm-6 col-md-6 col-lg-4" style={{ maxWidth: '30rem' }}>

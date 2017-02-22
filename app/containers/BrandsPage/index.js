@@ -32,7 +32,7 @@ class BrandsPage extends React.Component { // eslint-disable-line react/prefer-s
       error,
       component: BrandTile,
       onClick: this.showProducts,
-      brands,
+      payload: brands,
     };
     return (
       <div>

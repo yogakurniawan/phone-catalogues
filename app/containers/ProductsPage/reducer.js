@@ -35,7 +35,7 @@ function productsReducer(state = initialState, action) {
         .setIn(['data', 'products'], false);
     case LOAD_PRODUCTS_SUCCESS:
       return state
-        .setIn(['data', 'products'], action.brands)
+        .setIn(['data', 'products'], action.products)
         .set('loading', false);
     case LOAD_PRODUCTS_ERROR:
       return state
