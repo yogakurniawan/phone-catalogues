@@ -19,6 +19,7 @@ import {
   LOAD_PRODUCTS,
   LOAD_PRODUCTS_SUCCESS,
   LOAD_PRODUCTS_ERROR,
+  SET_PRODUCT_BRAND,
 } from './constants';
 
 /**
@@ -29,6 +30,13 @@ import {
 export function loadProducts(brand) {
   return {
     type: LOAD_PRODUCTS,
+    brand,
+  };
+}
+
+export function setProductBrand(brand) {
+  return {
+    type: SET_PRODUCT_BRAND,
     brand,
   };
 }

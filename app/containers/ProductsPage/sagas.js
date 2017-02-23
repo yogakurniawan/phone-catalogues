@@ -13,6 +13,7 @@ import { productsLoaded, productsLoadingError } from './actions';
  * Products list request/response handler
  */
 export function* getProducts(action) {
+  console.log(action);
   const brandId = '58797ed4312455ba35347b55';
   const requestURL = `http://52.221.230.61:9000/api/brands/${brandId}/items`;
 

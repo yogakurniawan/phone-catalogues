@@ -8,16 +8,19 @@ import Helmet from 'react-helmet';
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
 
+import { makeSelectBrandsByName } from 'containers/BrandsPage/selectors';
 import ContentList from 'components/ContentList';
 import ProductTile from 'components/ProductTile';
 
-import { makeSelectProducts, makeSelectLoading, makeSelectError } from './selectors';
+import { makeSelectProducts, makeSelectLoading, makeSelectError, makeSelectProductBrand } from './selectors';
 import { loadProducts } from './actions';
 
 class ProductsPage extends React.Component { // eslint-disable-line react/prefer-stateless-function
 
   componentDidMount() {
-    this.props.loadProducts();
+    const { getProducts, getBrand, productBrand } = this.props;
+    console.log(productBrand);
+    getBrand(productBrand);
   }
 
   showProducts(item) {
@@ -26,7 +29,7 @@ class ProductsPage extends React.Component { // eslint-disable-line react/prefer
 
   render() {
     const { loading, error, products } = this.props;
-    console.log(products);
+    // console.log(products);
     const contentListProps = {
       loading,
       error,
@@ -58,16 +61,26 @@ ProductsPage.propTypes = {
     React.PropTypes.array,
     React.PropTypes.bool,
   ]),
-  loadProducts: React.PropTypes.func,
+  getProducts: React.PropTypes.func,
+  getBrand: React.PropTypes.oneOfType([
+    React.PropTypes.func,
+    React.PropTypes.array,
+  ]),
+  productBrand: React.PropTypes.oneOfType([
+    React.PropTypes.string,
+    React.PropTypes.bool,
+  ]),
 };
 
 export function mapDispatchToProps(dispatch) {
   return {
-    loadProducts: () => dispatch(loadProducts()),
+    getProducts: () => dispatch(loadProducts()),
   };
 }
 
 const mapStateToProps = createStructuredSelector({
+  productBrand: makeSelectProductBrand(),
+  getBrand: makeSelectBrandsByName,
   products: makeSelectProducts(),
   loading: makeSelectLoading(),
   error: makeSelectError(),

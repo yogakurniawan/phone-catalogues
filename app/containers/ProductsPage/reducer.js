@@ -15,12 +15,14 @@ import {
   LOAD_PRODUCTS,
   LOAD_PRODUCTS_SUCCESS,
   LOAD_PRODUCTS_ERROR,
+  SET_PRODUCT_BRAND,
 } from './constants';
 
 // The initial state of the App
 const initialState = fromJS({
   loading: false,
   error: false,
+  brand: false,
   data: {
     products: false,
   },
@@ -28,6 +30,9 @@ const initialState = fromJS({
 
 function productsReducer(state = initialState, action) {
   switch (action.type) {
+    case SET_PRODUCT_BRAND:
+      return state
+        .set('brand', action.brand);
     case LOAD_PRODUCTS:
       return state
         .set('loading', true)

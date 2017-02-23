@@ -6,6 +6,7 @@
 import React from 'react';
 import Helmet from 'react-helmet';
 import { connect } from 'react-redux';
+import { push } from 'react-router-redux';
 import { createStructuredSelector } from 'reselect';
 
 import ContentList from 'components/ContentList';
@@ -20,9 +21,10 @@ class BrandsPage extends React.Component { // eslint-disable-line react/prefer-s
     this.props.loadBrands();
   }
 
-  showProducts(item) {
-    console.log(item);
-    console.log('it works');
+  showProducts() {
+    return (item) => {
+      this.props.pushState(`/products/${item.title}`);
+    };
   }
 
   render() {
@@ -31,7 +33,7 @@ class BrandsPage extends React.Component { // eslint-disable-line react/prefer-s
       loading,
       error,
       component: BrandTile,
-      onClick: this.showProducts,
+      onClick: this.showProducts.call(this),
       payload: brands,
     };
     return (
@@ -49,6 +51,7 @@ class BrandsPage extends React.Component { // eslint-disable-line react/prefer-s
 }
 
 BrandsPage.propTypes = {
+  pushState: React.PropTypes.func,
   loading: React.PropTypes.bool,
   error: React.PropTypes.oneOfType([
     React.PropTypes.object,
@@ -61,11 +64,10 @@ BrandsPage.propTypes = {
   loadBrands: React.PropTypes.func,
 };
 
-export function mapDispatchToProps(dispatch) {
-  return {
-    loadBrands: () => dispatch(loadBrands()),
-  };
-}
+const mapDispatchToProps = {
+  pushState: push,
+  loadBrands,
+};
 
 const mapStateToProps = createStructuredSelector({
   brands: makeSelectBrands(),

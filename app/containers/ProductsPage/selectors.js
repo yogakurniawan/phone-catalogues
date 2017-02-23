@@ -11,6 +11,11 @@ const makeSelectProducts = () => createSelector(
   (productsState) => productsState.getIn(['data', 'products'])
 );
 
+const makeSelectProductBrand = () => createSelector(
+  selectProducts,
+  (productsState) => productsState.get('brand')
+);
+
 const makeSelectLoading = () => createSelector(
   selectProducts,
   (productsState) => productsState.get('loading')
@@ -25,4 +30,5 @@ export {
   makeSelectProducts,
   makeSelectLoading,
   makeSelectError,
+  makeSelectProductBrand,
 };

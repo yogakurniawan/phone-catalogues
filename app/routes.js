@@ -85,10 +85,10 @@ export default function createRoutes(store) {
         const renderRoute = loadModule(cb);
 
         importModules.then(([actions, reducer, sagas, component]) => {
+          store.dispatch(actions.setProductBrand(nextState.params.brand));
           injectReducer('products', reducer.default);
           injectSagas(sagas.default);
           renderRoute(component);
-          store.dispatch(actions.loadProducts(nextState.params.brand));
         });
 
         importModules.catch(errorLoading);
