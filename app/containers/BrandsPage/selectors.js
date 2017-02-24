@@ -11,13 +11,6 @@ const makeSelectBrands = () => createSelector(
   (brandsState) => brandsState.getIn(['data', 'brands'])
 );
 
-const makeSelectBrandsByName = (brandName) => createSelector(
-  selectBrands,
-  (brandsState) => brandsState.getIn(['data', 'brands']).filter(
-    (brand) => brand.title.indexOf(brandName) > -1
-  )
-);
-
 const makeSelectLoading = () => createSelector(
   selectBrands,
   (brandsState) => brandsState.get('loading')
@@ -32,5 +25,4 @@ export {
   makeSelectBrands,
   makeSelectLoading,
   makeSelectError,
-  makeSelectBrandsByName,
 };

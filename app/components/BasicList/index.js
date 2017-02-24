@@ -7,7 +7,6 @@ function Element(props) {
 
   // If we have items, render them
   if (props.items) {
-    console.log(props.items);
     content = props.items.map((item, index) => (
       <ComponentToRender key={`item-${index}`} item={item} onClick={onClick} />
     ));

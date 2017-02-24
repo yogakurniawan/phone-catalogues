@@ -52,7 +52,6 @@ export default function createRoutes(store) {
       path: '/',
       name: 'brands',
       getComponent(nextState, cb) {
-        console.log(nextState);
         const importModules = Promise.all([
           import('containers/BrandsPage/reducer'),
           import('containers/BrandsPage/sagas'),
@@ -74,7 +73,6 @@ export default function createRoutes(store) {
       path: 'products/:brand',
       name: 'products',
       getComponent(nextState, cb) {
-        console.log(nextState);
         const importModules = Promise.all([
           import('containers/ProductsPage/actions'),
           import('containers/ProductsPage/reducer'),

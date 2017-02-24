@@ -8,7 +8,7 @@ import Helmet from 'react-helmet';
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
 
-import { makeSelectBrandsByName } from 'containers/BrandsPage/selectors';
+import { makeSelectBrands } from 'containers/BrandsPage/selectors';
 import ContentList from 'components/ContentList';
 import ProductTile from 'components/ProductTile';
 
@@ -19,8 +19,8 @@ class ProductsPage extends React.Component { // eslint-disable-line react/prefer
 
   componentDidMount() {
     const { getProducts, getBrand, productBrand } = this.props;
-    console.log(productBrand);
-    getBrand(productBrand);
+    const brand = getBrand.filter((result) => result.title === productBrand).shift();
+    getProducts(brand.id);
   }
 
   showProducts(item) {
@@ -45,7 +45,7 @@ class ProductsPage extends React.Component { // eslint-disable-line react/prefer
             { name: 'description', content: 'Products page contains list of product smartphone' },
           ]}
         />
-        {products && <ContentList {...contentListProps} />}
+        <ContentList {...contentListProps} />
       </div>
     );
   }
@@ -72,15 +72,13 @@ ProductsPage.propTypes = {
   ]),
 };
 
-export function mapDispatchToProps(dispatch) {
-  return {
-    getProducts: () => dispatch(loadProducts()),
-  };
-}
+const mapDispatchToProps = {
+  getProducts: loadProducts,
+};
 
 const mapStateToProps = createStructuredSelector({
   productBrand: makeSelectProductBrand(),
-  getBrand: makeSelectBrandsByName,
+  getBrand: makeSelectBrands(),
   products: makeSelectProducts(),
   loading: makeSelectLoading(),
   error: makeSelectError(),

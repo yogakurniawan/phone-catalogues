@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router';
 
 import Img from './Img';
 import NavBar from './NavBar';
@@ -9,7 +10,9 @@ function Header() { // eslint-disable-line react/prefer-stateless-function
   return (
     <FixedHeaderContainer>
       <NavBar>
-        <Img src={Logo} alt="Phoney App - Logo" />
+        <Link to="/">
+          <Img src={Logo} alt="Phoney App - Logo" />
+        </Link>
       </NavBar>
     </FixedHeaderContainer>
   );

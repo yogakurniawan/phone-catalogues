@@ -9,13 +9,6 @@ const Element = styled.div`
   transform: perspective(1px) translateZ(0);
   transition-duration: 0.8s;
   transition-property: color, background-color;
-  &:hover {
-    cursor: pointer;
-    background-color: #dd5555;
-    h2, h4 {
-      color: white;
-    }
-  }
 `;
 
 export default Element;

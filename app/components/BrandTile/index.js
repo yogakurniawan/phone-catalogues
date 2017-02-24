@@ -1,8 +1,8 @@
 import React, { PropTypes } from 'react';
 
-import RoundedBox from 'components/RoundedBox';
 import H4 from 'components/H4';
 import H2 from './H2';
+import RoundedBox from './RoundedBox';
 
 function Element({ item, onClick = () => { } }) { // eslint-disable-line react/prefer-stateless-function
   const onItemClick = () => {
