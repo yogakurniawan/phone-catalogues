@@ -8,7 +8,6 @@ import Helmet from 'react-helmet';
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
 
-import { makeSelectBrands } from 'containers/BrandsPage/selectors';
 import ContentList from 'components/ContentList';
 import ProductTile from 'components/ProductTile';
 
@@ -18,9 +17,8 @@ import { loadProducts } from './actions';
 class ProductsPage extends React.Component { // eslint-disable-line react/prefer-stateless-function
 
   componentDidMount() {
-    const { getProducts, getBrand, productBrand } = this.props;
-    const brand = getBrand.filter((result) => result.title === productBrand).shift();
-    getProducts(brand.id);
+    const { getProducts, productBrand } = this.props;
+    getProducts(productBrand);
   }
 
   showProducts(item) {
@@ -62,10 +60,6 @@ ProductsPage.propTypes = {
     React.PropTypes.bool,
   ]),
   getProducts: React.PropTypes.func,
-  getBrand: React.PropTypes.oneOfType([
-    React.PropTypes.func,
-    React.PropTypes.array,
-  ]),
   productBrand: React.PropTypes.oneOfType([
     React.PropTypes.string,
     React.PropTypes.bool,
@@ -78,7 +72,6 @@ const mapDispatchToProps = {
 
 const mapStateToProps = createStructuredSelector({
   productBrand: makeSelectProductBrand(),
-  getBrand: makeSelectBrands(),
   products: makeSelectProducts(),
   loading: makeSelectLoading(),
   error: makeSelectError(),

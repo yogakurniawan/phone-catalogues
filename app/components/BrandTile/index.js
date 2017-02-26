@@ -1,6 +1,6 @@
 import React, { PropTypes } from 'react';
 
-import H4 from 'components/H4';
+import H4 from './H4';
 import H2 from './H2';
 import RoundedBox from './RoundedBox';
 

@@ -13,11 +13,15 @@ import { productsLoaded, productsLoadingError } from './actions';
  * Products list request/response handler
  */
 export function* getProducts(data) {
-  const requestURL = `http://52.221.230.61:9000/api/brands/${data.brand}/items`;
+  const requestURL = 'http://52.221.230.61:9000/api/items';
 
   try {
     // Call our request helper (see 'utils/request')
-    const products = yield call(request, requestURL);
+    const products = yield call(request, requestURL, {
+      queryParams: {
+        'filter[where][keyword]': data.brand.toLowerCase(),
+      },
+    });
     yield put(productsLoaded(products));
   } catch (err) {
     yield put(productsLoadingError(err));
