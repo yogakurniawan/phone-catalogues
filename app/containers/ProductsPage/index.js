@@ -43,7 +43,11 @@ class ProductsPage extends React.Component { // eslint-disable-line react/prefer
             { name: 'description', content: 'Products page contains list of product smartphone' },
           ]}
         />
-        <ContentList {...contentListProps} />
+        <div className="row center-xs">
+          <div className="col-xs-11 col-sm-9 col-md-8 col-lg-8">
+            <ContentList {...contentListProps} />
+          </div>
+        </div>
       </div>
     );
   }

@@ -1,25 +1,19 @@
 import { css } from 'styled-components';
 
 const buttonStyles = css`
-  display: inline-block;
-  box-sizing: border-box;
-  padding: 0.25em 2em;
+  border: none;
+  text-align: center;
+  line-height: 1.125;
+  border-radius: 3px;
+  padding: 10px 15px;
+  transition: border 0.25s linear, color 0.25s linear, background-color 0.25s linear;
+  color: #ffffff;
+  background-color: #dd5555;
   text-decoration: none;
-  border-radius: 4px;
-  -webkit-font-smoothing: antialiased;
-  -webkit-touch-callout: none;
-  user-select: none;
   cursor: pointer;
-  outline: 0;
-  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
-  font-weight: bold;
-  font-size: 16px;
-  border: 2px solid #41addd;
-  color: #41addd;
 
-  &:active {
-    background: #41addd;
-    color: #fff;
+  &:active, &:hover {
+    background: #d94040;
   }
 `;
 

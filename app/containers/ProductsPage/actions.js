@@ -17,6 +17,9 @@
 
 import {
   LOAD_PRODUCTS,
+  LOAD_MORE_PRODUCTS,
+  LOAD_MORE_PRODUCTS_SUCCESS,
+  LOAD_MORE_PRODUCTS_ERROR,
   LOAD_PRODUCTS_SUCCESS,
   LOAD_PRODUCTS_ERROR,
   SET_PRODUCT_BRAND,
@@ -30,6 +33,13 @@ import {
 export function loadProducts(brand) {
   return {
     type: LOAD_PRODUCTS,
+    brand,
+  };
+}
+
+export function loadMoreProducts(brand) {
+  return {
+    type: LOAD_MORE_PRODUCTS,
     brand,
   };
 }
@@ -55,6 +65,13 @@ export function productsLoaded(products) {
   };
 }
 
+export function moreProductsLoaded(products) {
+  return {
+    type: LOAD_MORE_PRODUCTS_SUCCESS,
+    products,
+  };
+}
+
 /**
  * Dispatched when loading products list fails
  *
@@ -65,6 +82,13 @@ export function productsLoaded(products) {
 export function productsLoadingError(error) {
   return {
     type: LOAD_PRODUCTS_ERROR,
+    error,
+  };
+}
+
+export function moreProductsLoadingError(error) {
+  return {
+    type: LOAD_MORE_PRODUCTS_ERROR,
     error,
   };
 }

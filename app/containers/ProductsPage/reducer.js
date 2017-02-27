@@ -15,14 +15,21 @@ import {
   LOAD_PRODUCTS,
   LOAD_PRODUCTS_SUCCESS,
   LOAD_PRODUCTS_ERROR,
+  LOAD_MORE_PRODUCTS,
+  LOAD_MORE_PRODUCTS_SUCCESS,
+  LOAD_MORE_PRODUCTS_ERROR,
   SET_PRODUCT_BRAND,
+  SET_SKIP,
 } from './constants';
 
 // The initial state of the App
 const initialState = fromJS({
   loading: false,
+  loadingMoreProducts: false,
   error: false,
+  errorMoreProducts: false,
   brand: false,
+  skip: 0,
   data: {
     products: false,
   },
@@ -33,19 +40,37 @@ function productsReducer(state = initialState, action) {
     case SET_PRODUCT_BRAND:
       return state
         .set('brand', action.brand);
+    case SET_SKIP:
+      return state
+        .set('skip', action.skip);
     case LOAD_PRODUCTS:
       return state
         .set('loading', true)
         .set('error', false)
         .setIn(['data', 'products'], false);
+    case LOAD_MORE_PRODUCTS:
+      return state
+        .set('loadingMoreProducts', true)
+        .set('errorMoreProducts', false);
     case LOAD_PRODUCTS_SUCCESS:
       return state
         .setIn(['data', 'products'], action.products)
         .set('loading', false);
+    case LOAD_MORE_PRODUCTS_SUCCESS: {
+      const oldProducts = state.getIn(['data', 'products']);
+      const newProducts = action.products;
+      return state
+        .setIn(['data', 'products'], oldProducts.merge(newProducts))
+        .set('loadingMoreProducts', false);
+    }
     case LOAD_PRODUCTS_ERROR:
       return state
         .set('error', action.error)
         .set('loading', false);
+    case LOAD_MORE_PRODUCTS_ERROR:
+      return state
+        .set('loadingMoreProducts', false)
+        .set('errorMoreProducts', action.error);
     default:
       return state;
   }

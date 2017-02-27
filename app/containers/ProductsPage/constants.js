@@ -10,6 +10,10 @@
  */
 
 export const LOAD_PRODUCTS = 'boilerplate/ProductsPage/LOAD_PRODUCTS';
+export const LOAD_MORE_PRODUCTS = 'boilerplate/ProductsPage/LOAD_MORE_PRODUCTS';
+export const LOAD_MORE_PRODUCTS_SUCCESS = 'boilerplate/ProductsPage/LOAD_MORE_PRODUCTS_SUCCESS';
+export const LOAD_MORE_PRODUCTS_ERROR = 'boilerplate/ProductsPage/LOAD_MORE_PRODUCTS_ERROR';
 export const SET_PRODUCT_BRAND = 'boilerplate/ProductsPage/SET_PRODUCT_BRAND';
 export const LOAD_PRODUCTS_SUCCESS = 'boilerplate/ProductsPage/LOAD_PRODUCTS_SUCCESS';
 export const LOAD_PRODUCTS_ERROR = 'boilerplate/ProductsPage/LOAD_PRODUCTS_ERROR';
+export const PRODUCTS_API_URL = 'http://52.221.230.61:9000/api/items';
