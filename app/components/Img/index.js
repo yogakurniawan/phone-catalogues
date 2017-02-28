@@ -19,7 +19,7 @@ Img.propTypes = {
     PropTypes.string,
     PropTypes.object,
   ]).isRequired,
-  alt: PropTypes.string.isRequired,
+  alt: PropTypes.string,
   className: PropTypes.string,
 };
 

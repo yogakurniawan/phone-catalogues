@@ -16,6 +16,16 @@ const makeSelectProductBrand = () => createSelector(
   (productsState) => productsState.get('brand')
 );
 
+const makeSelectCount = () => createSelector(
+  selectProducts,
+  (productsState) => productsState.get('count')
+);
+
+const makeSelectSkip = () => createSelector(
+  selectProducts,
+  (productsState) => productsState.get('skip')
+);
+
 const makeSelectLoading = () => createSelector(
   selectProducts,
   (productsState) => productsState.get('loading')
@@ -43,4 +53,6 @@ export {
   makeSelectProductBrand,
   makeSelectMoreProductsLoading,
   makeSelectMoreProductsError,
+  makeSelectCount,
+  makeSelectSkip,
 };

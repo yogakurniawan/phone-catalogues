@@ -11,7 +11,6 @@ import { createStructuredSelector } from 'reselect';
 
 import ContentList from 'components/ContentList';
 import BrandTile from 'components/BrandTile';
-import Button from 'components/Button';
 
 import { makeSelectBrands, makeSelectLoading, makeSelectError } from './selectors';
 import { loadBrands } from './actions';
@@ -40,20 +39,15 @@ class BrandsPage extends React.Component { // eslint-disable-line react/prefer-s
     return (
       <div>
         <Helmet
-          title="Brands Page"
+          title="Brand List"
           meta={[
-            { name: 'description', content: 'Brands page contains list of smartphone brands' },
+            { name: 'description', content: 'Brand list page contains list of cellphone brand' },
           ]}
         />
         <div className="row center-xs">
           <div className="col-xs-8">
             <ContentList {...contentListProps} />
           </div>
-          { !loading && <div className="col-xs-8">
-            <Button handleRoute={() => {}}>
-              Load More
-            </Button>
-          </div>}
         </div>
       </div>
     );

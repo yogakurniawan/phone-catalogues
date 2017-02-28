@@ -10,24 +10,43 @@ import { createStructuredSelector } from 'reselect';
 
 import ContentList from 'components/ContentList';
 import ProductTile from 'components/ProductTile';
+import Button from 'components/Button';
+import LoadingIndicator from 'components/LoadingIndicator';
 
-import { makeSelectProducts, makeSelectLoading, makeSelectError, makeSelectProductBrand } from './selectors';
-import { loadProducts } from './actions';
+import {
+  makeSelectProducts,
+  makeSelectLoading,
+  makeSelectError,
+  makeSelectProductBrand,
+  makeSelectCount,
+  makeSelectSkip,
+  makeSelectMoreProductsLoading,
+} from './selectors';
+import * as productActions from './actions';
+import { PER_PAGE } from './constants';
 
 class ProductsPage extends React.Component { // eslint-disable-line react/prefer-stateless-function
 
   componentDidMount() {
-    const { getProducts, productBrand } = this.props;
+    const { getProducts, productBrand, countProducts } = this.props;
     getProducts(productBrand);
+    countProducts(productBrand);
   }
 
   showProducts(item) {
     console.log(item);
   }
 
+  loadMoreProducts() {
+    const { skip, setSkip } = this.props;
+    const newSkip = PER_PAGE + skip;
+    setSkip(newSkip);
+  }
+
   render() {
-    const { loading, error, products } = this.props;
-    // console.log(products);
+    const { loading, loadingMoreProducts, error, products, skip, count } = this.props;
+    console.log(skip);
+    console.log(count);
     const contentListProps = {
       loading,
       error,
@@ -35,18 +54,26 @@ class ProductsPage extends React.Component { // eslint-disable-line react/prefer
       onClick: this.showProducts,
       payload: products,
     };
+    const showLoadMoreButton = !loadingMoreProducts || (count - PER_PAGE === skip);
+
     return (
       <div>
         <Helmet
-          title="Products Page"
+          title="Cellphone List"
           meta={[
-            { name: 'description', content: 'Products page contains list of product smartphone' },
+            { name: 'description', content: 'Cellphone list page contains list of cellphones from specific brand' },
           ]}
         />
         <div className="row center-xs">
           <div className="col-xs-11 col-sm-9 col-md-8 col-lg-8">
             <ContentList {...contentListProps} />
           </div>
+          { loadingMoreProducts && <LoadingIndicator /> }
+          { !loading && showLoadMoreButton && <div className="col-xs-8">
+            <Button handleRoute={this.loadMoreProducts}>
+              Load More
+            </Button>
+          </div>}
         </div>
       </div>
     );
@@ -55,6 +82,7 @@ class ProductsPage extends React.Component { // eslint-disable-line react/prefer
 
 ProductsPage.propTypes = {
   loading: React.PropTypes.bool,
+  loadingMoreProducts: React.PropTypes.bool,
   error: React.PropTypes.oneOfType([
     React.PropTypes.object,
     React.PropTypes.bool,
@@ -64,20 +92,29 @@ ProductsPage.propTypes = {
     React.PropTypes.bool,
   ]),
   getProducts: React.PropTypes.func,
+  countProducts: React.PropTypes.func,
+  setSkip: React.PropTypes.func,
   productBrand: React.PropTypes.oneOfType([
     React.PropTypes.string,
     React.PropTypes.bool,
   ]),
+  skip: React.PropTypes.number,
+  count: React.PropTypes.number,
 };
 
 const mapDispatchToProps = {
-  getProducts: loadProducts,
+  getProducts: productActions.loadProducts,
+  countProducts: productActions.getProductsCount,
+  setSkip: productActions.setSkip,
 };
 
 const mapStateToProps = createStructuredSelector({
   productBrand: makeSelectProductBrand(),
   products: makeSelectProducts(),
   loading: makeSelectLoading(),
+  loadingMoreProducts: makeSelectMoreProductsLoading(),
+  skip: makeSelectSkip(),
+  count: makeSelectCount(),
   error: makeSelectError(),
 });
 

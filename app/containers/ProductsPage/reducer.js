@@ -18,6 +18,9 @@ import {
   LOAD_MORE_PRODUCTS,
   LOAD_MORE_PRODUCTS_SUCCESS,
   LOAD_MORE_PRODUCTS_ERROR,
+  GET_PRODUCTS_COUNT,
+  GET_PRODUCTS_COUNT_SUCCESS,
+  GET_PRODUCTS_COUNT_ERROR,
   SET_PRODUCT_BRAND,
   SET_SKIP,
 } from './constants';
@@ -28,8 +31,10 @@ const initialState = fromJS({
   loadingMoreProducts: false,
   error: false,
   errorMoreProducts: false,
+  errorGetCount: false,
   brand: false,
   skip: 0,
+  count: 0,
   data: {
     products: false,
   },
@@ -52,10 +57,16 @@ function productsReducer(state = initialState, action) {
       return state
         .set('loadingMoreProducts', true)
         .set('errorMoreProducts', false);
+    case GET_PRODUCTS_COUNT:
+      return state
+        .set('errorGetCount', false);
     case LOAD_PRODUCTS_SUCCESS:
       return state
         .setIn(['data', 'products'], action.products)
         .set('loading', false);
+    case GET_PRODUCTS_COUNT_SUCCESS:
+      return state
+        .set('count', action.count);
     case LOAD_MORE_PRODUCTS_SUCCESS: {
       const oldProducts = state.getIn(['data', 'products']);
       const newProducts = action.products;
@@ -71,6 +82,9 @@ function productsReducer(state = initialState, action) {
       return state
         .set('loadingMoreProducts', false)
         .set('errorMoreProducts', action.error);
+    case GET_PRODUCTS_COUNT_ERROR:
+      return state
+        .set('errorGetCount', action.error);
     default:
       return state;
   }

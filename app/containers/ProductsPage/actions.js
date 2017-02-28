@@ -22,7 +22,11 @@ import {
   LOAD_MORE_PRODUCTS_ERROR,
   LOAD_PRODUCTS_SUCCESS,
   LOAD_PRODUCTS_ERROR,
+  GET_PRODUCTS_COUNT,
+  GET_PRODUCTS_COUNT_SUCCESS,
+  GET_PRODUCTS_COUNT_ERROR,
   SET_PRODUCT_BRAND,
+  SET_SKIP,
 } from './constants';
 
 /**
@@ -44,10 +48,24 @@ export function loadMoreProducts(brand) {
   };
 }
 
+export function getProductsCount(brand) {
+  return {
+    type: GET_PRODUCTS_COUNT,
+    brand,
+  };
+}
+
 export function setProductBrand(brand) {
   return {
     type: SET_PRODUCT_BRAND,
     brand,
+  };
+}
+
+export function setSkip(skip) {
+  return {
+    type: SET_SKIP,
+    skip,
   };
 }
 
@@ -72,6 +90,13 @@ export function moreProductsLoaded(products) {
   };
 }
 
+export function getProductsCountSuccess(count) {
+  return {
+    type: GET_PRODUCTS_COUNT_SUCCESS,
+    count,
+  };
+}
+
 /**
  * Dispatched when loading products list fails
  *
@@ -89,6 +114,13 @@ export function productsLoadingError(error) {
 export function moreProductsLoadingError(error) {
   return {
     type: LOAD_MORE_PRODUCTS_ERROR,
+    error,
+  };
+}
+
+export function getProductsCountError(error) {
+  return {
+    type: GET_PRODUCTS_COUNT_ERROR,
     error,
   };
 }
