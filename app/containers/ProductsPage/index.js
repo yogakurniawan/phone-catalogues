@@ -6,6 +6,7 @@
 import React from 'react';
 import Helmet from 'react-helmet';
 import { connect } from 'react-redux';
+import Pagination from 'react-js-pagination';
 import { createStructuredSelector } from 'reselect';
 
 import ContentList from 'components/ContentList';
@@ -43,6 +44,10 @@ class ProductsPage extends React.Component { // eslint-disable-line react/prefer
     setSkip(newSkip);
   }
 
+  handleChange(evt) {
+    console.log(evt);
+  }
+
   render() {
     const { loading, loadingMoreProducts, error, products, skip, count } = this.props;
     console.log(skip);
@@ -68,13 +73,19 @@ class ProductsPage extends React.Component { // eslint-disable-line react/prefer
           <div className="col-xs-11 col-sm-9 col-md-8 col-lg-8">
             <ContentList {...contentListProps} />
           </div>
-          { loadingMoreProducts && <LoadingIndicator /> }
-          { !loading && showLoadMoreButton && <div className="col-xs-8">
+          {loadingMoreProducts && <LoadingIndicator />}
+          {!loading && showLoadMoreButton && <div className="col-xs-8">
             <Button handleRoute={this.loadMoreProducts}>
               Load More
             </Button>
           </div>}
         </div>
+        <Pagination
+          activePage={2}
+          itemsCountPerPage={10}
+          totalItemsCount={20}
+          onChange={this.handleChange}
+        />
       </div>
     );
   }

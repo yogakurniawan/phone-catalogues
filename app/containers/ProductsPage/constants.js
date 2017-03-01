@@ -21,4 +21,4 @@ export const GET_PRODUCTS_COUNT_ERROR = 'boilerplate/ProductsPage/GET_PRODUCTS_C
 export const SET_PRODUCT_BRAND = 'boilerplate/ProductsPage/SET_PRODUCT_BRAND';
 export const SET_SKIP = 'boilerplate/ProductsPage/SET_SKIP';
 export const PRODUCTS_API_URL = 'http://52.221.230.61:9000/api/items';
-export const PER_PAGE = '10';
+export const PER_PAGE = '9';
