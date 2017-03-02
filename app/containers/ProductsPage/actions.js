@@ -26,7 +26,7 @@ import {
   GET_PRODUCTS_COUNT_SUCCESS,
   GET_PRODUCTS_COUNT_ERROR,
   SET_PRODUCT_BRAND,
-  SET_SKIP,
+  SET_PAGE,
 } from './constants';
 
 /**
@@ -34,10 +34,11 @@ import {
  *
  * @return {object} An action object with a type of LOAD_PRODUCTS
  */
-export function loadProducts(brand) {
+export function loadProducts(brand, page) {
   return {
     type: LOAD_PRODUCTS,
     brand,
+    page,
   };
 }
 
@@ -62,10 +63,10 @@ export function setProductBrand(brand) {
   };
 }
 
-export function setSkip(skip) {
+export function setPage(page) {
   return {
-    type: SET_SKIP,
-    skip,
+    type: SET_PAGE,
+    page,
   };
 }
 

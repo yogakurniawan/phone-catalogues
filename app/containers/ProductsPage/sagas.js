@@ -28,11 +28,14 @@ import {
 export function* getProducts(action) {
   try {
     // Call our request helper (see 'utils/request')
+    const queryParams = {
+      'filter[where][keyword]': action.brand.toLowerCase(),
+      'filter[limit]': PER_PAGE,
+      'filter[skip]': action.page > 1 ? ((action.page - 1) * PER_PAGE) : 0,
+    };
+
     const products = yield call(request, PRODUCTS_API_URL, {
-      queryParams: {
-        'filter[where][keyword]': action.brand.toLowerCase(),
-        'filter[limit]': PER_PAGE,
-      },
+      queryParams,
     });
     yield put(productsLoaded(products));
   } catch (err) {

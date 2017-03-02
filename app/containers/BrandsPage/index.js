@@ -23,7 +23,7 @@ class BrandsPage extends React.Component { // eslint-disable-line react/prefer-s
 
   showProducts() {
     return (item) => {
-      this.props.pushState(`/products/${item.title}`);
+      this.props.pushState(`/products/${item.title}/1`);
     };
   }
 

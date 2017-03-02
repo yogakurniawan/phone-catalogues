@@ -22,7 +22,7 @@ import {
   GET_PRODUCTS_COUNT_SUCCESS,
   GET_PRODUCTS_COUNT_ERROR,
   SET_PRODUCT_BRAND,
-  SET_SKIP,
+  SET_PAGE,
 } from './constants';
 
 // The initial state of the App
@@ -33,7 +33,7 @@ const initialState = fromJS({
   errorMoreProducts: false,
   errorGetCount: false,
   brand: false,
-  skip: 0,
+  page: 1,
   count: 0,
   data: {
     products: false,
@@ -45,9 +45,9 @@ function productsReducer(state = initialState, action) {
     case SET_PRODUCT_BRAND:
       return state
         .set('brand', action.brand);
-    case SET_SKIP:
+    case SET_PAGE:
       return state
-        .set('skip', action.skip);
+        .set('page', action.page);
     case LOAD_PRODUCTS:
       return state
         .set('loading', true)

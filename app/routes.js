@@ -70,7 +70,7 @@ export default function createRoutes(store) {
       },
     },
     {
-      path: 'products/:brand',
+      path: 'products/:brand/:page',
       name: 'products',
       getComponent(nextState, cb) {
         const importModules = Promise.all([
@@ -84,6 +84,7 @@ export default function createRoutes(store) {
 
         importModules.then(([actions, reducer, sagas, component]) => {
           store.dispatch(actions.setProductBrand(nextState.params.brand));
+          store.dispatch(actions.setPage(parseInt(nextState.params.page, 10)));
           injectReducer('products', reducer.default);
           injectSagas(sagas.default);
           renderRoute(component);

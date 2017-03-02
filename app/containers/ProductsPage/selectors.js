@@ -21,9 +21,9 @@ const makeSelectCount = () => createSelector(
   (productsState) => productsState.get('count')
 );
 
-const makeSelectSkip = () => createSelector(
+const makeSelectPage = () => createSelector(
   selectProducts,
-  (productsState) => productsState.get('skip')
+  (productsState) => productsState.get('page')
 );
 
 const makeSelectLoading = () => createSelector(
@@ -54,5 +54,5 @@ export {
   makeSelectMoreProductsLoading,
   makeSelectMoreProductsError,
   makeSelectCount,
-  makeSelectSkip,
+  makeSelectPage,
 };

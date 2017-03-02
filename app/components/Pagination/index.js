@@ -4,9 +4,13 @@ import Wrapper from './Wrapper';
 
 function Element(props) {
   return (
-    <Wrapper>
-      <Pagination {...props} />
-    </Wrapper>
+    <div className="row center-xs">
+      <div className="col-xs-12">
+        <Wrapper>
+          <Pagination {...props} />
+        </Wrapper>
+      </div>
+    </div>
   );
 }
 
