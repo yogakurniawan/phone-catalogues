@@ -6,6 +6,7 @@
 import React from 'react';
 import Helmet from 'react-helmet';
 import { connect } from 'react-redux';
+import { push } from 'react-router-redux';
 import { createStructuredSelector } from 'reselect';
 import { FaAngleLeft, FaChevronLeft, FaAngleRight, FaChevronRight } from 'react-icons/lib/fa/';
 
@@ -37,18 +38,12 @@ class ProductsPage extends React.Component { // eslint-disable-line react/prefer
     console.log(item);
   }
 
-  loadMoreProducts() {
-    const { page, setPage } = this.props;
-    const newSkip = PER_PAGE + page;
-    setPage(newSkip);
-  }
-
   handleChange(props) {
     return (page) => {
-      console.log(props);
-      const { getProducts, productBrand, setPage } = props;
-      getProducts(productBrand, page);
+      const { getProducts, productBrand, setPage, pushState } = props;
       setPage(page);
+      getProducts(productBrand, page);
+      pushState(`/products/${productBrand}?page=${page}`);
     };
   }
 
@@ -76,6 +71,7 @@ class ProductsPage extends React.Component { // eslint-disable-line react/prefer
           </div>
         </div>
         {!loading && <Pagination
+          hideDisabled
           firstPageText={<FaChevronLeft size={20} />}
           lastPageText={<FaChevronRight size={20} />}
           prevPageText={<FaAngleLeft size={20} />}
@@ -109,12 +105,14 @@ ProductsPage.propTypes = {
   ]),
   page: React.PropTypes.number,
   count: React.PropTypes.number,
+  pushState: React.PropTypes.func,
 };
 
 const mapDispatchToProps = {
   getProducts: productActions.loadProducts,
   countProducts: productActions.getProductsCount,
   setPage: productActions.setPage,
+  pushState: push,
 };
 
 const mapStateToProps = createStructuredSelector({

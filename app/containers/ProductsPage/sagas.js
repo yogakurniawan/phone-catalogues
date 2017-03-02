@@ -37,6 +37,7 @@ export function* getProducts(action) {
     const products = yield call(request, PRODUCTS_API_URL, {
       queryParams,
     });
+
     yield put(productsLoaded(products));
   } catch (err) {
     yield put(productsLoadingError(err));
@@ -83,13 +84,11 @@ export function* productsList() {
   // Watches for LOAD_PRODUCTS actions and calls getProducts when one comes in.
   // By using `takeLatest` only the result of the latest API call is applied.
   // It returns task descriptor (just like fork) so we can continue execution
-  const watcher1 = yield takeLatest(LOAD_PRODUCTS, getProducts);
-  const watcher2 = yield takeLatest(GET_PRODUCTS_COUNT, getProductsCount);
+  yield takeLatest(LOAD_PRODUCTS, getProducts);
+  yield takeLatest(GET_PRODUCTS_COUNT, getProductsCount);
 
   // Suspend execution until location changes
   yield take(LOCATION_CHANGE);
-  yield cancel(watcher1);
-  yield cancel(watcher2);
 }
 
 export function* moreProductsList() {
