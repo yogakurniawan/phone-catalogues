@@ -1,5 +1,6 @@
 /* eslint consistent-return:0 */
 
+const https = require('https');
 const express = require('express');
 const logger = require('./logger');
 
@@ -25,6 +26,10 @@ const host = customHost || null; // Let http.Server use its default IPv6/4 host
 const prettyHost = customHost || 'localhost';
 
 const port = argv.port || process.env.PORT || 3000;
+
+setInterval(() => {
+  https.get('https://phone-y.herokuapp.com');
+}, 300000); // ping site every 5 minutes (300000)
 
 // Start your app.
 app.listen(port, host, (err) => {
