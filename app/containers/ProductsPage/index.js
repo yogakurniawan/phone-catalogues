@@ -8,7 +8,7 @@ import Helmet from 'react-helmet';
 import { connect } from 'react-redux';
 import { push } from 'react-router-redux';
 import { createStructuredSelector } from 'reselect';
-import { FaAngleLeft, FaChevronLeft, FaAngleRight, FaChevronRight } from 'react-icons/lib/fa/';
+import { FaAngleLeft, FaAngleRight } from 'react-icons/lib/fa/';
 
 import ContentList from 'components/ContentList';
 import ProductTile from 'components/ProductTile';
@@ -72,8 +72,8 @@ class ProductsPage extends React.Component { // eslint-disable-line react/prefer
         </div>
         {!loading && <Pagination
           hideDisabled
-          firstPageText={<FaChevronLeft size={20} />}
-          lastPageText={<FaChevronRight size={20} />}
+          firstPageText={'First'}
+          lastPageText={'Last'}
           prevPageText={<FaAngleLeft size={20} />}
           nextPageText={<FaAngleRight size={20} />}
           activePage={page}

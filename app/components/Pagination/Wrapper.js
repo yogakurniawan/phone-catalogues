@@ -1,8 +1,12 @@
 import styled from 'styled-components';
 
 const Wrapper = styled.div`
+  ul {
+    padding-left: 0;
+  }
   li {
     margin: auto 5px;
+    padding-bottom: 20px;
     display: inline-block;
     &.active a {
       background: #dd5555;
