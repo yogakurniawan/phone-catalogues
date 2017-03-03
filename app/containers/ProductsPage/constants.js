@@ -20,5 +20,5 @@ export const GET_PRODUCTS_COUNT_SUCCESS = 'boilerplate/ProductsPage/GET_PRODUCTS
 export const GET_PRODUCTS_COUNT_ERROR = 'boilerplate/ProductsPage/GET_PRODUCTS_COUNT_ERROR';
 export const SET_PRODUCT_BRAND = 'boilerplate/ProductsPage/SET_PRODUCT_BRAND';
 export const SET_PAGE = 'boilerplate/ProductsPage/SET_PAGE';
-export const PRODUCTS_API_URL = 'http://52.221.230.61:9000/api/items';
+export const PRODUCTS_API_URL = '//52.221.230.61:9000/api/items';
 export const PER_PAGE = '9';
