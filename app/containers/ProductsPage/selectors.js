@@ -31,16 +31,6 @@ const makeSelectLoading = () => createSelector(
   (productsState) => productsState.get('loading')
 );
 
-const makeSelectMoreProductsLoading = () => createSelector(
-  selectProducts,
-  (productsState) => productsState.get('loadingMoreProducts')
-);
-
-const makeSelectMoreProductsError = () => createSelector(
-  selectProducts,
-  (productsState) => productsState.get('errorMoreProducts')
-);
-
 const makeSelectError = () => createSelector(
   selectProducts,
   (productsState) => productsState.get('error')
@@ -51,8 +41,6 @@ export {
   makeSelectLoading,
   makeSelectError,
   makeSelectProductBrand,
-  makeSelectMoreProductsLoading,
-  makeSelectMoreProductsError,
   makeSelectCount,
   makeSelectPage,
 };

@@ -2,13 +2,12 @@
  * Gets list of smartphone brands.
  */
 
-import { take, call, put, cancel, takeLatest } from 'redux-saga/effects';
+import { take, call, put, fork, takeLatest } from 'redux-saga/effects';
 import request from 'utils/request';
 import { LOCATION_CHANGE } from 'react-router-redux';
 
 import {
   LOAD_PRODUCTS,
-  LOAD_MORE_PRODUCTS,
   GET_PRODUCTS_COUNT,
   PRODUCTS_API_URL,
   PER_PAGE,
@@ -16,8 +15,6 @@ import {
 import {
   productsLoaded,
   productsLoadingError,
-  moreProductsLoadingError,
-  moreProductsLoaded,
   getProductsCountSuccess,
   getProductsCountError,
 } from './actions';
@@ -45,22 +42,6 @@ export function* getProducts(action) {
 }
 
 /**
- * Load more products
- */
-export function* getMoreProducts(action) {
-  try {
-    const products = yield call(request, PRODUCTS_API_URL, {
-      queryParams: {
-        'filter[where][keyword]': action.brand.toLowerCase(),
-      },
-    });
-    yield put(moreProductsLoaded(products));
-  } catch (err) {
-    yield put(moreProductsLoadingError(err));
-  }
-}
-
-/**
  * Get products count
  */
 export function* getProductsCount(action) {
@@ -84,26 +65,16 @@ export function* productsList() {
   // Watches for LOAD_PRODUCTS actions and calls getProducts when one comes in.
   // By using `takeLatest` only the result of the latest API call is applied.
   // It returns task descriptor (just like fork) so we can continue execution
-  yield takeLatest(LOAD_PRODUCTS, getProducts);
-  yield takeLatest(GET_PRODUCTS_COUNT, getProductsCount);
+  yield fork(takeLatest, LOAD_PRODUCTS, getProducts);
+  yield fork(takeLatest, GET_PRODUCTS_COUNT, getProductsCount);
 
   // Suspend execution until location changes
   yield take(LOCATION_CHANGE);
 }
 
-export function* moreProductsList() {
-  // Watches for LOAD_MORE_PRODUCTS actions and calls getProducts when one comes in.
-  // By using `takeLatest` only the result of the latest API call is applied.
-  // It returns task descriptor (just like fork) so we can continue execution
-  const watcher = yield takeLatest(LOAD_MORE_PRODUCTS, getMoreProducts);
-
-  // Suspend execution until location changes
-  yield take(LOCATION_CHANGE);
-  yield cancel(watcher);
-}
+productsList.isDaemon = true;
 
 // Bootstrap sagas
 export default [
   productsList,
-  moreProductsList,
 ];

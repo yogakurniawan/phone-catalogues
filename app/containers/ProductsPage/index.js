@@ -21,7 +21,6 @@ import {
   makeSelectProductBrand,
   makeSelectCount,
   makeSelectPage,
-  makeSelectMoreProductsLoading,
 } from './selectors';
 import * as productActions from './actions';
 import { PER_PAGE } from './constants';
@@ -41,9 +40,9 @@ class ProductsPage extends React.Component { // eslint-disable-line react/prefer
   handleChange(props) {
     return (page) => {
       const { getProducts, productBrand, setPage, pushState } = props;
+      pushState(`/products/${productBrand}?page=${page}`);
       setPage(page);
       getProducts(productBrand, page);
-      pushState(`/products/${productBrand}?page=${page}`);
     };
   }
 
@@ -119,7 +118,6 @@ const mapStateToProps = createStructuredSelector({
   productBrand: makeSelectProductBrand(),
   products: makeSelectProducts(),
   loading: makeSelectLoading(),
-  loadingMoreProducts: makeSelectMoreProductsLoading(),
   page: makeSelectPage(),
   count: makeSelectCount(),
   error: makeSelectError(),
