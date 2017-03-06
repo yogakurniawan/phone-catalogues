@@ -51,7 +51,7 @@ class ProductsPage extends React.Component { // eslint-disable-line react/prefer
 
   render() {
     const { loading, error, products, page, count, containerWidth } = this.props;
-    console.log(containerWidth);
+    const pageRange = containerWidth <= 400 ? 3 : 5;
     const contentListProps = {
       loading,
       error,
@@ -75,7 +75,7 @@ class ProductsPage extends React.Component { // eslint-disable-line react/prefer
         </div>
         {!loading && <Pagination
           hideDisabled
-          pageRangeDisplayed={10}
+          pageRangeDisplayed={pageRange}
           firstPageText={'First'}
           lastPageText={'Last'}
           prevPageText={<FaAngleLeft size={20} />}
