@@ -8,6 +8,7 @@ import Helmet from 'react-helmet';
 import { connect } from 'react-redux';
 import { push } from 'react-router-redux';
 import { createStructuredSelector } from 'reselect';
+import Dimensions from 'react-dimensions';
 import { FaAngleLeft, FaAngleRight } from 'react-icons/lib/fa/';
 
 import ContentList from 'components/ContentList';
@@ -38,16 +39,19 @@ class ProductsPage extends React.Component { // eslint-disable-line react/prefer
   }
 
   handleChange(props) {
-    return (page) => {
-      const { getProducts, productBrand, setPage, pushState } = props;
-      pushState(`/products/${productBrand}?page=${page}`);
-      setPage(page);
-      getProducts(productBrand, page);
+    return (paginationPage) => {
+      const { getProducts, productBrand, setPage, page, pushState } = props;
+      if (paginationPage !== page) {
+        pushState(`/products/${productBrand}?page=${paginationPage}`);
+        setPage(paginationPage);
+        getProducts(productBrand, paginationPage);
+      }
     };
   }
 
   render() {
-    const { loading, error, products, page, count } = this.props;
+    const { loading, error, products, page, count, containerWidth } = this.props;
+    console.log(containerWidth);
     const contentListProps = {
       loading,
       error,
@@ -71,6 +75,7 @@ class ProductsPage extends React.Component { // eslint-disable-line react/prefer
         </div>
         {!loading && <Pagination
           hideDisabled
+          pageRangeDisplayed={10}
           firstPageText={'First'}
           lastPageText={'Last'}
           prevPageText={<FaAngleLeft size={20} />}
@@ -86,6 +91,7 @@ class ProductsPage extends React.Component { // eslint-disable-line react/prefer
 }
 
 ProductsPage.propTypes = {
+  containerWidth: React.PropTypes.number,
   loading: React.PropTypes.bool,
   error: React.PropTypes.oneOfType([
     React.PropTypes.object,
@@ -123,5 +129,7 @@ const mapStateToProps = createStructuredSelector({
   error: makeSelectError(),
 });
 
+const EnhancedProductsPage = Dimensions()(ProductsPage);
+
 // Wrap the component to inject dispatch and state into it
-export default connect(mapStateToProps, mapDispatchToProps)(ProductsPage);
+export default connect(mapStateToProps, mapDispatchToProps)(EnhancedProductsPage);
