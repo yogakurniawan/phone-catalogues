@@ -31,10 +31,10 @@ export function App(props) {
     <AppWrapper>
       <Helmet
         titleTemplate="%s"
-        defaultTitle="Phoney - Handset list, details, specifications and information"
+        defaultTitle="Phone Catalogues - Handset list, details, specifications and information"
         meta={[
           { name: 'keywords', content: 'GSM,mobile,phone,Nokia,Sony Ericsson,Apple,iPhone,Siemens,Motorola,Alcatel,Panasonic,Samsung,cellphone,specifications,information,info,opinion,review,pictures,photos' },
-          { name: 'description', content: 'Phoney.info - The complete resource for Handset list, details, specification and information' },
+          { name: 'description', content: 'Phone Catalogues - The complete resource for Handset list, details, specification and information' },
         ]}
       />
       <Header />

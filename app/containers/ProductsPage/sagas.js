@@ -27,6 +27,7 @@ export function* getProducts(action) {
     // Call our request helper (see 'utils/request')
     const queryParams = {
       'filter[where][keyword]': action.brand ? action.brand.toLowerCase() : action.brand,
+      'filter[order]': 'orderId DESC',
       'filter[limit]': PER_PAGE,
       'filter[skip]': action.page > 1 ? ((action.page - 1) * PER_PAGE) : 0,
     };

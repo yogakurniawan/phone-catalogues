@@ -3,7 +3,7 @@ import { Link } from 'react-router';
 
 import Img from './Img';
 import NavBar from './NavBar';
-import Logo from './PhoneyLogo.svg';
+import Logo from './PhoneCataloguesLogo.svg';
 import FixedHeaderContainer from './FixedHeaderContainer';
 
 function Header() { // eslint-disable-line react/prefer-stateless-function
@@ -11,7 +11,7 @@ function Header() { // eslint-disable-line react/prefer-stateless-function
     <FixedHeaderContainer>
       <NavBar>
         <Link to="/">
-          <Img src={Logo} alt="Phoney App - Logo" />
+          <Img src={Logo} alt="Phone Catalogues - Logo" />
         </Link>
       </NavBar>
     </FixedHeaderContainer>
