@@ -5,13 +5,9 @@ import H2 from './H2';
 import RoundedBox from './RoundedBox';
 
 function Element({ item, onClick = () => { } }) { // eslint-disable-line react/prefer-stateless-function
-  const onItemClick = () => {
-    onClick(item);
-  };
-
   return (
     <div className="col-xs-12 col-sm-6 col-md-4 col-lg-4">
-      <RoundedBox className="row" onClick={onItemClick}>
+      <RoundedBox className="row" onClick={() => onClick(item)}>
         <div className="col-xs-12">
           <H2>{item.title}</H2>
           <H4>{item.totalProducts} products</H4>

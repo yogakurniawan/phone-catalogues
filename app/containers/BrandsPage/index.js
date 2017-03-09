@@ -11,6 +11,7 @@ import { createStructuredSelector } from 'reselect';
 
 import ContentList from 'components/ContentList';
 import BrandTile from 'components/BrandTile';
+import TopNavigation from 'components/TopNavigation';
 
 import { makeSelectBrands, makeSelectLoading, makeSelectError } from './selectors';
 import { loadBrands } from './actions';
@@ -39,11 +40,12 @@ class BrandsPage extends React.Component { // eslint-disable-line react/prefer-s
     return (
       <div>
         <Helmet
-          title="Brand List"
+          title="List of all mobile phone brands - PhoneCatalogues.com"
           meta={[
-            { name: 'description', content: 'Brand list page contains list of cellphone brand' },
+            { name: 'description', content: 'List of all GSM phone brands presented on PhoneCatalogues.com' },
           ]}
         />
+        <TopNavigation title={'All Brands'} />
         <div className="row center-xs">
           <div className="col-xs-8">
             <ContentList {...contentListProps} />

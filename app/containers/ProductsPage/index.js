@@ -14,6 +14,7 @@ import { FaAngleLeft, FaAngleRight } from 'react-icons/lib/fa/';
 import ContentList from 'components/ContentList';
 import ProductTile from 'components/ProductTile';
 import Pagination from 'components/Pagination';
+import TopNavigation from 'components/TopNavigation';
 
 import {
   makeSelectProducts,
@@ -49,8 +50,17 @@ class ProductsPage extends React.Component { // eslint-disable-line react/prefer
     };
   }
 
+  handleBackToAllBrands() {
+    const { pushState } = this.props;
+    pushState('/');
+  }
+
+  capitalizeFirstLetter(string) {
+    return string.charAt(0).toUpperCase() + string.slice(1);
+  }
+
   render() {
-    const { loading, error, products, page, count, containerWidth } = this.props;
+    const { loading, error, products, productBrand, page, count, containerWidth } = this.props;
     const pageRange = containerWidth <= 400 ? 3 : 5;
     const contentListProps = {
       loading,
@@ -59,15 +69,19 @@ class ProductsPage extends React.Component { // eslint-disable-line react/prefer
       onClick: this.showProducts,
       payload: products,
     };
+    const brandName = this.capitalizeFirstLetter(productBrand.toLowerCase());
+    const description = `PhoneCatalogues.com: ${brandName} GSM Mobile Phones`;
+    const title = `All ${brandName} Mobile Phones`;
 
     return (
       <div>
         <Helmet
-          title="Cellphone List"
+          title={title}
           meta={[
-            { name: 'description', content: 'Cellphone list page contains list of cellphones from specific brand' },
+            { name: 'description', content: description },
           ]}
         />
+        <TopNavigation title={`${brandName} Phones`} onClick={() => this.handleBackToAllBrands()} />
         <div className="row center-xs">
           <div className="col-xs-11 col-sm-9 col-md-8 col-lg-8">
             <ContentList {...contentListProps} />
