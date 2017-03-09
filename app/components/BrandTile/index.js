@@ -10,7 +10,7 @@ function Element({ item, onClick = () => { } }) { // eslint-disable-line react/p
       <RoundedBox className="row" onClick={() => onClick(item)}>
         <div className="col-xs-12">
           <H2>{item.title}</H2>
-          <H4>{item.totalProducts} products</H4>
+          <H4>{item.totalProducts} devices</H4>
         </div>
       </RoundedBox>
     </div>
