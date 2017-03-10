@@ -1,7 +1,7 @@
 import React, { PropTypes } from 'react';
 
+import H3 from './H3';
 import H4 from './H4';
-import H2 from './H2';
 import RoundedBox from './RoundedBox';
 
 function Element({ item, onClick = () => { } }) { // eslint-disable-line react/prefer-stateless-function
@@ -9,7 +9,7 @@ function Element({ item, onClick = () => { } }) { // eslint-disable-line react/p
     <div className="col-xs-12 col-sm-6 col-md-4 col-lg-4">
       <RoundedBox className="row" onClick={() => onClick(item)}>
         <div className="col-xs-12">
-          <H2>{item.title}</H2>
+          <H3>{item.title}</H3>
           <H4>{item.totalProducts} devices</H4>
         </div>
       </RoundedBox>

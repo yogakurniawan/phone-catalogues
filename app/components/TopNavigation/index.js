@@ -9,14 +9,8 @@ function Element({ title, onClick }) {
     <Wrapper>
       <div className="row center-xs">
         <div className="col-xs-12 col-sm-9 col-md-8 col-lg-8">
-          <div className="row">
-            <div className="col-xs-3 icon">
-              { onClick && <FaChevronLeft onClick={onClick} size={20} /> }
-            </div>
-            <div className="col-xs-6 col-sm-6 col-md-6 col-lg-6">
-              <H2>{title}</H2>
-            </div>
-          </div>
+          {onClick && <FaChevronLeft onClick={onClick} size={20} />}
+          <span><H2>{title}</H2></span>
         </div>
       </div>
     </Wrapper>

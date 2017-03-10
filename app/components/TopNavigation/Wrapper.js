@@ -4,14 +4,17 @@ const Wrapper = styled.div`
   svg {
     cursor: pointer;
     color: #dd5555;
+    margin-bottom: 8px;
+    margin-right: 7px;
   }
-  .icon {
-    padding-top: 6px;
+  span {
+    display: inline-block;
   }
   margin: 10px auto;
   @media (max-width: 414px) {
-    .icon {
-      padding-top: 0;
+    svg {
+      margin-bottom: 3px;
+      height: 15px;
     }
     h2 {
       font-size: 1.1em;

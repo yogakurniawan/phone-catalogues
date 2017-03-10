@@ -6,7 +6,7 @@ const Element = styled(RoundedBox) `
   &:hover {
     cursor: pointer;
     background-color: #dd5555;
-    h2, h4 {
+    h3, h4 {
       color: white;
     }
   }
