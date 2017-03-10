@@ -1,9 +1,12 @@
 import React, { PropTypes } from 'react';
+import styled from 'styled-components';
 
 import P from 'components/P';
-import RoundedBox from 'components/RoundedBox';
+import RoundedBoxStyle from 'components/RoundedBox';
 import H4 from './H4';
 import Img from './Img';
+
+const RoundedBox = styled.div`${RoundedBoxStyle}`;
 
 function Element({ item }) { // eslint-disable-line react/prefer-stateless-function
   return (

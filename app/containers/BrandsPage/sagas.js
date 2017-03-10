@@ -13,11 +13,16 @@ import { brandsLoaded, brandsLoadingError } from './actions';
  * Brands list request/response handler
  */
 export function* getBrands() {
+  const queryParams = {
+    'filter[order]': 'title ASC',
+  };
   const requestURL = '//52.221.230.61:9000/api/brands';
 
   try {
     // Call our request helper (see 'utils/request')
-    const brands = yield call(request, requestURL);
+    const brands = yield call(request, requestURL, {
+      queryParams,
+    });
     yield put(brandsLoaded(brands));
   } catch (err) {
     yield put(brandsLoadingError(err));

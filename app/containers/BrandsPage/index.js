@@ -6,7 +6,6 @@
 import React from 'react';
 import Helmet from 'react-helmet';
 import { connect } from 'react-redux';
-import { push } from 'react-router-redux';
 import { createStructuredSelector } from 'reselect';
 
 import ContentList from 'components/ContentList';
@@ -22,19 +21,12 @@ class BrandsPage extends React.Component { // eslint-disable-line react/prefer-s
     this.props.loadBrands();
   }
 
-  showProducts() {
-    return (item) => {
-      this.props.pushState(`/products/${item.title}?page=1`);
-    };
-  }
-
   render() {
     const { loading, error, brands } = this.props;
     const contentListProps = {
       loading,
       error,
       component: BrandTile,
-      onClick: this.showProducts.call(this),
       payload: brands,
     };
     return (
@@ -57,7 +49,6 @@ class BrandsPage extends React.Component { // eslint-disable-line react/prefer-s
 }
 
 BrandsPage.propTypes = {
-  pushState: React.PropTypes.func,
   loading: React.PropTypes.bool,
   error: React.PropTypes.oneOfType([
     React.PropTypes.object,
@@ -71,7 +62,6 @@ BrandsPage.propTypes = {
 };
 
 const mapDispatchToProps = {
-  pushState: push,
   loadBrands,
 };
 

@@ -1,6 +1,6 @@
-import styled from 'styled-components';
+import { css } from 'styled-components';
 
-const Element = styled.div`
+const style = css`
   padding: 10px 0;
   background: #f9f9f9;
   box-shadow: 0 0 1px rgba(0, 0, 0, 0.2), 0 2px 4px rgba(0, 0, 0, 0.1);
@@ -11,4 +11,4 @@ const Element = styled.div`
   transition-property: color, background-color;
 `;
 
-export default Element;
+export default style;

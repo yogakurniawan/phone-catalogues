@@ -1,8 +1,11 @@
 import styled from 'styled-components';
-
 import RoundedBox from 'components/RoundedBox';
+import { Link } from 'react-router';
 
-const Element = styled(RoundedBox) `
+const StyledLink = styled(Link)`${RoundedBox}`;
+
+const Element = styled(StyledLink)`
+  text-decoration: none;
   &:hover {
     cursor: pointer;
     background-color: #dd5555;
