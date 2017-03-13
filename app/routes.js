@@ -70,7 +70,7 @@ export default function createRoutes(store) {
       },
     },
     {
-      path: 'products/:brand',
+      path: 'devices/:brand',
       name: 'products',
       getComponent(nextState, cb) {
         const importModules = Promise.all([
@@ -86,6 +86,30 @@ export default function createRoutes(store) {
           injectSagas(sagas.default);
           store.dispatch(actions.setProductBrand(nextState.params.brand));
           store.dispatch(actions.setPage(parseInt(nextState.location.query.page, 10)));
+          renderRoute(component);
+        });
+
+        importModules.catch(errorLoading);
+      },
+    },
+    {
+      path: 'detail',
+      name: 'deviceDetail',
+      getComponent(nextState, cb) {
+        const importModules = Promise.all([
+          import('containers/DeviceDetailPage/actions'),
+          import('containers/ProductsPage/actions'),
+          import('containers/DeviceDetailPage/reducer'),
+          import('containers/DeviceDetailPage/sagas'),
+          import('containers/DeviceDetailPage'),
+        ]);
+
+        const renderRoute = loadModule(cb);
+        importModules.then(([deviceDetailActions, productsActions, reducer, sagas, component]) => {
+          injectReducer('deviceDetail', reducer.default);
+          injectSagas(sagas.default);
+          store.dispatch(productsActions.setProductBrand(nextState.location.query.brand));
+          store.dispatch(deviceDetailActions.setDeviceName(nextState.location.query.device));
           renderRoute(component);
         });
 
