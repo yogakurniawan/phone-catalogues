@@ -75,17 +75,18 @@ export default function createRoutes(store) {
       getComponent(nextState, cb) {
         const importModules = Promise.all([
           import('containers/ProductsPage/actions'),
+          import('containers/App/actions'),
           import('containers/ProductsPage/reducer'),
           import('containers/ProductsPage/sagas'),
           import('containers/ProductsPage'),
         ]);
 
         const renderRoute = loadModule(cb);
-        importModules.then(([actions, reducer, sagas, component]) => {
+        importModules.then(([productsActions, appActions, reducer, sagas, component]) => {
           injectReducer('products', reducer.default);
           injectSagas(sagas.default);
-          store.dispatch(actions.setProductBrand(nextState.params.brand));
-          store.dispatch(actions.setPage(parseInt(nextState.location.query.page, 10)));
+          store.dispatch(appActions.setProductBrand(nextState.params.brand));
+          store.dispatch(productsActions.setPage(parseInt(nextState.location.query.page, 10)));
           renderRoute(component);
         });
 
@@ -98,17 +99,17 @@ export default function createRoutes(store) {
       getComponent(nextState, cb) {
         const importModules = Promise.all([
           import('containers/DeviceDetailPage/actions'),
-          import('containers/ProductsPage/actions'),
+          import('containers/App/actions'),
           import('containers/DeviceDetailPage/reducer'),
           import('containers/DeviceDetailPage/sagas'),
           import('containers/DeviceDetailPage'),
         ]);
 
         const renderRoute = loadModule(cb);
-        importModules.then(([deviceDetailActions, productsActions, reducer, sagas, component]) => {
+        importModules.then(([deviceDetailActions, appActions, reducer, sagas, component]) => {
           injectReducer('deviceDetail', reducer.default);
           injectSagas(sagas.default);
-          store.dispatch(productsActions.setProductBrand(nextState.location.query.brand));
+          store.dispatch(appActions.setProductBrand(nextState.location.query.brand));
           store.dispatch(deviceDetailActions.setDeviceName(nextState.location.query.device));
           renderRoute(component);
         });

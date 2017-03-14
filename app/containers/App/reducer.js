@@ -16,13 +16,14 @@ import {
   LOAD_REPOS_SUCCESS,
   LOAD_REPOS,
   LOAD_REPOS_ERROR,
+  SET_PRODUCT_BRAND,
 } from './constants';
 
 // The initial state of the App
 const initialState = fromJS({
   loading: false,
   error: false,
-  currentUser: false,
+  currentBrand: false,
   userData: {
     repositories: false,
   },
@@ -44,6 +45,9 @@ function appReducer(state = initialState, action) {
       return state
         .set('error', action.error)
         .set('loading', false);
+    case SET_PRODUCT_BRAND:
+      return state
+        .set('currentBrand', action.brand);
     default:
       return state;
   }

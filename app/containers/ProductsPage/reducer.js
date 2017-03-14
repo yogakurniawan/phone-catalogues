@@ -18,7 +18,6 @@ import {
   GET_PRODUCTS_COUNT,
   GET_PRODUCTS_COUNT_SUCCESS,
   GET_PRODUCTS_COUNT_ERROR,
-  SET_PRODUCT_BRAND,
   SET_PAGE,
 } from './constants';
 
@@ -27,7 +26,6 @@ const initialState = fromJS({
   loading: false,
   error: false,
   errorGetCount: false,
-  brand: false,
   page: 1,
   count: 0,
   data: {
@@ -37,9 +35,6 @@ const initialState = fromJS({
 
 function productsReducer(state = initialState, action) {
   switch (action.type) {
-    case SET_PRODUCT_BRAND:
-      return state
-        .set('brand', action.brand);
     case SET_PAGE:
       return state
         .set('page', action.page);

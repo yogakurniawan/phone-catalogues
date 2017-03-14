@@ -19,6 +19,7 @@ import {
   LOAD_REPOS,
   LOAD_REPOS_SUCCESS,
   LOAD_REPOS_ERROR,
+  SET_PRODUCT_BRAND,
 } from './constants';
 
 /**
@@ -29,6 +30,13 @@ import {
 export function loadRepos() {
   return {
     type: LOAD_REPOS,
+  };
+}
+
+export function setProductBrand(brand) {
+  return {
+    type: SET_PRODUCT_BRAND,
+    brand,
   };
 }
 

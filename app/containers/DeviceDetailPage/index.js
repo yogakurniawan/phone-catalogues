@@ -6,36 +6,27 @@
 import React from 'react';
 import Helmet from 'react-helmet';
 import { connect } from 'react-redux';
-import { push } from 'react-router-redux';
 import { createStructuredSelector } from 'reselect';
 
+import { makeSelectCurrentBrand } from 'containers/App/selectors';
 import {
-  makeSelectProducts,
-  makeSelectLoading,
-  makeSelectError,
-  makeSelectProductBrand,
-  makeSelectCount,
-  makeSelectPage,
+  makeSelectDeviceName,
 } from './selectors';
-import * as deviceDetailActions from './actions';
+// import * as deviceDetailActions from './actions';
 
 class DeviceDetailPage extends React.Component { // eslint-disable-line react/prefer-stateless-function
 
   componentDidMount() {
-    const { productBrand } = this.props;
+    const { productBrand, deviceName } = this.props;
     console.log(productBrand);
-  }
-
-  showProducts(item) {
-    console.log(item);
+    console.log(deviceName);
   }
 
   render() {
-    const { productBrand } = this.props;
-    
-    const brandName = this.capitalizeFirstLetter(productBrand.toLowerCase());
-    const description = `PhoneCatalogues.com: ${brandName} GSM Mobile Phones`;
-    const title = `All ${brandName} Mobile Phones`;
+    // const { productBrand } = this.props;
+    // const brandName = this.capitalizeFirstLetter(productBrand.toLowerCase());
+    const description = 'world';
+    const title = 'hello';
 
     return (
       <div>
@@ -51,15 +42,6 @@ class DeviceDetailPage extends React.Component { // eslint-disable-line react/pr
 }
 
 DeviceDetailPage.propTypes = {
-  loading: React.PropTypes.bool,
-  error: React.PropTypes.oneOfType([
-    React.PropTypes.object,
-    React.PropTypes.bool,
-  ]),
-  products: React.PropTypes.oneOfType([
-    React.PropTypes.array,
-    React.PropTypes.bool,
-  ]),
   productBrand: React.PropTypes.oneOfType([
     React.PropTypes.string,
     React.PropTypes.bool,
@@ -68,22 +50,14 @@ DeviceDetailPage.propTypes = {
     React.PropTypes.string,
     React.PropTypes.bool,
   ]),
-  pushState: React.PropTypes.func,
 };
 
 const mapDispatchToProps = {
-  getProducts: deviceDetailActions.loadProducts,
-  setPage: deviceDetailActions.setPage,
-  pushState: push,
 };
 
 const mapStateToProps = createStructuredSelector({
-  productBrand: makeSelectProductBrand(),
-  products: makeSelectProducts(),
-  loading: makeSelectLoading(),
-  page: makeSelectPage(),
-  count: makeSelectCount(),
-  error: makeSelectError(),
+  productBrand: makeSelectCurrentBrand(),
+  deviceName: makeSelectDeviceName(),
 });
 
 // Wrap the component to inject dispatch and state into it

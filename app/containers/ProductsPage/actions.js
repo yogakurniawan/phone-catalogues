@@ -22,7 +22,6 @@ import {
   GET_PRODUCTS_COUNT,
   GET_PRODUCTS_COUNT_SUCCESS,
   GET_PRODUCTS_COUNT_ERROR,
-  SET_PRODUCT_BRAND,
   SET_PAGE,
 } from './constants';
 
@@ -42,13 +41,6 @@ export function loadProducts(brand, page) {
 export function getProductsCount(brand) {
   return {
     type: GET_PRODUCTS_COUNT,
-    brand,
-  };
-}
-
-export function setProductBrand(brand) {
-  return {
-    type: SET_PRODUCT_BRAND,
     brand,
   };
 }
