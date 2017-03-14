@@ -23,6 +23,7 @@ import {
   GET_PRODUCTS_COUNT_SUCCESS,
   GET_PRODUCTS_COUNT_ERROR,
   SET_PAGE,
+  SET_SELECTED_DEVICE,
 } from './constants';
 
 /**
@@ -49,6 +50,13 @@ export function setPage(page) {
   return {
     type: SET_PAGE,
     page,
+  };
+}
+
+export function setSelectedDevice(device) {
+  return {
+    type: SET_SELECTED_DEVICE,
+    device,
   };
 }
 

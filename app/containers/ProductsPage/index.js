@@ -50,6 +50,14 @@ class ProductsPage extends React.Component { // eslint-disable-line react/prefer
     pushState('/');
   }
 
+  handleClickDevice(props) {
+    return (item) => {
+      const { setSelectedDevice, productBrand, pushState } = props;
+      pushState(`/detail?brand=${productBrand}&device=${item.name}`);
+      setSelectedDevice(item);
+    };
+  }
+
   capitalizeFirstLetter(string) {
     return string.charAt(0).toUpperCase() + string.slice(1);
   }
@@ -62,6 +70,7 @@ class ProductsPage extends React.Component { // eslint-disable-line react/prefer
       error,
       component: ProductTile,
       brand: productBrand,
+      onClick: this.handleClickDevice(this.props),
       payload: products,
     };
     const brandName = this.capitalizeFirstLetter(productBrand.toLowerCase());
@@ -113,6 +122,7 @@ ProductsPage.propTypes = {
   getProducts: React.PropTypes.func,
   countProducts: React.PropTypes.func,
   setPage: React.PropTypes.func,
+  setSelectedDevice: React.PropTypes.func,
   productBrand: React.PropTypes.oneOfType([
     React.PropTypes.string,
     React.PropTypes.bool,
@@ -126,6 +136,7 @@ const mapDispatchToProps = {
   getProducts: productActions.loadProducts,
   countProducts: productActions.getProductsCount,
   setPage: productActions.setPage,
+  setSelectedDevice: productActions.setSelectedDevice,
   pushState: push,
 };
 
