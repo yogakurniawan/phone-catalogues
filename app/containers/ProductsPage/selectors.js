@@ -11,11 +11,6 @@ const makeSelectProducts = () => createSelector(
   (productsState) => productsState.getIn(['data', 'products'])
 );
 
-const makeSelectProductBrand = () => createSelector(
-  selectProducts,
-  (productsState) => productsState.get('brand')
-);
-
 const makeSelectCount = () => createSelector(
   selectProducts,
   (productsState) => productsState.get('count')
@@ -40,7 +35,6 @@ export {
   makeSelectProducts,
   makeSelectLoading,
   makeSelectError,
-  makeSelectProductBrand,
   makeSelectCount,
   makeSelectPage,
 };

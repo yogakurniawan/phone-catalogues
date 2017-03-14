@@ -10,7 +10,7 @@ import { push } from 'react-router-redux';
 import { createStructuredSelector } from 'reselect';
 import Dimensions from 'react-dimensions';
 import { FaAngleLeft, FaAngleRight } from 'react-icons/lib/fa/';
-
+import { makeSelectCurrentBrand } from 'containers/App/selectors';
 import ContentList from 'components/ContentList';
 import ProductTile from 'components/ProductTile';
 import Pagination from 'components/Pagination';
@@ -20,7 +20,6 @@ import {
   makeSelectProducts,
   makeSelectLoading,
   makeSelectError,
-  makeSelectProductBrand,
   makeSelectCount,
   makeSelectPage,
 } from './selectors';
@@ -35,15 +34,11 @@ class ProductsPage extends React.Component { // eslint-disable-line react/prefer
     countProducts(productBrand);
   }
 
-  showProducts(item) {
-    console.log(item);
-  }
-
   handleChange(props) {
     return (paginationPage) => {
       const { getProducts, productBrand, setPage, page, pushState } = props;
       if (paginationPage !== page) {
-        pushState(`/products/${productBrand}?page=${paginationPage}`);
+        pushState(`/devices/${productBrand}?page=${paginationPage}`);
         setPage(paginationPage);
         getProducts(productBrand, paginationPage);
       }
@@ -66,7 +61,7 @@ class ProductsPage extends React.Component { // eslint-disable-line react/prefer
       loading,
       error,
       component: ProductTile,
-      onClick: this.showProducts,
+      brand: productBrand,
       payload: products,
     };
     const brandName = this.capitalizeFirstLetter(productBrand.toLowerCase());
@@ -135,7 +130,7 @@ const mapDispatchToProps = {
 };
 
 const mapStateToProps = createStructuredSelector({
-  productBrand: makeSelectProductBrand(),
+  productBrand: makeSelectCurrentBrand(),
   products: makeSelectProducts(),
   loading: makeSelectLoading(),
   page: makeSelectPage(),
