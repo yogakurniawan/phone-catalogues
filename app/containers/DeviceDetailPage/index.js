@@ -12,12 +12,13 @@ import { makeSelectCurrentBrand } from 'containers/App/selectors';
 import {
   makeSelectDeviceName,
 } from './selectors';
-// import * as deviceDetailActions from './actions';
+import * as deviceDetailActions from './actions';
 
 class DeviceDetailPage extends React.Component { // eslint-disable-line react/prefer-stateless-function
 
   componentDidMount() {
-    const { productBrand, deviceName } = this.props;
+    const { productBrand, deviceName, loadDevice } = this.props;
+    loadDevice(productBrand, deviceName);
     console.log(productBrand);
     console.log(deviceName);
   }
@@ -50,9 +51,11 @@ DeviceDetailPage.propTypes = {
     React.PropTypes.string,
     React.PropTypes.bool,
   ]),
+  loadDevice: React.PropTypes.func,
 };
 
 const mapDispatchToProps = {
+  loadDevice: deviceDetailActions.loadDevice,
 };
 
 const mapStateToProps = createStructuredSelector({
