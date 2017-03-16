@@ -9,6 +9,9 @@ import Img from './Img';
 const RoundedBox = styled.div`${RoundedBoxStyle}`;
 const DeviceName = styled.span`
   cursor: pointer;
+  h4:hover {
+    color: #f53e3e;
+  }
 `;
 
 function Element({ item, onClick }) { // eslint-disable-line react/prefer-stateless-function
