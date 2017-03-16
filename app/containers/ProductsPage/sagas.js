@@ -5,11 +5,11 @@
 import { take, call, put, fork, takeLatest } from 'redux-saga/effects';
 import request from 'utils/request';
 import { LOCATION_CHANGE } from 'react-router-redux';
+import { BASE_API_URL } from 'containers/App/constants';
 
 import {
   LOAD_PRODUCTS,
   GET_PRODUCTS_COUNT,
-  PRODUCTS_API_URL,
   PER_PAGE,
 } from './constants';
 import {
@@ -32,7 +32,7 @@ export function* getProducts(action) {
       'filter[skip]': action.page > 1 ? ((action.page - 1) * PER_PAGE) : 0,
     };
 
-    const products = yield call(request, PRODUCTS_API_URL, {
+    const products = yield call(request, `${BASE_API_URL}/items`, {
       queryParams,
     });
 
@@ -48,7 +48,7 @@ export function* getProducts(action) {
 export function* getProductsCount(action) {
   try {
     // Call our request helper (see 'utils/request')
-    const response = yield call(request, [PRODUCTS_API_URL, 'count'].join('/'), {
+    const response = yield call(request, [`${BASE_API_URL}/items`, 'count'].join('/'), {
       queryParams: {
         '[where][keyword]': action.brand.toLowerCase(),
       },

@@ -5,6 +5,7 @@
 import { take, call, put, cancel, takeLatest } from 'redux-saga/effects';
 import request from 'utils/request';
 import { LOCATION_CHANGE } from 'react-router-redux';
+import { BASE_API_URL } from 'containers/App/constants';
 
 import { LOAD_BRANDS } from './constants';
 import { brandsLoaded, brandsLoadingError } from './actions';
@@ -16,7 +17,7 @@ export function* getBrands() {
   const queryParams = {
     'filter[order]': 'title ASC',
   };
-  const requestURL = '//52.221.230.61:9000/api/brands';
+  const requestURL = `${BASE_API_URL}/brands`;
 
   try {
     // Call our request helper (see 'utils/request')
