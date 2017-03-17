@@ -32,14 +32,14 @@ class BrandsPage extends React.Component { // eslint-disable-line react/prefer-s
     return (
       <div>
         <Helmet
-          title="List of all mobile phone brands - PhoneCatalogues.com"
+          title="PhoneCatalogues.com | List of all mobile phone brands"
           meta={[
             { name: 'description', content: 'List of all GSM phone brands presented on PhoneCatalogues.com' },
           ]}
         />
         <TopNavigation title={'All Brands'} />
         <div className="row center-xs">
-          <div className="col-xs-8">
+          <div className="col-xs-8 col-sm-8 col-md-8 col-lg-6">
             <ContentList {...contentListProps} />
           </div>
         </div>

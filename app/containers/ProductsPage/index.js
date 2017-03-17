@@ -74,7 +74,7 @@ class ProductsPage extends React.Component { // eslint-disable-line react/prefer
       payload: products,
     };
     const brandName = this.capitalizeFirstLetter(productBrand.toLowerCase());
-    const description = `PhoneCatalogues.com: ${brandName} GSM Mobile Phones`;
+    const description = `PhoneCatalogues.com | ${brandName} GSM Mobile Phones`;
     const title = `All ${brandName} Mobile Phones`;
 
     return (
