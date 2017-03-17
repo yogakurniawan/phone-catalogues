@@ -8,7 +8,7 @@ const selectDeviceDetailState = (state) => state.get('deviceDetail');
 
 const makeSelectDeviceDetail = () => createSelector(
   selectDeviceDetailState,
-  (deviceDetailState) => deviceDetailState.get('payload')
+  (deviceDetailState) => deviceDetailState.get('payload')[0]
 );
 
 const makeSelectDeviceName = () => createSelector(

@@ -13,4 +13,4 @@ export const LOAD_DEVICE_DETAIL = 'boilerplate/DeviceDetailPage/LOAD_DEVICE_DETA
 export const LOAD_DEVICE_DETAIL_SUCCESS = 'boilerplate/DeviceDetailPage/LOAD_DEVICE_DETAIL_SUCCESS';
 export const LOAD_DEVICE_DETAIL_ERROR = 'boilerplate/DeviceDetailPage/LOAD_DEVICE_DETAIL_ERROR';
 export const SET_DEVICE_NAME = 'boilerplate/DeviceDetailPage/SET_DEVICE_NAME';
-export const DEVICE_DETAIL_URL = '//fonoapi.freshpixl.com/v1/getdevice';
+export const DEVICE_DETAIL_URL = 'https://fonoapi.freshpixl.com/v1/getdevice';
