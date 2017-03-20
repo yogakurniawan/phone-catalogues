@@ -24,6 +24,8 @@ import {
   GET_PRODUCTS_COUNT_ERROR,
   SET_PAGE,
   SET_SELECTED_DEVICE,
+  GET_DEVICE_BY_NAME_ERROR,
+  LOAD_DEVICE_BY_NAME,
 } from './constants';
 
 /**
@@ -36,6 +38,14 @@ export function loadProducts(brand, page) {
     type: LOAD_PRODUCTS,
     brand,
     page,
+  };
+}
+
+export function loadDeviceByName(brand, name) {
+  return {
+    type: LOAD_DEVICE_BY_NAME,
+    brand,
+    name,
   };
 }
 
@@ -98,6 +108,13 @@ export function productsLoadingError(error) {
 export function getProductsCountError(error) {
   return {
     type: GET_PRODUCTS_COUNT_ERROR,
+    error,
+  };
+}
+
+export function getDeviceByNameError(error) {
+  return {
+    type: GET_DEVICE_BY_NAME_ERROR,
     error,
   };
 }
