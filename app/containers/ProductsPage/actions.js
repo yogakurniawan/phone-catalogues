@@ -23,9 +23,6 @@ import {
   GET_PRODUCTS_COUNT_SUCCESS,
   GET_PRODUCTS_COUNT_ERROR,
   SET_PAGE,
-  SET_SELECTED_DEVICE,
-  GET_DEVICE_BY_NAME_ERROR,
-  LOAD_DEVICE_BY_NAME,
 } from './constants';
 
 /**
@@ -41,14 +38,6 @@ export function loadProducts(brand, page) {
   };
 }
 
-export function loadDeviceByName(brand, name) {
-  return {
-    type: LOAD_DEVICE_BY_NAME,
-    brand,
-    name,
-  };
-}
-
 export function getProductsCount(brand) {
   return {
     type: GET_PRODUCTS_COUNT,
@@ -60,13 +49,6 @@ export function setPage(page) {
   return {
     type: SET_PAGE,
     page,
-  };
-}
-
-export function setSelectedDevice(device) {
-  return {
-    type: SET_SELECTED_DEVICE,
-    device,
   };
 }
 
@@ -108,13 +90,6 @@ export function productsLoadingError(error) {
 export function getProductsCountError(error) {
   return {
     type: GET_PRODUCTS_COUNT_ERROR,
-    error,
-  };
-}
-
-export function getDeviceByNameError(error) {
-  return {
-    type: GET_DEVICE_BY_NAME_ERROR,
     error,
   };
 }

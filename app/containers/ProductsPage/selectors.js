@@ -16,11 +16,6 @@ const makeSelectCount = () => createSelector(
   (productsState) => productsState.get('count')
 );
 
-const getSelectedDevice = () => createSelector(
-  selectProducts,
-  (productsState) => productsState.get('selectedDevice')
-);
-
 const makeSelectPage = () => createSelector(
   selectProducts,
   (productsState) => productsState.get('page')
@@ -42,5 +37,4 @@ export {
   makeSelectError,
   makeSelectCount,
   makeSelectPage,
-  getSelectedDevice,
 };

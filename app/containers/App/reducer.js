@@ -17,6 +17,7 @@ import {
   LOAD_REPOS,
   LOAD_REPOS_ERROR,
   SET_PRODUCT_BRAND,
+  SET_SELECTED_DEVICE,
 } from './constants';
 
 // The initial state of the App
@@ -24,6 +25,7 @@ const initialState = fromJS({
   loading: false,
   error: false,
   currentBrand: false,
+  selectedDevice: false,
   userData: {
     repositories: false,
   },
@@ -36,6 +38,9 @@ function appReducer(state = initialState, action) {
         .set('loading', true)
         .set('error', false)
         .setIn(['userData', 'repositories'], false);
+    case SET_SELECTED_DEVICE:
+      return state
+        .set('selectedDevice', action.device);
     case LOAD_REPOS_SUCCESS:
       return state
         .setIn(['userData', 'repositories'], action.repos)

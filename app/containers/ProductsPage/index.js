@@ -15,6 +15,7 @@ import ContentList from 'components/ContentList';
 import ProductTile from 'components/ProductTile';
 import Pagination from 'components/Pagination';
 import TopNavigation from 'components/TopNavigation';
+import * as appActions from 'containers/App/actions';
 
 import {
   makeSelectProducts,
@@ -136,7 +137,7 @@ const mapDispatchToProps = {
   getProducts: productActions.loadProducts,
   countProducts: productActions.getProductsCount,
   setPage: productActions.setPage,
-  setSelectedDevice: productActions.setSelectedDevice,
+  setSelectedDevice: appActions.setSelectedDevice,
   pushState: push,
 };
 

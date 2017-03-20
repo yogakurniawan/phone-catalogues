@@ -10,13 +10,10 @@
  */
 
 export const LOAD_PRODUCTS = 'boilerplate/ProductsPage/LOAD_PRODUCTS';
-export const LOAD_DEVICE_BY_NAME = 'boilerplate/ProductsPage/LOAD_DEVICE_BY_NAME';
 export const LOAD_PRODUCTS_SUCCESS = 'boilerplate/ProductsPage/LOAD_PRODUCTS_SUCCESS';
 export const LOAD_PRODUCTS_ERROR = 'boilerplate/ProductsPage/LOAD_PRODUCTS_ERROR';
 export const GET_PRODUCTS_COUNT = 'boilerplate/ProductsPage/GET_PRODUCTS_COUNT';
 export const GET_PRODUCTS_COUNT_SUCCESS = 'boilerplate/ProductsPage/GET_PRODUCTS_COUNT_SUCCESS';
 export const GET_PRODUCTS_COUNT_ERROR = 'boilerplate/ProductsPage/GET_PRODUCTS_COUNT_ERROR';
-export const GET_DEVICE_BY_NAME_ERROR = 'boilerplate/ProductsPage/GET_DEVICE_BY_NAME_ERROR';
 export const SET_PAGE = 'boilerplate/ProductsPage/SET_PAGE';
-export const SET_SELECTED_DEVICE = 'boilerplate/ProductsPage/SET_SELECTED_DEVICE';
 export const PER_PAGE = '9';

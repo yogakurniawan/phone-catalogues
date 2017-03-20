@@ -20,6 +20,9 @@ import {
   LOAD_REPOS_SUCCESS,
   LOAD_REPOS_ERROR,
   SET_PRODUCT_BRAND,
+  LOAD_DEVICE_BY_NAME,
+  SET_SELECTED_DEVICE,
+  GET_DEVICE_BY_NAME_ERROR,
 } from './constants';
 
 /**
@@ -37,6 +40,21 @@ export function setProductBrand(brand) {
   return {
     type: SET_PRODUCT_BRAND,
     brand,
+  };
+}
+
+export function loadDeviceByName(brand, name) {
+  return {
+    type: LOAD_DEVICE_BY_NAME,
+    brand,
+    name,
+  };
+}
+
+export function setSelectedDevice(device) {
+  return {
+    type: SET_SELECTED_DEVICE,
+    device,
   };
 }
 
@@ -66,6 +84,13 @@ export function reposLoaded(repos, username) {
 export function repoLoadingError(error) {
   return {
     type: LOAD_REPOS_ERROR,
+    error,
+  };
+}
+
+export function getDeviceByNameError(error) {
+  return {
+    type: GET_DEVICE_BY_NAME_ERROR,
     error,
   };
 }

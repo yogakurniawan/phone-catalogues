@@ -19,7 +19,6 @@ import {
   GET_PRODUCTS_COUNT_SUCCESS,
   GET_PRODUCTS_COUNT_ERROR,
   SET_PAGE,
-  SET_SELECTED_DEVICE,
 } from './constants';
 
 // The initial state of the App
@@ -29,7 +28,6 @@ const initialState = fromJS({
   errorGetCount: false,
   page: 1,
   count: 0,
-  selectedDevice: false,
   data: {
     products: false,
   },
@@ -40,9 +38,6 @@ function productsReducer(state = initialState, action) {
     case SET_PAGE:
       return state
         .set('page', action.page);
-    case SET_SELECTED_DEVICE:
-      return state
-        .set('selectedDevice', action.device);
     case LOAD_PRODUCTS:
       return state
         .set('loading', true)
