@@ -7,7 +7,7 @@ import RoundedBox from './RoundedBox';
 function Element({ item }) { // eslint-disable-line react/prefer-stateless-function
   return (
     <div className="col-xs-12 col-sm-6 col-md-4 col-lg-4" style={{ maxWidth: '300px' }}>
-      <RoundedBox className="row" to={`/devices/${item.title}?page=1`}>
+      <RoundedBox className="row" to={`/devices/${encodeURIComponent(item.title)}?page=1`}>
         <div className="col-xs-12">
           <H3>{item.title}</H3>
           <H4>{item.totalProducts} devices</H4>

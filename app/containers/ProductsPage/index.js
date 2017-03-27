@@ -54,7 +54,7 @@ class ProductsPage extends React.Component { // eslint-disable-line react/prefer
   handleClickDevice(props) {
     return (item) => {
       const { setSelectedDevice, productBrand, pushState } = props;
-      pushState(`/detail?brand=${productBrand}&device=${item.name}`);
+      pushState(`/detail?brand=${encodeURIComponent(productBrand)}&device=${encodeURIComponent(item.name)}`);
       setSelectedDevice(item);
     };
   }
