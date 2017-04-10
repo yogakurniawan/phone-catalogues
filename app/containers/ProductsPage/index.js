@@ -88,7 +88,7 @@ class ProductsPage extends React.Component { // eslint-disable-line react/prefer
         />
         <TopNavigation title={`${brandName} Phones`} onClick={() => this.handleBackToAllBrands()} />
         <div className="row center-xs">
-          <div className="col-xs-11 col-sm-9 col-md-8 col-lg-8">
+          <div className="col-xs-11 col-sm-9 col-md-9 col-lg-8">
             <ContentList {...contentListProps} />
           </div>
         </div>
