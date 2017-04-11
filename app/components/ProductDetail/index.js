@@ -2,6 +2,8 @@ import React, { PropTypes } from 'react';
 import styled from 'styled-components';
 import Dimensions from 'react-dimensions';
 import H2 from 'components/H2';
+import P from 'components/P';
+import LoadingIndicator from 'components/LoadingIndicator';
 import { FaChevronLeft } from 'react-icons/lib/fa/';
 // import { MdSdStorage, MdPhoneAndroid } from 'react-icons/lib/md/';
 import RoundedBoxStyle from 'components/RoundedBox';
@@ -72,6 +74,15 @@ const TitleNav = styled.div`
 //   padding-top: 4px;
 // `;
 
+const DisclaimerText = styled.span`
+  p {
+    text-align: center;
+    margin-top: 10px;
+    display: block;
+    font-style: italic;
+  }
+`;
+
 class Element extends React.Component { // eslint-disable-line react/prefer-stateless-function
   render() {
     const { detail, onClick, containerWidth } = this.props;
@@ -91,21 +102,62 @@ class Element extends React.Component { // eslint-disable-line react/prefer-stat
             </div>
           </div>
         </HeaderBox>
-        <ContentBox>
+        {!detail.technology && <LoadingIndicator />}
+        {detail.technology && (<ContentBox>
           <DeviceSpecification specTitle="Network" label="Technology" value={detail.technology} />
           <DeviceSpecification specTitle="Launch" label="Announced" value={detail.announced} />
           <DeviceSpecification label="Status" value={detail.status} />
           <DeviceSpecification specTitle="Body" label="Dimensions" value={detail.dimensions} />
           <DeviceSpecification label="Weight" value={detail.weight} />
-          <DeviceSpecification label="Protection" value={detail.protection} />
           <DeviceSpecification label="SIM" value={detail.sim} />
+          <DeviceSpecification label="Build" value={detail.build} />
           <DeviceSpecification label="" value={detail.body_c} />
           <DeviceSpecification specTitle="Display" label="Type" value={detail.type} />
           <DeviceSpecification label="Size" value={detail.size} />
           <DeviceSpecification label="Resolution" value={detail.resolution} />
           <DeviceSpecification label="Multitouch" value={detail.multitouch} />
+          <DeviceSpecification label="Protection" value={detail.protection} />
           <DeviceSpecification label="" value={detail.display_c} />
-        </ContentBox>
+          <DeviceSpecification specTitle="Platform" label="OS" value={detail.os} />
+          <DeviceSpecification label="Chipset" value={detail.chipset} />
+          <DeviceSpecification label="CPU" value={detail.cpu} />
+          <DeviceSpecification label="GPU" value={detail.gpu} />
+          <DeviceSpecification specTitle="Memory" label="Card Slot" value={detail.card_slot} />
+          <DeviceSpecification label="Internal" value={detail.internal} />
+          <DeviceSpecification specTitle="Camera" label="Card Slot" value={/* eslint no-underscore-dangle: 0 */detail.primary_} />
+          <DeviceSpecification label="Features" value={detail.features} />
+          <DeviceSpecification label="Video" value={detail.video} />
+          <DeviceSpecification label="Secondary" value={detail.secondary} />
+          <DeviceSpecification specTitle="Sound" label="Alert Types" value={detail.alert_types} />
+          <DeviceSpecification label="Loudspeaker" value={/* eslint no-underscore-dangle: 0 */detail.loudspeaker_} />
+          <DeviceSpecification label="3.5mm Jack" value={/* eslint no-underscore-dangle: 0 */detail._3_5mm_jack_} />
+          <DeviceSpecification label="Secondary" value={detail.secondary} />
+          <DeviceSpecification specTitle="Comms" label="WLAN" value={detail.wlan} />
+          <DeviceSpecification label="Bluetooth" value={detail.bluetooth} />
+          <DeviceSpecification label="GPS" value={detail.gps} />
+          <DeviceSpecification label="NFC" value={detail.nfc} />
+          <DeviceSpecification label="Radio" value={detail.radio} />
+          <DeviceSpecification label="USB" value={detail.usb} />
+          <DeviceSpecification specTitle="Features" label="Sensors" value={detail.sensors} />
+          <DeviceSpecification label="Messaging" value={detail.messaging} />
+          <DeviceSpecification label="Browser" value={detail.browser} />
+          <DeviceSpecification label="Java" value={detail.java} />
+          <DeviceSpecification label="" value={detail.features_c} />
+          <DeviceSpecification specTitle="Battery" label="Type" value={detail.battery_c} />
+          <DeviceSpecification label="Talk Time" value={detail.talk_time} />
+          <DeviceSpecification label="Music Play" value={detail.music_play} />
+          <DeviceSpecification specTitle="Misc." label="Colors" value={detail.colors} />
+          <DeviceSpecification label="SAR US" value={detail.sar_us} />
+          <DeviceSpecification label="SAR EU" value={detail.sar_eu} />
+          <DeviceSpecification specTitle="Tests" label="Performance" value={detail.performance} />
+          <DeviceSpecification label="Display" value={detail.display} />
+          <DeviceSpecification label="Camera" value={detail.camera} />
+          <DeviceSpecification label="Loudspeaker" value={detail.loudspeaker} />
+          <DeviceSpecification label="Audio Quality" value={detail.audio_quality} />
+          <DisclaimerText>
+            <P>Disclaimer. We can not guarantee that the information on this page is 100% correct.</P>
+          </DisclaimerText>
+        </ContentBox>)}
       </div>
     );
   }
