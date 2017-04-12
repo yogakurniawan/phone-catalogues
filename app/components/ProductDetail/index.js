@@ -1,6 +1,6 @@
 import React, { PropTypes } from 'react';
 import styled from 'styled-components';
-import Sizes from 'react-sizes';
+import Dimensions from 'react-dimensions';
 import H2 from 'components/H2';
 import P from 'components/P';
 import LoadingIndicator from 'components/LoadingIndicator';
@@ -83,10 +83,10 @@ const DisclaimerText = styled.span`
   }
 `;
 
-class Component extends React.Component { // eslint-disable-line react/prefer-stateless-function
+class Element extends React.Component { // eslint-disable-line react/prefer-stateless-function
   render() {
-    const { detail, onClick, isMobile } = this.props;
-    const size = isMobile ? 18 : 20;
+    const { detail, onClick, containerWidth } = this.props;
+    const size = containerWidth < 382 ? 18 : 20;
     return (
       <div>
         <HeaderBox>
@@ -163,14 +163,12 @@ class Component extends React.Component { // eslint-disable-line react/prefer-st
   }
 }
 
-Component.propTypes = {
+Element.propTypes = {
+  containerWidth: PropTypes.number,
   detail: PropTypes.object,
   onClick: PropTypes.func,
-  isMobile: PropTypes.bool,
 };
 
-const mapSizesToProps = ({ width }) => ({
-  isMobile: width < 480,
-});
+const EnhancedElement = Dimensions()(Element);
 
-export default Sizes(mapSizesToProps)(Component);
+export default EnhancedElement;
