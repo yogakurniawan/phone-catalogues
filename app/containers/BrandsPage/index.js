@@ -38,8 +38,8 @@ class BrandsPage extends React.Component { // eslint-disable-line react/prefer-s
           ]}
         />
         <TopNavigation title={'All Brands'} />
-        <div className="row center-xs">
-          <div className="col-xs-10 col-sm-8 col-md-8 col-lg-6">
+        <div className="row center-xs no-gap">
+          <div className="col-xs-12 col-sm-8 col-md-8 col-lg-6">
             <ContentList {...contentListProps} />
           </div>
         </div>

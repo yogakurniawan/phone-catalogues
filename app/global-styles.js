@@ -37,4 +37,13 @@ injectGlobal`
     margin-top: 0;
     margin-bottom: .1rem;
   }
+
+  .row.no-gap {
+    margin: 0;
+  }
+
+  .row.no-gap div[class^="col-"] {
+    padding-right: 10px;
+    padding-left: 10px;
+  }
 `;
