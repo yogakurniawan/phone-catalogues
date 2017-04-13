@@ -17,6 +17,7 @@
 
 import {
   LOAD_BRANDS,
+  FILTER_BRANDS,
   LOAD_BRANDS_SUCCESS,
   LOAD_BRANDS_ERROR,
 } from './constants';
@@ -30,6 +31,13 @@ export function loadBrands(slug) {
   return {
     type: LOAD_BRANDS,
     slug,
+  };
+}
+
+export function filterBrands(keyword) {
+  return {
+    type: FILTER_BRANDS,
+    keyword,
   };
 }
 

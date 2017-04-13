@@ -33,6 +33,7 @@ export function App(props) {
         titleTemplate="%s"
         defaultTitle="Phone Catalogues - Handset list, details, specifications and information"
         meta={[
+          { name: 'robot', content: 'all' },
           { name: 'keywords', content: 'GSM,mobile,phone,Nokia,Sony Ericsson,Apple,iPhone,Siemens,Motorola,Alcatel,Panasonic,Samsung,cellphone,specifications,information,info,opinion,review,pictures,photos' },
           { name: 'description', content: 'Phone Catalogues - The complete resource for Handset list, details, specification and information' },
         ]}

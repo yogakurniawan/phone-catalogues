@@ -13,6 +13,7 @@ import { fromJS } from 'immutable';
 
 import {
   LOAD_BRANDS,
+  FILTER_BRANDS,
   LOAD_BRANDS_SUCCESS,
   LOAD_BRANDS_ERROR,
 } from './constants';
@@ -33,6 +34,11 @@ function brandsReducer(state = initialState, action) {
         .set('loading', true)
         .set('error', false)
         .setIn(['data', 'brands'], false);
+    case FILTER_BRANDS: {
+      const filteredBrands = state.data.brands.filter((brand) => brand.title.toLowerCase().includes(action.keyword.toLowerCase()));
+      return state
+        .setIn(['data', 'brands'], filteredBrands);
+    }
     case LOAD_BRANDS_SUCCESS:
       return state
         .setIn(['data', 'brands'], action.brands)

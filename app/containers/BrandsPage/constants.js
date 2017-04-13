@@ -10,5 +10,6 @@
  */
 
 export const LOAD_BRANDS = 'boilerplate/BrandsPage/LOAD_BRANDS';
+export const FILTER_BRANDS = 'boilerplate/BrandsPage/FILTER_BRANDS';
 export const LOAD_BRANDS_SUCCESS = 'boilerplate/BrandsPage/LOAD_BRANDS_SUCCESS';
 export const LOAD_BRANDS_ERROR = 'boilerplate/BrandsPage/LOAD_BRANDS_ERROR';

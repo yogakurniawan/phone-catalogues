@@ -4,21 +4,26 @@
  * List all the features
  */
 import React from 'react';
-import Helmet from 'react-helmet';
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
 
 import ContentList from 'components/ContentList';
 import BrandTile from 'components/BrandTile';
 import TopNavigation from 'components/TopNavigation';
+import FilterBrands from 'components/FilterBrands';
 
 import { makeSelectBrands, makeSelectLoading, makeSelectError } from './selectors';
-import { loadBrands } from './actions';
+import { loadBrands, filterBrands } from './actions';
 
 class BrandsPage extends React.Component { // eslint-disable-line react/prefer-stateless-function
 
   componentDidMount() {
     this.props.loadBrands();
+  }
+
+  handleFilterBrand(evt) {
+    console.log(evt.target.value);
+    this.props.filterBrands(evt.target.value);
   }
 
   render() {
@@ -31,15 +36,10 @@ class BrandsPage extends React.Component { // eslint-disable-line react/prefer-s
     };
     return (
       <div>
-        <Helmet
-          title="PhoneCatalogues.com | List of all mobile phone brands"
-          meta={[
-            { name: 'description', content: 'List of all GSM phone brands presented on PhoneCatalogues.com' },
-          ]}
-        />
         <TopNavigation title={'All Brands'} />
         <div className="row center-xs no-gap">
           <div className="col-xs-12 col-sm-8 col-md-8 col-lg-6">
+            <FilterBrands onChange={(evt) => this.handleFilterBrand(evt)} />
             <ContentList {...contentListProps} />
           </div>
         </div>
@@ -59,10 +59,12 @@ BrandsPage.propTypes = {
     React.PropTypes.bool,
   ]),
   loadBrands: React.PropTypes.func,
+  filterBrands: React.PropTypes.func,
 };
 
 const mapDispatchToProps = {
   loadBrands,
+  filterBrands,
 };
 
 const mapStateToProps = createStructuredSelector({
