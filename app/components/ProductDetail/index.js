@@ -5,7 +5,6 @@ import H2 from 'components/H2';
 import P from 'components/P';
 import LoadingIndicator from 'components/LoadingIndicator';
 import { FaChevronLeft } from 'react-icons/lib/fa/';
-// import { MdSdStorage, MdPhoneAndroid } from 'react-icons/lib/md/';
 import RoundedBoxStyle from 'components/RoundedBox';
 import Img from './Img';
 import DeviceSpecification from './DeviceSpecification';
@@ -30,10 +29,9 @@ const ContentBox = styled(Div) `
 const ImgWrapper = styled.div`
   img {
     border-radius: 14px;
+    margin: 0 auto;
   }
-  margin: 0 auto;
   padding: 10px;
-  width: 180px;
   border-radius: 23px;
   background: radial-gradient(ellipse at center, rgba(255,255,255,1) 0%, rgb(253, 237, 237) 64%, rgba(247,207,207,1) 100%);
   filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#f7cfcf', GradientType=1 );
@@ -58,22 +56,6 @@ const TitleNav = styled.div`
   }
 `;
 
-// const RightDescription = styled.div`
-//   svg {
-//     color: #2c3e50;
-//   }
-// `;
-
-// const LeftIcon = styled.div`
-//   display: table-cell;
-//   margin-right: 4px;
-// `;
-
-// const RightLabel = styled.div`
-//   display: table-cell;
-//   padding-top: 4px;
-// `;
-
 const DisclaimerText = styled.span`
   p {
     text-align: center;
@@ -94,8 +76,8 @@ class Element extends React.Component { // eslint-disable-line react/prefer-stat
             <span><FaChevronLeft onClick={onClick} size={size} /></span>
             <span><H2>{detail.name}</H2></span>
           </TitleNav>
-          <div className="row">
-            <div className="col-xs-12">
+          <div className="row center-xs">
+            <div className="col-xs-5">
               <ImgWrapper>
                 <Img src={detail.imageurl} />
               </ImgWrapper>
