@@ -77,7 +77,7 @@ class Element extends React.Component { // eslint-disable-line react/prefer-stat
             <span><H2>{detail.name}</H2></span>
           </TitleNav>
           <div className="row center-xs">
-            <div className="col-xs-5">
+            <div className="col-xs-7 col-sm-5 col-md-5 col-lg-5">
               <ImgWrapper>
                 <Img src={detail.imageurl} />
               </ImgWrapper>
