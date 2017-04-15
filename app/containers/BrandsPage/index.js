@@ -12,7 +12,13 @@ import BrandTile from 'components/BrandTile';
 import TopNavigation from 'components/TopNavigation';
 import FilterBrands from 'components/FilterBrands';
 
-import { makeSelectBrands, makeSelectLoading, makeSelectError } from './selectors';
+import {
+  makeSelectBrands,
+  makeSelectFilteredBrands,
+  makeSelectIsFiltered,
+  makeSelectLoading,
+  makeSelectError,
+} from './selectors';
 import { loadBrands, filterBrands } from './actions';
 
 class BrandsPage extends React.Component { // eslint-disable-line react/prefer-stateless-function
@@ -22,17 +28,16 @@ class BrandsPage extends React.Component { // eslint-disable-line react/prefer-s
   }
 
   handleFilterBrand(evt) {
-    console.log(evt.target.value);
     this.props.filterBrands(evt.target.value);
   }
 
   render() {
-    const { loading, error, brands } = this.props;
+    const { loading, error, isFiltered, filteredBrands, brands } = this.props;
     const contentListProps = {
       loading,
       error,
       component: BrandTile,
-      payload: brands,
+      payload: isFiltered ? filteredBrands : brands,
     };
     return (
       <div>
@@ -50,6 +55,11 @@ class BrandsPage extends React.Component { // eslint-disable-line react/prefer-s
 
 BrandsPage.propTypes = {
   loading: React.PropTypes.bool,
+  isFiltered: React.PropTypes.bool,
+  filteredBrands: React.PropTypes.oneOfType([
+    React.PropTypes.array,
+    React.PropTypes.bool,
+  ]),
   error: React.PropTypes.oneOfType([
     React.PropTypes.object,
     React.PropTypes.bool,
@@ -71,6 +81,8 @@ const mapStateToProps = createStructuredSelector({
   brands: makeSelectBrands(),
   loading: makeSelectLoading(),
   error: makeSelectError(),
+  isFiltered: makeSelectIsFiltered(),
+  filteredBrands: makeSelectFilteredBrands(),
 });
 
 // Wrap the component to inject dispatch and state into it

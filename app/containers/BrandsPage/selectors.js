@@ -21,8 +21,20 @@ const makeSelectError = () => createSelector(
   (brandsState) => brandsState.get('error')
 );
 
+const makeSelectFilteredBrands = () => createSelector(
+  selectBrands,
+  (brandsState) => brandsState.getIn(['data', 'filteredBrands'])
+);
+
+const makeSelectIsFiltered = () => createSelector(
+  selectBrands,
+  (brandsState) => brandsState.get('isFiltered')
+);
+
 export {
   makeSelectBrands,
   makeSelectLoading,
   makeSelectError,
+  makeSelectFilteredBrands,
+  makeSelectIsFiltered,
 };

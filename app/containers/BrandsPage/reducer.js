@@ -22,8 +22,10 @@ import {
 const initialState = fromJS({
   loading: false,
   error: false,
+  isFiltered: false,
   data: {
     brands: false,
+    filteredBrands: false,
   },
 });
 
@@ -31,13 +33,16 @@ function brandsReducer(state = initialState, action) {
   switch (action.type) {
     case LOAD_BRANDS:
       return state
+        .set('isFiltered', false)
         .set('loading', true)
         .set('error', false)
         .setIn(['data', 'brands'], false);
     case FILTER_BRANDS: {
-      const filteredBrands = state.data.brands.filter((brand) => brand.title.toLowerCase().includes(action.keyword.toLowerCase()));
+      const brands = state.getIn(['data', 'brands']);
+      const filteredBrands = brands.filter((brand) => brand.title.toLowerCase().includes(action.keyword.toLowerCase()));
       return state
-        .setIn(['data', 'brands'], filteredBrands);
+        .set('isFiltered', true)
+        .setIn(['data', 'filteredBrands'], filteredBrands);
     }
     case LOAD_BRANDS_SUCCESS:
       return state
