@@ -44,7 +44,7 @@ class BrandsPage extends React.Component { // eslint-disable-line react/prefer-s
         <TopNavigation title={'All Brands'} />
         <div className="row center-xs no-gap">
           <div className="col-xs-12 col-sm-8 col-md-8 col-lg-6">
-            <FilterBrands onChange={(evt) => this.handleFilterBrand(evt)} />
+            { !loading && <FilterBrands onChange={(evt) => this.handleFilterBrand(evt)} /> }
             <ContentList {...contentListProps} />
           </div>
         </div>

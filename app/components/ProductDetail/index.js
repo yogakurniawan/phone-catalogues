@@ -31,10 +31,6 @@ const ImgWrapper = styled.div`
     border-radius: 14px;
     margin: 0 auto;
   }
-  padding: 10px;
-  border-radius: 23px;
-  background: radial-gradient(ellipse at center, rgba(255,255,255,1) 0%, rgb(253, 237, 237) 64%, rgba(247,207,207,1) 100%);
-  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#f7cfcf', GradientType=1 );
 `;
 
 const TitleNav = styled.div`
@@ -87,6 +83,9 @@ class Element extends React.Component { // eslint-disable-line react/prefer-stat
         {!detail.technology && <LoadingIndicator />}
         {detail.technology && (<ContentBox>
           <DeviceSpecification specTitle="Network" label="Technology" value={detail.technology} />
+          <DeviceSpecification label="2G Bands" value={detail._2g_bands} />
+          <DeviceSpecification label="3G Bands" value={detail._3g_bands} />
+          <DeviceSpecification label="4G Bands" value={detail._4g_bands} />
           <DeviceSpecification specTitle="Launch" label="Announced" value={detail.announced} />
           <DeviceSpecification label="Status" value={detail.status} />
           <DeviceSpecification specTitle="Body" label="Dimensions" value={detail.dimensions} />

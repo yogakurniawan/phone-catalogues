@@ -10,7 +10,6 @@ const Input = styled.input`
   padding: 5px 10px;
   line-height: 1.4;
   border: 2px solid #bdc3c7;
-  font-style: italic;
   font-size: 1em;
   width: 100%;
   &:focus {
@@ -18,7 +17,6 @@ const Input = styled.input`
     color: #dd5555;
     outline: 0;
     box-shadow: none;
-    font-style: normal;
   }
 `;
 
