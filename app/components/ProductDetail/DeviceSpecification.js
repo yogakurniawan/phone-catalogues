@@ -15,7 +15,7 @@ const DeviceSpecTitle = styled(H4) `
 
 const Wrapper = styled.div`
   margin-top: ${(props) => props.needMargin ? '10px' : 'auto'};
-  border-bottom: 1px solid rgba(165, 171, 177, 0.52);;
+  border-bottom: 1px solid rgba(165, 171, 177, 0.52);
 `;
 
 function Element({ specTitle, label, value }) { // eslint-disable-line react/prefer-stateless-function

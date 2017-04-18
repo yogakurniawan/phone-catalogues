@@ -20,6 +20,22 @@ const Input = styled.input`
   }
 `;
 
+const InputGroupButton = styled.span`
+  color: #bdc3c7;
+  position: absolute;
+  padding: 10px;
+  pointer-events: none;
+  -webkit-font-smoothing: antialiased;
+  line-height: 1;
+  display: inline-block;
+  right: 10px;
+  top: -1px;
+`;
+
+const InputGroup = styled.div`
+  position: relative;
+`;
+
 const Wrapper = styled.div`
   margin-bottom: 10px;
 `;
@@ -27,9 +43,10 @@ const Wrapper = styled.div`
 function Component({ onChange }) {
   return (
     <Wrapper className="row start-xs">
-      <div className="col-xs-12 col-sm-6 col-md-4 col-lg-4">
+      <InputGroup className="col-xs-12 col-sm-6 col-md-4 col-lg-4">
         <Input onChange={onChange} type="search" placeholder="Filter Brand" />
-      </div>
+        <InputGroupButton className="fa fa-search"></InputGroupButton>
+      </InputGroup>
     </Wrapper>
   );
 }
