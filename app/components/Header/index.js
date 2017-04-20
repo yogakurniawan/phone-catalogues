@@ -85,9 +85,7 @@ const getSuggestions = (value, findDevice) => {
   findDevice(escapedValue);
 };
 
-const getSuggestionValue = (suggestion) => {
-  return suggestion.name;
-};
+const getSuggestionValue = (suggestion) => (suggestion.name);
 
 const renderSuggestion = (suggestion) => (
   <div>
@@ -144,7 +142,7 @@ class Header extends React.Component {
             <div className="col-xs-8 col-sm-6 col-md-6 col-lg-6">
               <AutosuggestWrapper>
                 <Autosuggest
-                  suggestions={suggestions}
+                  suggestions={typeof suggestions === 'object' && typeof suggestions !== 'boolean' ? [] : suggestions}
                   onSuggestionsFetchRequested={this.onSuggestionsFetchRequested}
                   onSuggestionsClearRequested={this.onSuggestionsClearRequested}
                   getSuggestionValue={getSuggestionValue}
@@ -165,6 +163,7 @@ Header.propTypes = {
   loading: React.PropTypes.bool,
   suggestions: React.PropTypes.oneOfType([
     React.PropTypes.array,
+    React.PropTypes.object,
     React.PropTypes.bool,
   ]),
 };

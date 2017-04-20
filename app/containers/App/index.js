@@ -58,6 +58,7 @@ App.propTypes = {
   findDevice: React.PropTypes.func,
   suggestions: React.PropTypes.oneOfType([
     React.PropTypes.array,
+    React.PropTypes.object,
     React.PropTypes.bool,
   ]),
   loading: React.PropTypes.bool,

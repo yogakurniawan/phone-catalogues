@@ -35,7 +35,7 @@ const initialState = fromJS({
   count: 0,
   data: {
     products: false,
-    deviceSuggestions: false,
+    deviceSuggestions: [],
   },
 });
 
