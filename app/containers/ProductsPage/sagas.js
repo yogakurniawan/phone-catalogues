@@ -9,11 +9,14 @@ import { BASE_API_URL } from 'containers/App/constants';
 
 import {
   LOAD_PRODUCTS,
+  FIND_DEVICE,
   GET_PRODUCTS_COUNT,
   PER_PAGE,
 } from './constants';
 import {
+  deviceFound,
   productsLoaded,
+  findingDeviceError,
   productsLoadingError,
   getProductsCountSuccess,
   getProductsCountError,
@@ -39,6 +42,24 @@ export function* getProducts(action) {
     yield put(productsLoaded(products));
   } catch (err) {
     yield put(productsLoadingError(err));
+  }
+}
+
+export function* findDevice(action) {
+  try {
+    // Call our request helper (see 'utils/request')
+    const queryParams = {
+      'filter[where][name][like]': action.keyword,
+      'filter[limit]': 10,
+    };
+
+    const devices = yield call(request, `${BASE_API_URL}/items`, {
+      queryParams,
+    });
+
+    yield put(deviceFound(devices));
+  } catch (err) {
+    yield put(findingDeviceError(err));
   }
 }
 
@@ -68,6 +89,7 @@ export function* productsList() {
   // It returns task descriptor (just like fork) so we can continue execution
   yield fork(takeLatest, LOAD_PRODUCTS, getProducts);
   yield fork(takeLatest, GET_PRODUCTS_COUNT, getProductsCount);
+  yield fork(takeLatest, FIND_DEVICE, findDevice);
 
   // Suspend execution until location changes
   yield take(LOCATION_CHANGE);

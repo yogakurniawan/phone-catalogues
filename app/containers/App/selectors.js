@@ -6,6 +6,18 @@ import { createSelector } from 'reselect';
 
 const selectGlobal = (state) => state.get('global');
 
+const selectProducts = (state) => state.get('products');
+
+const deviceSuggestions = () => createSelector(
+  selectProducts,
+  (productsState) => productsState.getIn(['data', 'deviceSuggestions'])
+);
+
+const loadingSuggestions = () => createSelector(
+  selectProducts,
+  (productsState) => productsState.get('loadingSuggestions')
+);
+
 const makeSelectCurrentBrand = () => createSelector(
   selectGlobal,
   (globalState) => globalState.get('currentBrand')
@@ -50,6 +62,8 @@ const makeSelectLocationState = () => {
 export {
   selectGlobal,
   makeSelectCurrentBrand,
+  deviceSuggestions,
+  loadingSuggestions,
   makeSelectLoading,
   makeSelectError,
   makeSelectRepos,

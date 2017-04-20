@@ -30,6 +30,7 @@ const ReactBoilerplate = {
         'sanitize.css',
         'flexboxgrid',
         'react-icons',
+        'font-awesome',
       ],
 
       /**

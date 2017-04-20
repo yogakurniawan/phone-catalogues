@@ -27,9 +27,9 @@ const AutosuggestWrapper = styled.div`
     display: block;
     position: relative;
     background-color: #f9f9f9;
-    font-family: Helvetica, sans-serif;
     font-weight: 300;
-    font-size: 16px;
+    font-size: 0.875em;
+    color: #2c3e50;
     border-bottom-left-radius: 4px;
     border-bottom-right-radius: 4px;
     z-index: 2;
@@ -67,94 +67,34 @@ const AutosuggestWrapper = styled.div`
     box-shadow: none;
   }
 `;
+const Thumbnail = styled(Img)`
+  width: 10%;
+  margin: 0;
+  display: inline
+`;
 
-// Imagine you have a list of languages that you'd like to autosuggest.
-const languages = [
-  {
-    name: 'C',
-    year: 1972
-  },
-  {
-    name: 'C#',
-    year: 2000
-  },
-  {
-    name: 'C++',
-    year: 1983
-  },
-  {
-    name: 'Clojure',
-    year: 2007
-  },
-  {
-    name: 'Elm',
-    year: 2012
-  },
-  {
-    name: 'Go',
-    year: 2009
-  },
-  {
-    name: 'Haskell',
-    year: 1990
-  },
-  {
-    name: 'Java',
-    year: 1995
-  },
-  {
-    name: 'Javascript',
-    year: 1995
-  },
-  {
-    name: 'Perl',
-    year: 1987
-  },
-  {
-    name: 'PHP',
-    year: 1995
-  },
-  {
-    name: 'Python',
-    year: 1991
-  },
-  {
-    name: 'Ruby',
-    year: 1995
-  },
-  {
-    name: 'Scala',
-    year: 2003
-  }
-];
+const escapeRegexCharacters = (str) => (str.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'));
 
-const escapeRegexCharacters = (str) => {
-  return str.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
-};
-
-const getSuggestions = (value) => {
+const getSuggestions = (value, findDevice) => {
   const escapedValue = escapeRegexCharacters(value.trim());
 
   if (escapedValue === '') {
-    return [];
+    return;
   }
 
-  const regex = new RegExp('^' + escapedValue, 'i');
-
-  return languages.filter(language => regex.test(language.name));
+  findDevice(escapedValue);
 };
 
 const getSuggestionValue = (suggestion) => {
-  console.log(`get suggestion value ${suggestion}`);
   return suggestion.name;
 };
 
-const renderSuggestion = (suggestion) => {
-  console.log(`render ${suggestion}`);
-  return (
-    <span>{suggestion.name}</span>
-  );
-};
+const renderSuggestion = (suggestion) => (
+  <div>
+    <span style={{ marginRight: '20px', display: 'inline' }}><Thumbnail src={suggestion.imageurl} /></span>
+    <span style={{ display: 'inline' }}>{suggestion.name}</span>
+  </div>
+);
 
 class Header extends React.Component {
   constructor() {
@@ -162,36 +102,34 @@ class Header extends React.Component {
 
     this.state = {
       value: '',
-      suggestions: []
+      suggestedValues: [],
     };
   }
 
   onChange = (event, { newValue, method }) => {
     this.setState({
-      value: newValue
+      value: newValue,
     });
   };
 
   onSuggestionsFetchRequested = ({ value }) => {
-    this.setState({
-      suggestions: getSuggestions(value)
-    });
+    getSuggestions(value, this.props.find);
   };
 
   onSuggestionsClearRequested = () => {
     this.setState({
-      suggestions: []
+      suggestedValues: [],
     });
   };
 
   render() {
-    const { value, suggestions } = this.state;
-    console.log(value);
-    // Autosuggest will pass through all these props to the input element.
+    const { value, suggestedValues } = this.state;
+    const { loading, suggestions } = this.props;
+    console.log(suggestions);
     const inputProps = {
-      placeholder: 'Search device',
+      placeholder: loading ? 'Loading ...' : 'Search device',
       value,
-      onChange: this.onChange
+      onChange: this.onChange,
     };
 
     return (
@@ -211,7 +149,8 @@ class Header extends React.Component {
                   onSuggestionsClearRequested={this.onSuggestionsClearRequested}
                   getSuggestionValue={getSuggestionValue}
                   renderSuggestion={renderSuggestion}
-                  inputProps={inputProps} />
+                  inputProps={inputProps}
+                />
               </AutosuggestWrapper>
             </div>
           </header>
@@ -220,5 +159,14 @@ class Header extends React.Component {
     );
   }
 }
+
+Header.propTypes = {
+  find: React.PropTypes.func,
+  loading: React.PropTypes.bool,
+  suggestions: React.PropTypes.oneOfType([
+    React.PropTypes.array,
+    React.PropTypes.bool,
+  ]),
+};
 
 export default Header;

@@ -12,6 +12,9 @@
 export const LOAD_PRODUCTS = 'boilerplate/ProductsPage/LOAD_PRODUCTS';
 export const LOAD_PRODUCTS_SUCCESS = 'boilerplate/ProductsPage/LOAD_PRODUCTS_SUCCESS';
 export const LOAD_PRODUCTS_ERROR = 'boilerplate/ProductsPage/LOAD_PRODUCTS_ERROR';
+export const FIND_DEVICE = 'boilerplate/ProductsPage/FIND_DEVICE';
+export const FIND_DEVICE_SUCCESS = 'boilerplate/ProductsPage/FIND_DEVICE_SUCCESS';
+export const FIND_DEVICE_ERROR = 'boilerplate/ProductsPage/FIND_DEVICE_ERROR';
 export const GET_PRODUCTS_COUNT = 'boilerplate/ProductsPage/GET_PRODUCTS_COUNT';
 export const GET_PRODUCTS_COUNT_SUCCESS = 'boilerplate/ProductsPage/GET_PRODUCTS_COUNT_SUCCESS';
 export const GET_PRODUCTS_COUNT_ERROR = 'boilerplate/ProductsPage/GET_PRODUCTS_COUNT_ERROR';

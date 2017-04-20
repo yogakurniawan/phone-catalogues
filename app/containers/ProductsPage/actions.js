@@ -19,6 +19,9 @@ import {
   LOAD_PRODUCTS,
   LOAD_PRODUCTS_SUCCESS,
   LOAD_PRODUCTS_ERROR,
+  FIND_DEVICE,
+  FIND_DEVICE_SUCCESS,
+  FIND_DEVICE_ERROR,
   GET_PRODUCTS_COUNT,
   GET_PRODUCTS_COUNT_SUCCESS,
   GET_PRODUCTS_COUNT_ERROR,
@@ -35,6 +38,13 @@ export function loadProducts(brand, page) {
     type: LOAD_PRODUCTS,
     brand,
     page,
+  };
+}
+
+export function findDevice(keyword) {
+  return {
+    type: FIND_DEVICE,
+    keyword,
   };
 }
 
@@ -66,10 +76,24 @@ export function productsLoaded(products) {
   };
 }
 
+export function deviceFound(devices) {
+  return {
+    type: FIND_DEVICE_SUCCESS,
+    devices,
+  };
+}
+
 export function getProductsCountSuccess(count) {
   return {
     type: GET_PRODUCTS_COUNT_SUCCESS,
     count,
+  };
+}
+
+export function findingDeviceError(error) {
+  return {
+    type: FIND_DEVICE_ERROR,
+    error,
   };
 }
 
