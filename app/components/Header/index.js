@@ -50,7 +50,7 @@ const AutosuggestWrapper = styled.div`
   }
 
   .react-autosuggest__suggestion--highlighted {
-    background-color: #ddd;
+    background-color: rgba(189, 195, 199, 0.31);
   }
   input {
     border: 1px solid #bdc3c7;
@@ -100,11 +100,10 @@ class Header extends React.Component {
 
     this.state = {
       value: '',
-      suggestedValues: [],
     };
   }
 
-  onChange = (event, { newValue, method }) => {
+  onChange = (event, { newValue }) => {
     this.setState({
       value: newValue,
     });
@@ -115,15 +114,11 @@ class Header extends React.Component {
   };
 
   onSuggestionsClearRequested = () => {
-    this.setState({
-      suggestedValues: [],
-    });
   };
 
   render() {
-    const { value, suggestedValues } = this.state;
-    const { loading, suggestions } = this.props;
-    console.log(suggestions);
+    const { value } = this.state;
+    const { loading, suggestions, onSuggestionSelected } = this.props;
     const inputProps = {
       placeholder: loading ? 'Loading ...' : 'Search device',
       value,
@@ -142,8 +137,9 @@ class Header extends React.Component {
             <div className="col-xs-8 col-sm-6 col-md-6 col-lg-6">
               <AutosuggestWrapper>
                 <Autosuggest
-                  suggestions={typeof suggestions === 'object' && typeof suggestions !== 'boolean' ? [] : suggestions}
+                  suggestions={typeof suggestions === 'boolean' ? [] : suggestions}
                   onSuggestionsFetchRequested={this.onSuggestionsFetchRequested}
+                  onSuggestionSelected={onSuggestionSelected}
                   onSuggestionsClearRequested={this.onSuggestionsClearRequested}
                   getSuggestionValue={getSuggestionValue}
                   renderSuggestion={renderSuggestion}
@@ -160,10 +156,10 @@ class Header extends React.Component {
 
 Header.propTypes = {
   find: React.PropTypes.func,
+  onSuggestionSelected: React.PropTypes.func,
   loading: React.PropTypes.bool,
   suggestions: React.PropTypes.oneOfType([
     React.PropTypes.array,
-    React.PropTypes.object,
     React.PropTypes.bool,
   ]),
 };

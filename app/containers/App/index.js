@@ -10,6 +10,7 @@ import React, { Component } from 'react';
 import Helmet from 'react-helmet';
 import styled from 'styled-components';
 import { connect } from 'react-redux';
+import { push } from 'react-router-redux';
 import { createStructuredSelector } from 'reselect';
 
 import Header from 'components/Header';
@@ -18,6 +19,8 @@ import {
   deviceSuggestions,
   loadingSuggestions,
 } from './selectors';
+import * as actions from './actions';
+
 const AppWrapper = styled.div`
   margin: 0 auto;
   display: flex;
@@ -31,6 +34,13 @@ const ContentWrapper = styled.div`
 `;
 
 class App extends Component { // eslint-disable-line react/prefer-stateless-function
+
+  onSuggestionSelected = (evt, { suggestion, suggestionValue }) => {
+    const { setSelectedDevice, pushState } = this.props;
+    pushState(`/detail?brand=${encodeURIComponent(suggestion.keyword)}&device=${encodeURIComponent(suggestionValue)}`);
+    setSelectedDevice(suggestion);
+  }
+
   render() {
     const { children, findDevice, suggestions, loading } = this.props;
     return (
@@ -44,7 +54,7 @@ class App extends Component { // eslint-disable-line react/prefer-stateless-func
             { name: 'description', content: 'Phone Catalogues - The complete resource for Handset list, details, specification and information' },
           ]}
         />
-        <Header find={findDevice} suggestions={suggestions} loading={loading} />
+        <Header onSuggestionSelected={this.onSuggestionSelected} find={findDevice} suggestions={suggestions} loading={loading} />
         <ContentWrapper>
           {React.Children.toArray(children)}
         </ContentWrapper>
@@ -58,14 +68,17 @@ App.propTypes = {
   findDevice: React.PropTypes.func,
   suggestions: React.PropTypes.oneOfType([
     React.PropTypes.array,
-    React.PropTypes.object,
     React.PropTypes.bool,
   ]),
   loading: React.PropTypes.bool,
+  setSelectedDevice: React.PropTypes.func,
+  pushState: React.PropTypes.func,
 };
 
 const mapDispatchToProps = {
   findDevice: productActions.findDevice,
+  setSelectedDevice: actions.setSelectedDevice,
+  pushState: push,
 };
 
 const mapStateToProps = createStructuredSelector({

@@ -50,7 +50,7 @@ export function* findDevice(action) {
     // Call our request helper (see 'utils/request')
     const queryParams = {
       'filter[where][name][like]': action.keyword,
-      'filter[limit]': 10,
+      'filter[limit]': 8,
     };
 
     const devices = yield call(request, `${BASE_API_URL}/items`, {
