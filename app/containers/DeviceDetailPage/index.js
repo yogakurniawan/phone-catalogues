@@ -7,7 +7,7 @@ import React from 'react';
 import Helmet from 'react-helmet';
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
-import { goBack } from 'react-router-redux';
+import { push } from 'react-router-redux';
 
 import { makeSelectCurrentBrand, getSelectedDevice } from 'containers/App/selectors';
 import { loadDeviceByName } from 'containers/App/actions';
@@ -30,8 +30,8 @@ class DeviceDetailPage extends React.Component { // eslint-disable-line react/pr
   }
 
   handleNavBack() {
-    const { back } = this.props;
-    back();
+    const { productBrand, pushState } = this.props;
+    pushState(`devices/${encodeURIComponent(productBrand)}?page=1`);
   }
 
   render() {
@@ -69,7 +69,7 @@ DeviceDetailPage.propTypes = {
     React.PropTypes.bool,
   ]),
   loadDevice: React.PropTypes.func,
-  back: React.PropTypes.func,
+  pushState: React.PropTypes.func,
   getDeviceByName: React.PropTypes.func,
   deviceDetail: React.PropTypes.object,
   selectedDevice: React.PropTypes.object,
@@ -78,7 +78,7 @@ DeviceDetailPage.propTypes = {
 const mapDispatchToProps = {
   loadDevice: deviceDetailActions.loadDevice,
   getDeviceByName: loadDeviceByName,
-  back: goBack,
+  pushState: push,
 };
 
 const mapStateToProps = createStructuredSelector({

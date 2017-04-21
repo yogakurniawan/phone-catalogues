@@ -15,6 +15,7 @@ import { createStructuredSelector } from 'reselect';
 
 import Header from 'components/Header';
 import * as productActions from 'containers/ProductsPage/actions';
+import * as deviceDetailActions from 'containers/DeviceDetailPage/actions';
 import {
   deviceSuggestions,
   loadingSuggestions,
@@ -36,9 +37,11 @@ const ContentWrapper = styled.div`
 class App extends Component { // eslint-disable-line react/prefer-stateless-function
 
   onSuggestionSelected = (evt, { suggestion, suggestionValue }) => {
-    const { setSelectedDevice, pushState } = this.props;
+    const { setSelectedDevice, pushState, loadDevice, getDeviceByName } = this.props;
     pushState(`/detail?brand=${encodeURIComponent(suggestion.keyword)}&device=${encodeURIComponent(suggestionValue)}`);
     setSelectedDevice(suggestion);
+    loadDevice(suggestion.keyword, suggestionValue);
+    getDeviceByName(suggestion.keyword, suggestionValue);
   }
 
   render() {
@@ -73,12 +76,16 @@ App.propTypes = {
   loading: React.PropTypes.bool,
   setSelectedDevice: React.PropTypes.func,
   pushState: React.PropTypes.func,
+  loadDevice: React.PropTypes.func,
+  getDeviceByName: React.PropTypes.func,
 };
 
 const mapDispatchToProps = {
   findDevice: productActions.findDevice,
   setSelectedDevice: actions.setSelectedDevice,
   pushState: push,
+  loadDevice: deviceDetailActions.loadDevice,
+  getDeviceByName: actions.loadDeviceByName,
 };
 
 const mapStateToProps = createStructuredSelector({

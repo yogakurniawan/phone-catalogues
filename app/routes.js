@@ -74,13 +74,15 @@ export default function createRoutes(store) {
           import('containers/DeviceDetailPage/actions'),
           import('containers/App/actions'),
           import('containers/DeviceDetailPage/reducer'),
+          import('containers/ProductsPage/reducer'),
           import('containers/DeviceDetailPage/sagas'),
           import('containers/DeviceDetailPage'),
         ]);
 
         const renderRoute = loadModule(cb);
-        importModules.then(([deviceDetailActions, appActions, reducer, sagas, component]) => {
-          injectReducer('deviceDetail', reducer.default);
+        importModules.then(([deviceDetailActions, appActions, deviceDetailreducer, productReducer, sagas, component]) => {
+          injectReducer('deviceDetail', deviceDetailreducer.default);
+          injectReducer('products', productReducer.default);
           injectSagas(sagas.default);
           store.dispatch(appActions.setProductBrand(nextState.location.query.brand));
           store.dispatch(deviceDetailActions.setDeviceName(nextState.location.query.device));
