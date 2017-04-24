@@ -16,11 +16,8 @@ import { createStructuredSelector } from 'reselect';
 import Header from 'components/Header';
 import * as productActions from 'containers/ProductsPage/actions';
 import * as deviceDetailActions from 'containers/DeviceDetailPage/actions';
-import {
-  deviceSuggestions,
-  loadingSuggestions,
-} from './selectors';
 import * as actions from './actions';
+import * as selectors from './selectors';
 
 const AppWrapper = styled.div`
   margin: 0 auto;
@@ -36,6 +33,11 @@ const ContentWrapper = styled.div`
 
 class App extends Component { // eslint-disable-line react/prefer-stateless-function
 
+  componentDidMount() {
+    const { findAllDevices } = this.props;
+    findAllDevices();
+  }
+
   onSuggestionSelected = (evt, { suggestion, suggestionValue }) => {
     const { setSelectedDevice, pushState, loadDevice, getDeviceByName } = this.props;
     pushState(`/detail?brand=${encodeURIComponent(suggestion.keyword)}&device=${encodeURIComponent(suggestionValue)}`);
@@ -45,7 +47,7 @@ class App extends Component { // eslint-disable-line react/prefer-stateless-func
   }
 
   render() {
-    const { children, findDevice, suggestions, loading } = this.props;
+    const { children, allDevices } = this.props;
     return (
       <AppWrapper>
         <Helmet
@@ -57,7 +59,7 @@ class App extends Component { // eslint-disable-line react/prefer-stateless-func
             { name: 'description', content: 'Phone Catalogues - The complete resource for Handset list, details, specification and information' },
           ]}
         />
-        <Header onSuggestionSelected={this.onSuggestionSelected} find={findDevice} suggestions={suggestions} loading={loading} />
+        <Header onSuggestionSelected={this.onSuggestionSelected} allDevices={allDevices} />
         <ContentWrapper>
           {React.Children.toArray(children)}
         </ContentWrapper>
@@ -68,20 +70,19 @@ class App extends Component { // eslint-disable-line react/prefer-stateless-func
 
 App.propTypes = {
   children: React.PropTypes.node,
-  findDevice: React.PropTypes.func,
-  suggestions: React.PropTypes.oneOfType([
-    React.PropTypes.array,
-    React.PropTypes.bool,
-  ]),
-  loading: React.PropTypes.bool,
+  findAllDevices: React.PropTypes.func,
   setSelectedDevice: React.PropTypes.func,
   pushState: React.PropTypes.func,
   loadDevice: React.PropTypes.func,
   getDeviceByName: React.PropTypes.func,
+  allDevices: React.PropTypes.oneOfType([
+    React.PropTypes.array,
+    React.PropTypes.bool,
+  ]),
 };
 
 const mapDispatchToProps = {
-  findDevice: productActions.findDevice,
+  findAllDevices: productActions.findAllDevices,
   setSelectedDevice: actions.setSelectedDevice,
   pushState: push,
   loadDevice: deviceDetailActions.loadDevice,
@@ -89,8 +90,7 @@ const mapDispatchToProps = {
 };
 
 const mapStateToProps = createStructuredSelector({
-  suggestions: deviceSuggestions(),
-  loading: loadingSuggestions(),
+  allDevices: selectors.allDevices(),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(App);

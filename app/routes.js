@@ -67,6 +67,28 @@ export default function createRoutes(store) {
       },
     },
     {
+      path: 'search',
+      name: 'search',
+      getComponent(nextState, cb) {
+        const importModules = Promise.all([
+          import('containers/SearchPage/actions'),
+          import('containers/SearchPage/reducer'),
+          import('containers/SearchPage/sagas'),
+          import('containers/SearchPage'),
+        ]);
+
+        const renderRoute = loadModule(cb);
+        importModules.then(([actions, reducer, sagas, component]) => {
+          injectReducer('search', reducer.default);
+          injectSagas(sagas.default);
+          store.dispatch(actions.setKeyword(nextState.params.keyword));
+          renderRoute(component);
+        });
+
+        importModules.catch(errorLoading);
+      },
+    },
+    {
       path: 'detail',
       name: 'deviceDetail',
       getComponent(nextState, cb) {

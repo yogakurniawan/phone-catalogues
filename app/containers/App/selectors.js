@@ -8,14 +8,9 @@ const selectGlobal = (state) => state.get('global');
 
 const selectProducts = (state) => state.get('products');
 
-const deviceSuggestions = () => createSelector(
+const allDevices = () => createSelector(
   selectProducts,
-  (productsState) => productsState.getIn(['data', 'deviceSuggestions'])
-);
-
-const loadingSuggestions = () => createSelector(
-  selectProducts,
-  (productsState) => productsState.get('loadingSuggestions')
+  (productsState) => productsState && productsState.getIn(['data', 'allDevices'])
 );
 
 const makeSelectCurrentBrand = () => createSelector(
@@ -62,8 +57,7 @@ const makeSelectLocationState = () => {
 export {
   selectGlobal,
   makeSelectCurrentBrand,
-  deviceSuggestions,
-  loadingSuggestions,
+  allDevices,
   makeSelectLoading,
   makeSelectError,
   makeSelectRepos,

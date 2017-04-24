@@ -67,7 +67,7 @@ const AutosuggestWrapper = styled.div`
     box-shadow: none;
   }
 `;
-const Thumbnail = styled(Img)`
+const Thumbnail = styled(Img) `
   width: 10%;
   margin: 0;
   display: inline
@@ -75,14 +75,23 @@ const Thumbnail = styled(Img)`
 
 const escapeRegexCharacters = (str) => (str.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'));
 
-const getSuggestions = (value, findDevice) => {
+const getSuggestions = (value, allDevices) => {
   const escapedValue = escapeRegexCharacters(value.trim());
 
-  if (escapedValue === '') {
-    return;
+  if (escapedValue !== '') {
+    const regex = new RegExp(`${escapedValue}`, 'i');
+    const results = [];
+    allDevices.map((device) => {
+      if (results.length < 8) {
+        if (regex.test(device.name)) {
+          results.push(device);
+        }
+      }
+      return null;
+    });
+    return results;
   }
-
-  findDevice(escapedValue);
+  return [];
 };
 
 const getSuggestionValue = (suggestion) => (suggestion.name);
@@ -100,6 +109,7 @@ class Header extends React.Component {
 
     this.state = {
       value: '',
+      suggestions: [],
     };
   }
 
@@ -110,17 +120,23 @@ class Header extends React.Component {
   };
 
   onSuggestionsFetchRequested = ({ value }) => {
-    getSuggestions(value, this.props.find);
+    const { allDevices } = this.props;
+    this.setState({
+      suggestions: getSuggestions(value, allDevices),
+    });
   };
 
   onSuggestionsClearRequested = () => {
+    this.setState({
+      suggestions: [],
+    });
   };
 
   render() {
-    const { value } = this.state;
-    const { loading, suggestions, onSuggestionSelected } = this.props;
+    const { value, suggestions } = this.state;
+    const { onSuggestionSelected } = this.props;
     const inputProps = {
-      placeholder: loading ? 'Loading ...' : 'Search device',
+      placeholder: 'Search device',
       value,
       onChange: this.onChange,
     };
@@ -130,14 +146,14 @@ class Header extends React.Component {
         <HeaderWrapper>
           <header className="row">
             <div className="col-xs-4 col-sm-2 col-md-2 col-lg-2">
-              <Link to="/">
+              <Link to="/hello">
                 <Img src={Logo} alt="Phone Catalogues - Logo" />
               </Link>
             </div>
             <div className="col-xs-8 col-sm-6 col-md-6 col-lg-6">
               <AutosuggestWrapper>
                 <Autosuggest
-                  suggestions={typeof suggestions === 'boolean' ? [] : suggestions}
+                  suggestions={suggestions}
                   onSuggestionsFetchRequested={this.onSuggestionsFetchRequested}
                   onSuggestionSelected={onSuggestionSelected}
                   onSuggestionsClearRequested={this.onSuggestionsClearRequested}
@@ -155,10 +171,8 @@ class Header extends React.Component {
 }
 
 Header.propTypes = {
-  find: React.PropTypes.func,
   onSuggestionSelected: React.PropTypes.func,
-  loading: React.PropTypes.bool,
-  suggestions: React.PropTypes.oneOfType([
+  allDevices: React.PropTypes.oneOfType([
     React.PropTypes.array,
     React.PropTypes.bool,
   ]),
