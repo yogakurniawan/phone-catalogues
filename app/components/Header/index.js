@@ -8,6 +8,18 @@ import HeaderWrapper from './HeaderWrapper';
 import Logo from './PhoneCataloguesLogo.svg';
 import FixedHeaderContainer from './FixedHeaderContainer';
 
+const InputGroupButton = styled.span`
+  color: #bdc3c7;
+  position: absolute;
+  padding: 10px;
+  pointer-events: none;
+  -webkit-font-smoothing: antialiased;
+  line-height: 1;
+  display: inline-block;
+  right: 0;
+  top: -1px;
+`;
+
 const AutosuggestWrapper = styled.div`
   width: 100%;
     .react-autosuggest__container {
@@ -103,6 +115,13 @@ const renderSuggestion = (suggestion) => (
   </div>
 );
 
+const renderInputComponent = inputProps => (
+  <div className="inputContainer">
+    <InputGroupButton className="fa fa-search"></InputGroupButton>
+    <input {...inputProps} />
+  </div>
+);
+
 class Header extends React.Component {
   constructor() {
     super();
@@ -146,7 +165,7 @@ class Header extends React.Component {
         <HeaderWrapper>
           <header className="row">
             <div className="col-xs-4 col-sm-2 col-md-2 col-lg-2">
-              <Link to="/hello">
+              <Link to="/">
                 <Img src={Logo} alt="Phone Catalogues - Logo" />
               </Link>
             </div>
@@ -160,6 +179,7 @@ class Header extends React.Component {
                   getSuggestionValue={getSuggestionValue}
                   renderSuggestion={renderSuggestion}
                   inputProps={inputProps}
+                  renderInputComponent={renderInputComponent}
                 />
               </AutosuggestWrapper>
             </div>
