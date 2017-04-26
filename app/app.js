@@ -80,7 +80,7 @@ const rootRoute = {
 
 const render = (messages) => {
   history.listen(function (location) {
-    window.ga('send', 'pageview', window.location.href);
+    window.ga('send', 'pageview', [window.location.pathname, window.location.search].join(""));
   });
   ReactDOM.render(
     <Provider store={store}>
