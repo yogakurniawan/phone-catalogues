@@ -15,6 +15,7 @@ import { Provider } from 'react-redux';
 import { applyRouterMiddleware, Router, browserHistory } from 'react-router';
 import { syncHistoryWithStore } from 'react-router-redux';
 import FontFaceObserver from 'fontfaceobserver';
+import ReactGA from 'react-ga';
 import { useScroll } from 'react-router-scroll';
 import 'sanitize.css/sanitize.css';
 import 'flexboxgrid/css/flexboxgrid.css';
@@ -78,6 +79,13 @@ const rootRoute = {
   childRoutes: createRoutes(store),
 };
 
+ReactGA.initialize('UA-97981820-1');
+
+const logPageView = () => {
+  ReactGA.set({ page: window.location.pathname });
+  ReactGA.pageview(window.location.pathname);
+}
+
 const render = (messages) => {
   ReactDOM.render(
     <Provider store={store}>
@@ -85,6 +93,7 @@ const render = (messages) => {
         <Router
           history={history}
           routes={rootRoute}
+          onUpdate={logPageView}
           render={
             // Scroll to top when going to a new page, imitating default browser
             // behaviour
