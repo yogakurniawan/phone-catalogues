@@ -79,6 +79,9 @@ const rootRoute = {
 };
 
 const render = (messages) => {
+  history.listen(function (location) {
+    window.ga('send', 'pageview', location.pathname);
+  });
   ReactDOM.render(
     <Provider store={store}>
       <LanguageProvider messages={messages}>
