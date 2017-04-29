@@ -86,6 +86,9 @@ class Element extends React.Component { // eslint-disable-line react/prefer-stat
           <DeviceSpecification label="2G Bands" value={detail._2g_bands} />
           <DeviceSpecification label="3G Bands" value={detail._3g_bands} />
           <DeviceSpecification label="4G Bands" value={detail._4g_bands} />
+          <DeviceSpecification label="Speed" value={detail.speed} />
+          <DeviceSpecification label="GPRS" value={detail.gprs} />
+          <DeviceSpecification label="EDGE" value={detail.edge} />
           <DeviceSpecification specTitle="Launch" label="Announced" value={detail.announced} />
           <DeviceSpecification label="Status" value={detail.status} />
           <DeviceSpecification specTitle="Body" label="Dimensions" value={detail.dimensions} />
@@ -112,11 +115,11 @@ class Element extends React.Component { // eslint-disable-line react/prefer-stat
           <DeviceSpecification specTitle="Sound" label="Alert Types" value={detail.alert_types} />
           <DeviceSpecification label="Loudspeaker" value={/* eslint no-underscore-dangle: 0 */detail.loudspeaker_} />
           <DeviceSpecification label="3.5mm Jack" value={/* eslint no-underscore-dangle: 0 */detail._3_5mm_jack_} />
-          <DeviceSpecification label="Secondary" value={detail.secondary} />
           <DeviceSpecification specTitle="Comms" label="WLAN" value={detail.wlan} />
           <DeviceSpecification label="Bluetooth" value={detail.bluetooth} />
           <DeviceSpecification label="GPS" value={detail.gps} />
           <DeviceSpecification label="NFC" value={detail.nfc} />
+          <DeviceSpecification label="Infrared Port" value={detail.infrared_port} />
           <DeviceSpecification label="Radio" value={detail.radio} />
           <DeviceSpecification label="USB" value={detail.usb} />
           <DeviceSpecification specTitle="Features" label="Sensors" value={detail.sensors} />
@@ -125,6 +128,7 @@ class Element extends React.Component { // eslint-disable-line react/prefer-stat
           <DeviceSpecification label="Java" value={detail.java} />
           <DeviceSpecification label="" value={detail.features_c} />
           <DeviceSpecification specTitle="Battery" label="Type" value={detail.battery_c} />
+          <DeviceSpecification specTitle="Stand By" value={detail.stand_by} />
           <DeviceSpecification label="Talk Time" value={detail.talk_time} />
           <DeviceSpecification label="Music Play" value={detail.music_play} />
           <DeviceSpecification specTitle="Misc." label="Colors" value={detail.colors} />
