@@ -107,6 +107,8 @@ class Element extends React.Component { // eslint-disable-line react/prefer-stat
           <DeviceSpecification label="CPU" value={detail.cpu} />
           <DeviceSpecification label="GPU" value={detail.gpu} />
           <DeviceSpecification specTitle="Memory" label="Card Slot" value={detail.card_slot} />
+          <DeviceSpecification label="Phonebook" value={detail.phonebook} />
+          <DeviceSpecification label="Call Records" value={detail.call_records} />
           <DeviceSpecification label="Internal" value={detail.internal} />
           <DeviceSpecification specTitle="Camera" label="Card Slot" value={/* eslint no-underscore-dangle: 0 */detail.primary_} />
           <DeviceSpecification label="Features" value={detail.features} />
@@ -115,6 +117,7 @@ class Element extends React.Component { // eslint-disable-line react/prefer-stat
           <DeviceSpecification specTitle="Sound" label="Alert Types" value={detail.alert_types} />
           <DeviceSpecification label="Loudspeaker" value={/* eslint no-underscore-dangle: 0 */detail.loudspeaker_} />
           <DeviceSpecification label="3.5mm Jack" value={/* eslint no-underscore-dangle: 0 */detail._3_5mm_jack_} />
+          <DeviceSpecification label="" value={detail.sound_c} />
           <DeviceSpecification specTitle="Comms" label="WLAN" value={detail.wlan} />
           <DeviceSpecification label="Bluetooth" value={detail.bluetooth} />
           <DeviceSpecification label="GPS" value={detail.gps} />
@@ -125,10 +128,11 @@ class Element extends React.Component { // eslint-disable-line react/prefer-stat
           <DeviceSpecification specTitle="Features" label="Sensors" value={detail.sensors} />
           <DeviceSpecification label="Messaging" value={detail.messaging} />
           <DeviceSpecification label="Browser" value={detail.browser} />
+          <DeviceSpecification label="Games" value={detail.games} />
           <DeviceSpecification label="Java" value={detail.java} />
           <DeviceSpecification label="" value={detail.features_c} />
           <DeviceSpecification specTitle="Battery" label="Type" value={detail.battery_c} />
-          <DeviceSpecification specTitle="Stand By" value={detail.stand_by} />
+          <DeviceSpecification label="Stand By" value={detail.stand_by} />
           <DeviceSpecification label="Talk Time" value={detail.talk_time} />
           <DeviceSpecification label="Music Play" value={detail.music_play} />
           <DeviceSpecification specTitle="Misc." label="Colors" value={detail.colors} />
