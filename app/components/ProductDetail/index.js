@@ -111,7 +111,7 @@ class Element extends React.Component { // eslint-disable-line react/prefer-stat
           <DeviceSpecification label="Phonebook" value={detail.phonebook} />
           <DeviceSpecification label="Call Records" value={detail.call_records} />
           <DeviceSpecification label="Internal" value={detail.internal} />
-          <DeviceSpecification specTitle="Camera" label="Card Slot" value={/* eslint no-underscore-dangle: 0 */detail.primary_} />
+          <DeviceSpecification specTitle="Camera" label="Primary" value={/* eslint no-underscore-dangle: 0 */detail.primary_} />
           <DeviceSpecification label="Features" value={detail.features} />
           <DeviceSpecification label="Video" value={detail.video} />
           <DeviceSpecification label="Secondary" value={detail.secondary} />
