@@ -96,6 +96,7 @@ class Element extends React.Component { // eslint-disable-line react/prefer-stat
           <DeviceSpecification label="SIM" value={detail.sim} />
           <DeviceSpecification label="Build" value={detail.build} />
           <DeviceSpecification label="" value={detail.body_c} />
+          <DeviceSpecification label="Keyboard" value={detail.keyboard} />
           <DeviceSpecification specTitle="Display" label="Type" value={detail.type} />
           <DeviceSpecification label="Size" value={detail.size} />
           <DeviceSpecification label="Resolution" value={detail.resolution} />
@@ -128,13 +129,17 @@ class Element extends React.Component { // eslint-disable-line react/prefer-stat
           <DeviceSpecification specTitle="Features" label="Sensors" value={detail.sensors} />
           <DeviceSpecification label="Messaging" value={detail.messaging} />
           <DeviceSpecification label="Browser" value={detail.browser} />
+          <DeviceSpecification label="Clock" value={detail.clock} />
+          <DeviceSpecification label="Alarm" value={detail.alarm} />
           <DeviceSpecification label="Games" value={detail.games} />
+          <DeviceSpecification label="Languages" value={detail.languages} />
           <DeviceSpecification label="Java" value={detail.java} />
           <DeviceSpecification label="" value={detail.features_c} />
           <DeviceSpecification specTitle="Battery" label="Type" value={detail.battery_c} />
           <DeviceSpecification label="Stand By" value={detail.stand_by} />
           <DeviceSpecification label="Talk Time" value={detail.talk_time} />
           <DeviceSpecification label="Music Play" value={detail.music_play} />
+          <DeviceSpecification label="Battery Life" value={detail.battery_life} />
           <DeviceSpecification specTitle="Misc." label="Colors" value={detail.colors} />
           <DeviceSpecification label="SAR US" value={detail.sar_us} />
           <DeviceSpecification label="SAR EU" value={detail.sar_eu} />
