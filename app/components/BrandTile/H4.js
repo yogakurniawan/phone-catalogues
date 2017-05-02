@@ -2,9 +2,17 @@ import styled from 'styled-components';
 
 import OriginalH4 from 'components/H4';
 
-const Element = styled(OriginalH4)`
+const GreyH4 = styled(OriginalH4)`
   color: #2c3e50;
   font-weight: 100;
 `;
 
-export default Element;
+const WhiteH4 = styled(OriginalH4)`
+  color: #fff;
+  font-weight: 100;
+`;
+
+export {
+  GreyH4,
+  WhiteH4,
+};

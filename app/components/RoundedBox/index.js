@@ -7,7 +7,7 @@ const style = css`
   border-radius: 5px;
   margin: 5px 0 15px 0;
   transform: perspective(1px) translateZ(0);
-  transition-duration: 0.8s;
+  transition-duration: 0.1s;
   transition-property: color, background-color;
 `;
 

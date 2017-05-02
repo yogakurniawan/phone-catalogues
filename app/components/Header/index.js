@@ -115,7 +115,7 @@ const renderSuggestion = (suggestion) => (
   </div>
 );
 
-const renderInputComponent = inputProps => (
+const renderInputComponent = (inputProps) => (
   <div className="inputContainer">
     <InputGroupButton className="fa fa-search"></InputGroupButton>
     <input {...inputProps} />
@@ -155,7 +155,7 @@ class Header extends React.Component {
     const { value, suggestions } = this.state;
     const { onSuggestionSelected } = this.props;
     const inputProps = {
-      placeholder: 'Search device',
+      placeholder: 'Search phone',
       value,
       onChange: this.onChange,
     };
