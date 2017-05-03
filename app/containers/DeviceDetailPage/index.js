@@ -35,7 +35,7 @@ class DeviceDetailPage extends React.Component { // eslint-disable-line react/pr
   }
 
   render() {
-    const { deviceDetail, selectedDevice } = this.props;
+    const { deviceDetail, selectedDevice, productBrand } = this.props;
     // const brandName = this.capitalizeFirstLetter(productBrand.toLowerCase());
     const description = selectedDevice && `${selectedDevice.description}`;
     const title = selectedDevice && `${selectedDevice.name} - Full Phone Specifications`;
@@ -51,7 +51,7 @@ class DeviceDetailPage extends React.Component { // eslint-disable-line react/pr
         {!selectedDevice && <LoadingIndicator />}
         {selectedDevice && <div className="row center-xs">
           <div className="col-xs-12 col-sm-8 col-md-8 col-lg-6">
-            <ProductDetail onClick={() => this.handleNavBack()} detail={{ ...selectedDevice, ...deviceDetail }} />
+            <ProductDetail onClick={() => this.handleNavBack()} detail={{ ...selectedDevice, ...deviceDetail, productBrand}} />
           </div>
         </div>}
       </div>
