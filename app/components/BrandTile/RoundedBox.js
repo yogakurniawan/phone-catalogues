@@ -19,7 +19,7 @@ const Element = styled(StyledLink) `
       position: absolute;
       left: 20%;
       right: 20%;
-      top: 20%;
+      top: 25%;
       bottom: 20%;
     }
     #realimage {
