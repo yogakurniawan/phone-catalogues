@@ -13,13 +13,13 @@ const Element = styled(StyledLink) `
   #realtext {
     opacity: 1;
   }
-  &:hover, &:focus {
+  &:hover {
     #overtext {
       display: block;
       position: absolute;
-      left: 20%;
-      right: 20%;
-      top: 25%;
+      left: 15%;
+      right: 15%;
+      top: 20%;
       bottom: 20%;
     }
     #realimage {
