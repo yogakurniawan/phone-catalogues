@@ -17,6 +17,7 @@ import {
   makeSelectDeviceName,
   makeSelectDeviceDetail,
 } from './selectors';
+import { makeSelectPage } from '../ProductsPage/selectors';
 import * as deviceDetailActions from './actions';
 
 class DeviceDetailPage extends React.Component { // eslint-disable-line react/prefer-stateless-function
@@ -30,8 +31,8 @@ class DeviceDetailPage extends React.Component { // eslint-disable-line react/pr
   }
 
   handleNavBack() {
-    const { productBrand, pushState } = this.props;
-    pushState(`devices/${encodeURIComponent(productBrand)}?page=1`);
+    const { productBrand, pushState, page } = this.props;
+    pushState(`devices/${encodeURIComponent(productBrand)}?page=${page}`);
   }
 
   render() {
@@ -71,6 +72,7 @@ DeviceDetailPage.propTypes = {
   loadDevice: React.PropTypes.func,
   pushState: React.PropTypes.func,
   getDeviceByName: React.PropTypes.func,
+  page: React.PropTypes.func,
   deviceDetail: React.PropTypes.object,
   selectedDevice: React.PropTypes.object,
 };
@@ -86,6 +88,7 @@ const mapStateToProps = createStructuredSelector({
   deviceName: makeSelectDeviceName(),
   deviceDetail: makeSelectDeviceDetail(),
   selectedDevice: getSelectedDevice(),
+  page: makeSelectPage(),
 });
 
 // Wrap the component to inject dispatch and state into it
