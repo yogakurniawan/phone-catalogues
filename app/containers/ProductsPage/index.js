@@ -16,7 +16,7 @@ import ProductTile from 'components/ProductTile';
 import Pagination from 'components/Pagination';
 import TopNavigation from 'components/TopNavigation';
 import * as appActions from 'containers/App/actions';
-
+import { capitalizeFirstLetter } from 'utils/common';
 import {
   makeSelectProducts,
   makeSelectLoading,
@@ -59,10 +59,6 @@ class ProductsPage extends React.Component { // eslint-disable-line react/prefer
     };
   }
 
-  capitalizeFirstLetter(string) {
-    return string.charAt(0).toUpperCase() + string.slice(1);
-  }
-
   render() {
     const { loading, error, products, productBrand, page, count, containerWidth } = this.props;
     const pageRange = containerWidth <= 400 ? 3 : 5;
@@ -74,7 +70,7 @@ class ProductsPage extends React.Component { // eslint-disable-line react/prefer
       onClick: this.handleClickDevice(this.props),
       payload: products,
     };
-    const brandName = this.capitalizeFirstLetter(productBrand.toLowerCase());
+    const brandName = capitalizeFirstLetter(productBrand.toLowerCase());
     const description = `PhoneCatalogues.com | ${brandName} GSM Mobile Phones`;
     const title = `All ${brandName} Mobile Phones`;
 

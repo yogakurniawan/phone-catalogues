@@ -6,6 +6,7 @@ import P from 'components/P';
 import LoadingIndicator from 'components/LoadingIndicator';
 import { FaChevronLeft } from 'react-icons/lib/fa/';
 import RoundedBoxStyle from 'components/RoundedBox';
+import { capitalizeFirstLetter } from 'utils/common';
 import Img from './Img';
 import DeviceSpecification from './DeviceSpecification';
 
@@ -70,7 +71,7 @@ class Element extends React.Component { // eslint-disable-line react/prefer-stat
         <HeaderBox>
           <TitleNav>
             <span><FaChevronLeft onClick={onClick} size={size} /></span>
-            <span><H2>{`${detail.productBrand} ${detail.name}`}</H2></span>
+            <span><H2>{`${capitalizeFirstLetter(detail.productBrand)} ${detail.name}`}</H2></span>
           </TitleNav>
           <div className="row center-xs">
             <div className="col-xs-7 col-sm-5 col-md-5 col-lg-4">

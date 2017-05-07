@@ -1,12 +1,11 @@
 import React, { PropTypes } from 'react';
 import styled from 'styled-components';
 import NormalImg from 'components/Img';
-import { WhiteH3 } from './H3';
 import { WhiteH4, OrangeH4 } from './H4';
 import RoundedBox from './RoundedBox';
 
 const Img = styled(NormalImg) `
-  width: 130px;
+  width: 117px;
   height: 40px;
 `;
 

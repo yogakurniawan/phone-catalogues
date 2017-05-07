@@ -22,10 +22,10 @@ function Element({ item, onClick }) { // eslint-disable-line react/prefer-statel
   return (
     <div className="col-xs-12 col-sm-6 col-md-4 col-lg-4" style={{ maxWidth: '400px' }}>
       <RoundedBox className="row">
-        <div className="col-xs-4 col-sm-4 col-md-5 col-lg-4">
+        <div className="col-xs-4 col-sm-4 col-md-5 col-lg-5">
           <ImgWrapper onClick={onClick}><Img src={item.imageurl} /></ImgWrapper>
         </div>
-        <div className="col-xs-8 col-sm-8 col-md-7 col-lg-8">
+        <div className="col-xs-8 col-sm-8 col-md-7 col-lg-7">
           <DeviceName onClick={onClick}><H4>{item.name}</H4></DeviceName>
           <P>{item.description}</P>
         </div>

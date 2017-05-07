@@ -52,7 +52,7 @@ class DeviceDetailPage extends React.Component { // eslint-disable-line react/pr
         {!selectedDevice && <LoadingIndicator />}
         {selectedDevice && <div className="row center-xs">
           <div className="col-xs-12 col-sm-8 col-md-8 col-lg-6">
-            <ProductDetail onClick={() => this.handleNavBack()} detail={{ ...selectedDevice, ...deviceDetail, productBrand}} />
+            <ProductDetail onClick={() => this.handleNavBack()} detail={{ ...deviceDetail, ...selectedDevice, productBrand }} />
           </div>
         </div>}
       </div>
