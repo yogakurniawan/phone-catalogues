@@ -95,7 +95,7 @@ const getSuggestions = (value, allDevices) => {
     const results = [];
     allDevices.map((device) => {
       if (results.length < 8) {
-        if (regex.test(device.name)) {
+        if (regex.test(device.description)) {
           results.push(device);
         }
       }
