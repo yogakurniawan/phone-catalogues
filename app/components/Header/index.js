@@ -11,7 +11,7 @@ import FixedHeaderContainer from './FixedHeaderContainer';
 const InputGroupButton = styled.span`
   color: #bdc3c7;
   position: absolute;
-  padding: 10px;
+  padding: 7px;
   pointer-events: none;
   -webkit-font-smoothing: antialiased;
   line-height: 1;
@@ -22,7 +22,8 @@ const InputGroupButton = styled.span`
 
 const AutosuggestWrapper = styled.div`
   width: 100%;
-    .react-autosuggest__container {
+  padding: 3px;
+  .react-autosuggest__container {
     position: relative;
   }
 
@@ -69,11 +70,11 @@ const AutosuggestWrapper = styled.div`
     border-bottom: none;
     color: #2c3e50;
     background-color: #f9f9f9;
-    height: 35px;
+    height: 30px;
     border-radius: 5px;
     padding: 5px 10px;
     line-height: 1.4;
-    font-size: 1em;
+    font-size: 14px;
     width: 100%;
     outline: 0;
     box-shadow: none;

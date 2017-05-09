@@ -73,6 +73,11 @@ class ProductsPage extends React.Component { // eslint-disable-line react/prefer
     const brandName = capitalizeFirstLetter(productBrand.toLowerCase());
     const description = `PhoneCatalogues.com | ${brandName} GSM Mobile Phones`;
     const title = `All ${brandName} Mobile Phones`;
+    const topNavProps = {
+      title: `${brandName} Phones`,
+      subTitle: `Browse your favourite ${brandName} mobile phones.`,
+      onClick: () => this.handleBackToAllBrands(),
+    };
 
     return (
       <div>
@@ -82,7 +87,7 @@ class ProductsPage extends React.Component { // eslint-disable-line react/prefer
             { name: 'description', content: description },
           ]}
         />
-        <TopNavigation title={`${brandName} Phones`} onClick={() => this.handleBackToAllBrands()} />
+        <TopNavigation {...topNavProps} />
         <div className="row center-xs">
           <div className="col-xs-11 col-sm-9 col-md-9 col-lg-8">
             <ContentList {...contentListProps} />

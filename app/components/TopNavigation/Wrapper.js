@@ -4,7 +4,7 @@ const Wrapper = styled.div`
   svg {
     cursor: pointer;
     color: #dd5555;
-    margin-bottom: 8px;
+    margin-bottom: 11px;
     margin-right: 7px;
   }
   span {
@@ -13,8 +13,8 @@ const Wrapper = styled.div`
   margin: 10px auto;
   @media (max-width: 414px) {
     svg {
-      margin-bottom: 3px;
-      height: 15px;
+      margin-bottom: 10px;
+      height: 20px;
     }
     h2 {
       font-size: 1.1em;
