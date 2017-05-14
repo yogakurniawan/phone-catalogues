@@ -62,6 +62,14 @@ const DisclaimerText = styled.span`
   }
 `;
 
+const AdditionalDescription = styled.span`
+  p {
+    text-align: left;
+    margin-top: 10px;
+    display: block;
+  }
+`;
+
 class Element extends React.Component { // eslint-disable-line react/prefer-stateless-function
   render() {
     const { detail, onClick, containerWidth } = this.props;
@@ -83,10 +91,19 @@ class Element extends React.Component { // eslint-disable-line react/prefer-stat
         </HeaderBox>
         {!detail.technology && <LoadingIndicator />}
         {detail.technology && (<ContentBox>
+          {detail.additional_description && detail.additional_description !== 'null' && <AdditionalDescription>
+            <P>{detail.additional_description}</P>
+          </AdditionalDescription>}
           <DeviceSpecification specTitle="Network" label="Technology" value={detail.technology} />
           <DeviceSpecification label="2G Bands" value={detail._2g_bands} />
+          <DeviceSpecification label="" value={detail._2g_bands_2} />
           <DeviceSpecification label="3G Bands" value={detail._3g_bands} />
+          <DeviceSpecification label="" value={detail._3g_bands_2} />
+          <DeviceSpecification label="" value={detail._3g_bands_3} />
           <DeviceSpecification label="4G Bands" value={detail._4g_bands} />
+          <DeviceSpecification label="" value={detail._4g_bands_2} />
+          <DeviceSpecification label="" value={detail._4g_bands_3} />
+          <DeviceSpecification label="" value={detail._4g_bands_4} />
           <DeviceSpecification label="Speed" value={detail.speed} />
           <DeviceSpecification label="GPRS" value={detail.gprs} />
           <DeviceSpecification label="EDGE" value={detail.edge} />
@@ -112,6 +129,7 @@ class Element extends React.Component { // eslint-disable-line react/prefer-stat
           <DeviceSpecification label="Phonebook" value={detail.phonebook} />
           <DeviceSpecification label="Call Records" value={detail.call_records} />
           <DeviceSpecification label="Internal" value={detail.internal} />
+          <DeviceSpecification label="" value={detail.memory_c} />
           <DeviceSpecification specTitle="Camera" label="Primary" value={/* eslint no-underscore-dangle: 0 */detail.primary_} />
           <DeviceSpecification label="Features" value={detail.features} />
           <DeviceSpecification label="Video" value={detail.video} />
@@ -139,11 +157,13 @@ class Element extends React.Component { // eslint-disable-line react/prefer-stat
           <DeviceSpecification specTitle="Battery" label="Type" value={detail.battery_c} />
           <DeviceSpecification label="Stand By" value={detail.stand_by} />
           <DeviceSpecification label="Talk Time" value={detail.talk_time} />
+          <DeviceSpecification label="" value={detail.battery_ext} />
           <DeviceSpecification label="Music Play" value={detail.music_play} />
           <DeviceSpecification label="Battery Life" value={detail.battery_life} />
           <DeviceSpecification specTitle="Misc." label="Colors" value={detail.colors} />
           <DeviceSpecification label="SAR US" value={detail.sar_us} />
           <DeviceSpecification label="SAR EU" value={detail.sar_eu} />
+          <DeviceSpecification label="Price Group" value={detail.price_group} />
           <DeviceSpecification specTitle="Tests" label="Performance" value={detail.performance} />
           <DeviceSpecification label="Display" value={detail.display} />
           <DeviceSpecification label="Camera" value={detail.camera} />

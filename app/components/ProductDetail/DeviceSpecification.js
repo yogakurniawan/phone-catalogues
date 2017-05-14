@@ -19,7 +19,7 @@ const Wrapper = styled.div`
 `;
 
 function Element({ specTitle, label, value }) { // eslint-disable-line react/prefer-stateless-function
-  if (value) {
+  if (value && value !== 'null') {
     const modifiedValue = value.replace(/(?:\r\n|\r|\n)/g, '<br />');
     const splittedValue = modifiedValue.split('<br />');
     return (
