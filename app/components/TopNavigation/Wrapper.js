@@ -13,17 +13,23 @@ const Wrapper = styled.div`
   margin: 10px auto;
   @media (max-width: 414px) {
     svg {
-      margin-bottom: 10px;
-      height: 20px;
+      margin-bottom: 8px;
+      height: 18px;
     }
-    h2 {
-      font-size: 1.1em;
+    h1 {
+      font-size: 1.6em;
+    }
+    p {
+      font-size: 17px;
     }
   }
 
   @media (max-width: 360px) {
-    h2 {
-      font-size: 1em;
+    h1 {
+      font-size: 1.5em;
+    }
+    p {
+      font-size: 0.85em;
     }
   }
   
