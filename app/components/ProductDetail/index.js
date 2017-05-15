@@ -121,7 +121,7 @@ class Element extends React.Component { // eslint-disable-line react/prefer-stat
           <DeviceSpecification label="Multitouch" value={detail.multitouch} />
           <DeviceSpecification label="Protection" value={detail.protection} />
           <DeviceSpecification label="" value={detail.display_c} />
-          <DeviceSpecification specTitle="Platform" label="OS" value={detail.os} />
+          <DeviceSpecification specTitle="Platform" label="OS" value={detail.phone_os} />
           <DeviceSpecification label="Chipset" value={detail.chipset} />
           <DeviceSpecification label="CPU" value={detail.cpu} />
           <DeviceSpecification label="GPU" value={detail.gpu} />
@@ -130,13 +130,13 @@ class Element extends React.Component { // eslint-disable-line react/prefer-stat
           <DeviceSpecification label="Call Records" value={detail.call_records} />
           <DeviceSpecification label="Internal" value={detail.internal} />
           <DeviceSpecification label="" value={detail.memory_c} />
-          <DeviceSpecification specTitle="Camera" label="Primary" value={/* eslint no-underscore-dangle: 0 */detail.primary_} />
+          <DeviceSpecification specTitle="Camera" label="Primary" value={detail.primary} />
           <DeviceSpecification label="Features" value={detail.features} />
           <DeviceSpecification label="Video" value={detail.video} />
           <DeviceSpecification label="Secondary" value={detail.secondary} />
           <DeviceSpecification specTitle="Sound" label="Alert Types" value={detail.alert_types} />
-          <DeviceSpecification label="Loudspeaker" value={/* eslint no-underscore-dangle: 0 */detail.loudspeaker_} />
-          <DeviceSpecification label="3.5mm Jack" value={/* eslint no-underscore-dangle: 0 */detail._3_5mm_jack_} />
+          <DeviceSpecification label="Loudspeaker" value={/* eslint no-underscore-dangle: 0 */detail.loudspeaker} />
+          <DeviceSpecification label="3.5mm Jack" value={/* eslint no-underscore-dangle: 0 */detail.jack_3_5mm} />
           <DeviceSpecification label="" value={detail.sound_c} />
           <DeviceSpecification specTitle="Comms" label="WLAN" value={detail.wlan} />
           <DeviceSpecification label="Bluetooth" value={detail.bluetooth} />
