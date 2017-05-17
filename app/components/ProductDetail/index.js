@@ -95,15 +95,15 @@ class Element extends React.Component { // eslint-disable-line react/prefer-stat
             <P>{detail.additional_description}</P>
           </AdditionalDescription>}
           <DeviceSpecification specTitle="Network" label="Technology" value={detail.technology} />
-          <DeviceSpecification label="2G Bands" value={detail._2g_bands} />
-          <DeviceSpecification label="" value={detail._2g_bands_2} />
-          <DeviceSpecification label="3G Bands" value={detail._3g_bands} />
-          <DeviceSpecification label="" value={detail._3g_bands_2} />
-          <DeviceSpecification label="" value={detail._3g_bands_3} />
-          <DeviceSpecification label="4G Bands" value={detail._4g_bands} />
-          <DeviceSpecification label="" value={detail._4g_bands_2} />
-          <DeviceSpecification label="" value={detail._4g_bands_3} />
-          <DeviceSpecification label="" value={detail._4g_bands_4} />
+          <DeviceSpecification label="2G Bands" value={detail.a2g_bands} />
+          <DeviceSpecification label="" value={detail.a2g_bands_2} />
+          <DeviceSpecification label="3G Bands" value={detail.a3g_bands} />
+          <DeviceSpecification label="" value={detail.a3g_bands_2} />
+          <DeviceSpecification label="" value={detail.a3g_bands_3} />
+          <DeviceSpecification label="4G Bands" value={detail.a4g_bands} />
+          <DeviceSpecification label="" value={detail.a4g_bands_2} />
+          <DeviceSpecification label="" value={detail.a4g_bands_3} />
+          <DeviceSpecification label="" value={detail.a4g_bands_4} />
           <DeviceSpecification label="Speed" value={detail.speed} />
           <DeviceSpecification label="GPRS" value={detail.gprs} />
           <DeviceSpecification label="EDGE" value={detail.edge} />

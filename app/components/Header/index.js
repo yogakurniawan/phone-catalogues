@@ -7,6 +7,11 @@ import Img from './Img';
 import HeaderWrapper from './HeaderWrapper';
 import Logo from './PhoneCataloguesLogo.svg';
 import FixedHeaderContainer from './FixedHeaderContainer';
+import AutosuggestWrapper from './AutosuggestWrapper';
+import NavigationWrapper from './NavigationWrapper';
+import NavSearchWrapper from './NavSearchWrapper';
+import UnorderedListWrapper from './UnorderedListWrapper';
+import ListItemWrapper from './ListItemWrapper';
 
 const InputGroupButton = styled.span`
   color: #bdc3c7;
@@ -20,66 +25,6 @@ const InputGroupButton = styled.span`
   top: -1px;
 `;
 
-const AutosuggestWrapper = styled.div`
-  width: 100%;
-  padding: 3px;
-  .react-autosuggest__container {
-    position: relative;
-  }
-
-  .react-autosuggest__suggestions-container {
-    display: none;
-  }
-
-  .react-autosuggest__container--open .react-autosuggest__input {
-    border-bottom-left-radius: 0;
-    border-bottom-right-radius: 0;
-  }
-
-  .react-autosuggest__suggestions-container--open {
-    display: block;
-    position: relative;
-    background-color: #f9f9f9;
-    font-weight: 300;
-    font-size: 0.875em;
-    color: #2c3e50;
-    border-bottom-left-radius: 4px;
-    border-bottom-right-radius: 4px;
-    z-index: 2;
-  }
-
-  .react-autosuggest__suggestions-list {
-    margin: 0;
-    padding: 0;
-    color: #2c3e50
-    border: 1px solid #bdc3c7;
-    border-top: none;
-    list-style-type: none;
-  }
-
-  .react-autosuggest__suggestion {
-    cursor: pointer;
-    padding: 10px 20px;
-  }
-
-  .react-autosuggest__suggestion--highlighted {
-    background-color: rgba(189, 195, 199, 0.31);
-  }
-  input {
-    border: 1px solid #bdc3c7;
-    border-bottom: none;
-    color: #2c3e50;
-    background-color: #f9f9f9;
-    height: 30px;
-    border-radius: 5px;
-    padding: 5px 10px;
-    line-height: 1.4;
-    font-size: 14px;
-    width: 100%;
-    outline: 0;
-    box-shadow: none;
-  }
-`;
 const Thumbnail = styled(Img) `
   width: 10%;
   margin: 0;
@@ -164,26 +109,40 @@ class Header extends React.Component {
     return (
       <FixedHeaderContainer>
         <HeaderWrapper>
-          <header className="row">
-            <div className="col-xs-4 col-sm-2 col-md-2 col-lg-2">
-              <Link to="/">
-                <Img src={Logo} alt="Phone Catalogues - Logo" />
-              </Link>
-            </div>
-            <div className="col-xs-8 col-sm-6 col-md-6 col-lg-6">
-              <AutosuggestWrapper>
-                <Autosuggest
-                  suggestions={suggestions}
-                  onSuggestionsFetchRequested={this.onSuggestionsFetchRequested}
-                  onSuggestionSelected={onSuggestionSelected}
-                  onSuggestionsClearRequested={this.onSuggestionsClearRequested}
-                  getSuggestionValue={getSuggestionValue}
-                  renderSuggestion={renderSuggestion}
-                  inputProps={inputProps}
-                  renderInputComponent={renderInputComponent}
-                />
-              </AutosuggestWrapper>
-            </div>
+          <header>
+            <Link to="/">
+              <Img src={Logo} alt="Phone Catalogues - Logo" />
+            </Link>
+            <NavigationWrapper>
+              <nav>
+                <UnorderedListWrapper>
+                  <NavSearchWrapper>
+                    <AutosuggestWrapper>
+                      <Autosuggest
+                        suggestions={suggestions}
+                        onSuggestionsFetchRequested={this.onSuggestionsFetchRequested}
+                        onSuggestionSelected={onSuggestionSelected}
+                        onSuggestionsClearRequested={this.onSuggestionsClearRequested}
+                        getSuggestionValue={getSuggestionValue}
+                        renderSuggestion={renderSuggestion}
+                        inputProps={inputProps}
+                        renderInputComponent={renderInputComponent}
+                      />
+                    </AutosuggestWrapper>
+                  </NavSearchWrapper>
+                  <ListItemWrapper>
+                    <Link to="/">
+                      Home
+                    </Link>
+                  </ListItemWrapper>
+                  <ListItemWrapper>
+                    <Link to="/reviews">
+                      Reviews
+                    </Link>
+                  </ListItemWrapper>
+                </UnorderedListWrapper>
+              </nav>
+            </NavigationWrapper>
           </header>
         </HeaderWrapper>
       </FixedHeaderContainer>
