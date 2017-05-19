@@ -41,7 +41,7 @@ class BrandsPage extends React.Component { // eslint-disable-line react/prefer-s
     };
     return (
       <div>
-        <TopNavigation title={'Brands'} subTitle="Browse your favourite mobile phone brands." />
+        <TopNavigation title={'Brands'} subTitle="Find your favourite mobile phone brands and see a lot of devices. " />
         <div className="row center-xs no-gap">
           <div className="col-xs-12 col-sm-8 col-md-8 col-lg-6">
             { !loading && <FilterBrands onChange={(evt) => this.handleFilterBrand(evt)} /> }

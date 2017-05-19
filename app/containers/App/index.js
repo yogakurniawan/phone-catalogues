@@ -28,7 +28,10 @@ const AppWrapper = styled.div`
 
 const ContentWrapper = styled.div`
   padding: 0 16px;
-  margin-top: 50px;
+  margin-top: 90px;
+  @media only screen and (min-width: 1024px) {
+    margin-top: 50px;
+  }
 `;
 
 class App extends Component { // eslint-disable-line react/prefer-stateless-function

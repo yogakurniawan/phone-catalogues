@@ -7,29 +7,13 @@ const StyledLink = styled(Link) `${RoundedBox}`;
 const Element = styled(StyledLink) `
   text-decoration: none;
   cursor: pointer;
-  #overtext {
-    display: none;
-  }
-  #realtext {
-    opacity: 1;
-  }
+  display: table;
+  width: 100%;
   &:hover {
-    #overtext {
-      display: block;
-      position: absolute;
-      left: 15%;
-      right: 15%;
-      top: 20%;
-      bottom: 20%;
+    .overlay {
+      background-color: #dd5555;
+      opacity: 1;
     }
-    #realimage {
-      opacity: 0;
-    }
-    #realtext {
-      opacity: 0;
-    }
-    transition: all 100ms ease-out;
-    background: #dd5555;
   }
 `;
 

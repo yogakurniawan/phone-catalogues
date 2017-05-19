@@ -15,7 +15,6 @@ const ListItemWrapper = styled.li`
       font-weight: 300;
       padding: 6px 10px;
       height: auto;
-      font-size: 1em;
       &:hover {
         color: inherit;
       }
@@ -30,7 +29,7 @@ const ListItemWrapper = styled.li`
     transition: background-color 0.3s;
     padding-top: 6px;
     box-sizing: border-box;
-    font-size: 0.9em;
+    font-size: 1em;
     &:hover {
       color: inherit;
     }

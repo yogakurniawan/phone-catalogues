@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import NormalImg from 'components/Img';
 import { WhiteH4, OrangeH4 } from './H4';
 import RoundedBox from './RoundedBox';
+import Overlay from './Overlay';
 
 const Img = styled(NormalImg) `
   width: 117px;
@@ -15,15 +16,13 @@ class Component extends React.Component { // eslint-disable-line react/prefer-st
     return (
       <div className="col-xs-6 col-sm-6 col-md-4 col-lg-3">
         <RoundedBox className="row" to={`/devices/${encodeURIComponent(item.title)}?page=1`}>
-          <div id="realimage" className="col-xs-12">
+          <div className="col-xs-12">
             <Img src={item.logoUrl} />
-          </div>
-          <div id="realtext" className="col-xs-12">
             <OrangeH4>{item.title}</OrangeH4>
-          </div>
-          <div id="overtext">
-            <WhiteH4>{item.title}</WhiteH4>
-            <WhiteH4>{item.totalProducts} devices</WhiteH4>
+            <Overlay className="overlay">
+              <WhiteH4>{item.title}</WhiteH4>
+              <WhiteH4>{item.totalProducts} devices</WhiteH4>
+            </Overlay>
           </div>
         </RoundedBox>
       </div>
