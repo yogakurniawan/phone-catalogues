@@ -35,6 +35,13 @@ class ProductsPage extends React.Component { // eslint-disable-line react/prefer
     countProducts(productBrand);
   }
 
+  componentWillReceiveProps(nextProps) {
+    const { location: { query }, page, getProducts, productBrand } = nextProps;
+    if (page !== parseInt(query.page, 10)) {
+      getProducts(productBrand, page);
+    }
+  }
+
   handleChange(props) {
     return (paginationPage) => {
       const { getProducts, productBrand, setPage, page, pushState } = props;
