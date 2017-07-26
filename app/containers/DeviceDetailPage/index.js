@@ -12,6 +12,7 @@ import { push } from 'react-router-redux';
 import { makeSelectCurrentBrand, getSelectedDevice } from 'containers/App/selectors';
 import { loadDeviceByName } from 'containers/App/actions';
 import ProductDetail from 'components/ProductDetail';
+import PageHead from 'components/PageHead';
 import LoadingIndicator from 'components/LoadingIndicator';
 import {
   makeSelectDeviceName,
@@ -36,10 +37,20 @@ class DeviceDetailPage extends React.Component { // eslint-disable-line react/pr
   }
 
   render() {
-    const { deviceDetail, selectedDevice, productBrand } = this.props;
+    const { deviceDetail, selectedDevice, productBrand, page } = this.props;
     // const brandName = this.capitalizeFirstLetter(productBrand.toLowerCase());
     const description = selectedDevice && `${selectedDevice.description}`;
     const title = selectedDevice && `${selectedDevice.name} - Full Phone Specifications`;
+    const pageHeadProps = [{
+      text: 'Brands',
+      href: '/',
+    }, {
+      text: productBrand,
+      href: `/devices/${encodeURIComponent(productBrand)}?page=${page}`,
+    }, {
+      text: selectedDevice && selectedDevice.name,
+      href: '',
+    }];
 
     return (
       <div>
@@ -49,6 +60,7 @@ class DeviceDetailPage extends React.Component { // eslint-disable-line react/pr
             { name: 'Description', content: description },
           ]}
         />
+        <PageHead links={pageHeadProps} />
         {!selectedDevice && <LoadingIndicator />}
         {selectedDevice && <div className="row center-xs">
           <div className="col-xs-12 col-sm-8 col-md-8 col-lg-6">

@@ -1,14 +1,13 @@
 import React, { PropTypes } from 'react';
 import styled from 'styled-components';
 import Dimensions from 'react-dimensions';
-import H2 from 'components/H2';
 import P from 'components/P';
 import LoadingIndicator from 'components/LoadingIndicator';
-import { FaChevronLeft } from 'react-icons/lib/fa/';
 import RoundedBoxStyle from 'components/RoundedBox';
 import { capitalizeFirstLetter } from 'utils/common';
 import Img from './Img';
 import DeviceSpecification from './DeviceSpecification';
+import H1 from './H1';
 
 const Div = styled.div`${RoundedBoxStyle}`;
 const HeaderBox = styled(Div) `
@@ -35,16 +34,13 @@ const ImgWrapper = styled.div`
 `;
 
 const TitleNav = styled.div`
-  text-align: left;
   svg {
     cursor: pointer;
     color: #dd5555;
     margin-bottom: 8px;
     margin-right: 7px;
   }
-  span {
-    display: table-cell;
-  }
+  
   @media (max-width: 400px) {
     font-size: 0.75em;
     svg {
@@ -72,14 +68,12 @@ const AdditionalDescription = styled.span`
 
 class Element extends React.Component { // eslint-disable-line react/prefer-stateless-function
   render() {
-    const { detail, onClick, containerWidth } = this.props;
-    const size = containerWidth < 382 ? 18 : 20;
+    const { detail } = this.props;
     return (
       <div>
         <HeaderBox>
           <TitleNav>
-            <span><FaChevronLeft onClick={onClick} size={size} /></span>
-            <span><H2>{`${capitalizeFirstLetter(detail.productBrand)} ${detail.name}`}</H2></span>
+            <span><H1>{`${capitalizeFirstLetter(detail.productBrand)} ${detail.name}`}</H1></span>
           </TitleNav>
           <div className="row center-xs">
             <div className="col-xs-7 col-sm-5 col-md-5 col-lg-4">
@@ -179,9 +173,7 @@ class Element extends React.Component { // eslint-disable-line react/prefer-stat
 }
 
 Element.propTypes = {
-  containerWidth: PropTypes.number,
   detail: PropTypes.object,
-  onClick: PropTypes.func,
 };
 
 const EnhancedElement = Dimensions()(Element);
