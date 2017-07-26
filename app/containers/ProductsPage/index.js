@@ -9,7 +9,6 @@ import { connect } from 'react-redux';
 import { push } from 'react-router-redux';
 import { createStructuredSelector } from 'reselect';
 import Dimensions from 'react-dimensions';
-import { FaAngleLeft, FaAngleRight } from 'react-icons/lib/fa/';
 import { makeSelectCurrentBrand } from 'containers/App/selectors';
 import ContentList from 'components/ContentList';
 import ProductTile from 'components/ProductTile';
@@ -103,10 +102,10 @@ class ProductsPage extends React.Component { // eslint-disable-line react/prefer
         {!loading && <Pagination
           hideDisabled
           pageRangeDisplayed={pageRange}
-          firstPageText={'First'}
-          lastPageText={'Last'}
-          prevPageText={<FaAngleLeft size={20} />}
-          nextPageText={<FaAngleRight size={20} />}
+          firstPageText="First"
+          lastPageText="Last"
+          prevPageText="Previous"
+          nextPageText="Next"
           activePage={page}
           itemsCountPerPage={parseInt(PER_PAGE, 10)}
           totalItemsCount={count}

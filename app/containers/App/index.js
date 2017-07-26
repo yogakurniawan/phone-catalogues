@@ -38,7 +38,6 @@ class App extends Component { // eslint-disable-line react/prefer-stateless-func
 
   componentDidMount() {
     const { findAllDevices } = this.props;
-    console.log('called');
     findAllDevices();
   }
 
