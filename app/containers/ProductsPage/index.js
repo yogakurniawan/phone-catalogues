@@ -14,6 +14,7 @@ import ContentList from 'components/ContentList';
 import ProductTile from 'components/ProductTile';
 import Pagination from 'components/Pagination';
 import TopNavigation from 'components/TopNavigation';
+import PageHead from 'components/PageHead';
 import * as appActions from 'containers/App/actions';
 import { capitalizeFirstLetter } from 'utils/common';
 import {
@@ -52,11 +53,6 @@ class ProductsPage extends React.Component { // eslint-disable-line react/prefer
     };
   }
 
-  handleBackToAllBrands() {
-    const { pushState } = this.props;
-    pushState('/');
-  }
-
   handleClickDevice(props) {
     return (item) => {
       const { setSelectedDevice, productBrand, pushState } = props;
@@ -82,8 +78,15 @@ class ProductsPage extends React.Component { // eslint-disable-line react/prefer
     const topNavProps = {
       title: `${brandName} Phones`,
       subTitle: `Browse your favourite ${brandName} mobile phones.`,
-      onClick: () => this.handleBackToAllBrands(),
     };
+
+    const pageHeadProps = [{
+      text: 'Brands',
+      href: '/',
+    }, {
+      text: brandName,
+      href: '',
+    }];
 
     return (
       <div>
@@ -93,6 +96,7 @@ class ProductsPage extends React.Component { // eslint-disable-line react/prefer
             { name: 'description', content: description },
           ]}
         />
+        <PageHead links={pageHeadProps} />
         <TopNavigation {...topNavProps} />
         <div className="row center-xs">
           <div className="col-xs-11 col-sm-9 col-md-9 col-lg-8">
