@@ -3,6 +3,6 @@ import styled from 'styled-components';
 
 export default styled(Link)`
   display: inline-flex;
-  margin: 1em;
+  margin: 5px;
   color: #dd5555;
 `;

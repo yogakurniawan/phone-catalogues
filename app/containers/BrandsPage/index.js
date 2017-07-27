@@ -9,6 +9,7 @@ import { createStructuredSelector } from 'reselect';
 
 import ContentList from 'components/ContentList';
 import BrandTile from 'components/BrandTile';
+import LoadingOverlay from 'components/LoadingOverlay';
 import TopNavigation from 'components/TopNavigation';
 import FilterBrands from 'components/FilterBrands';
 
@@ -42,9 +43,10 @@ class BrandsPage extends React.Component { // eslint-disable-line react/prefer-s
     return (
       <div>
         <TopNavigation title={'Brands'} subTitle="Find your favourite mobile phone brands and see a lot of devices. " />
+        {loading && <LoadingOverlay />}
         <div className="row center-xs no-gap">
           <div className="col-xs-12 col-sm-8 col-md-8 col-lg-6">
-            { !loading && <FilterBrands onChange={(evt) => this.handleFilterBrand(evt)} /> }
+            <FilterBrands onChange={(evt) => this.handleFilterBrand(evt)} />
             <ContentList {...contentListProps} />
           </div>
         </div>

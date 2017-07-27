@@ -9,7 +9,7 @@ function Element(props) {
   return (
     <Wrapper>
       <div className="row center-xs">
-        <div className="col-xs-11 col-sm-9 col-md-9 col-lg-8">
+        <div className="col-xs-12 col-sm-9 col-md-9 col-lg-8">
           <NavBar>
             {
               props.links.length && props.links.map((link, index) =>

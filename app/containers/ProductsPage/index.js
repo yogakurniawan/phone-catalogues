@@ -13,6 +13,7 @@ import { makeSelectCurrentBrand } from 'containers/App/selectors';
 import ContentList from 'components/ContentList';
 import ProductTile from 'components/ProductTile';
 import Pagination from 'components/Pagination';
+import LoadingOverlay from 'components/LoadingOverlay';
 import TopNavigation from 'components/TopNavigation';
 import PageHead from 'components/PageHead';
 import * as appActions from 'containers/App/actions';
@@ -98,23 +99,24 @@ class ProductsPage extends React.Component { // eslint-disable-line react/prefer
         />
         <PageHead links={pageHeadProps} />
         <TopNavigation {...topNavProps} />
-        <div className="row center-xs">
+        {loading && <LoadingOverlay />}
+        <div style={{ minHeight: '70vh' }} className="row center-xs">
           <div className="col-xs-11 col-sm-9 col-md-9 col-lg-8">
             <ContentList {...contentListProps} />
           </div>
         </div>
-        {!loading && <Pagination
+        <Pagination
           hideDisabled
           pageRangeDisplayed={pageRange}
           firstPageText="First"
           lastPageText="Last"
-          prevPageText="Previous"
+          prevPageText="Prev"
           nextPageText="Next"
           activePage={page}
           itemsCountPerPage={parseInt(PER_PAGE, 10)}
           totalItemsCount={count}
           onChange={this.handleChange(this.props)}
-        />}
+        />
       </div>
     );
   }

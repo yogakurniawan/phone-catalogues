@@ -2,13 +2,8 @@ import React, { PropTypes } from 'react';
 
 import List from 'components/BasicList';
 import ListItem from 'components/ListItem';
-import LoadingIndicator from 'components/LoadingIndicator';
 
-function Element({ loading, error, onClick = () => {}, component, payload }) {
-  if (loading) {
-    return <List component={LoadingIndicator} />;
-  }
-
+function Element({ error, onClick = () => {}, component, payload }) {
   if (error !== false) {
     const ErrorComponent = () => (
       <ListItem item={'Something went wrong, please try again!'} />
@@ -24,7 +19,6 @@ function Element({ loading, error, onClick = () => {}, component, payload }) {
 }
 
 Element.propTypes = {
-  loading: PropTypes.bool,
   error: PropTypes.any,
   payload: PropTypes.any,
   component: PropTypes.func,

@@ -8,6 +8,7 @@ const LabelText = styled(P) `
 `;
 
 const DeviceSpecTitle = styled(H4) `
+  font-weight: normal;
   &:hover {
     color: #f53e3e;
   }
