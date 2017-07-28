@@ -7,7 +7,7 @@ const Layer = styled.div`
   left: 0px;
   z-index: 3;
   position: absolute;
-  opacity: 0.3;
+  opacity: 0.6;
   background-color: #fff;
 `;
 
