@@ -17,6 +17,13 @@ const ImgWrapper = styled.div`
   cursor: pointer;
 `;
 
+const ImgPlaceHolder = styled.div`
+  width: 80px;
+  height: 106px;
+  background-color: #ece7e7;
+  margin: 0 auto;
+`;
+
 function Element({ item, onClick }) { // eslint-disable-line react/prefer-stateless-function
   return (
     <div className="col-xs-12 col-sm-6 col-md-4 col-lg-4" style={{ maxWidth: '400px' }}>
@@ -25,7 +32,9 @@ function Element({ item, onClick }) { // eslint-disable-line react/prefer-statel
           <DeviceName onClick={onClick}><H4>{item.name}</H4></DeviceName>
         </div>
         <div className="col-xs-12">
-          <ImgWrapper onClick={onClick}><Img src={item.imageurl} /></ImgWrapper>
+          <ImgPlaceHolder>
+            <ImgWrapper onClick={onClick}><Img src={item.imageurl} /></ImgWrapper>
+          </ImgPlaceHolder>
         </div>
       </RoundedBox>
     </div>

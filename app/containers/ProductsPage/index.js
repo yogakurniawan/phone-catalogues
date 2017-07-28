@@ -100,7 +100,7 @@ class ProductsPage extends React.Component { // eslint-disable-line react/prefer
         <PageHead links={pageHeadProps} />
         <TopNavigation {...topNavProps} />
         {loading && <LoadingOverlay />}
-        <div style={{ minHeight: '70vh' }} className="row center-xs">
+        <div style={{ minHeight: '60vh' }} className="row center-xs">
           <div className="col-xs-11 col-sm-9 col-md-9 col-lg-8">
             <ContentList {...contentListProps} />
           </div>
