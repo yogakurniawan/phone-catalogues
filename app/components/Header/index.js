@@ -3,6 +3,7 @@ import { Link } from 'react-router';
 import styled from 'styled-components';
 import Autosuggest from 'react-autosuggest';
 
+import P from 'components/P';
 import Img from './Img';
 import HeaderWrapper from './HeaderWrapper';
 import Logo from './PhoneCataloguesLogo.svg';
@@ -12,6 +13,10 @@ import NavigationWrapper from './NavigationWrapper';
 import NavSearchWrapper from './NavSearchWrapper';
 import UnorderedListWrapper from './UnorderedListWrapper';
 import ListItemWrapper from './ListItemWrapper';
+
+const Paragraph = styled(P)`
+  font-size: 0.85em;
+`;
 
 const InputGroupButton = styled.span`
   color: #bdc3c7;
@@ -26,9 +31,16 @@ const InputGroupButton = styled.span`
 `;
 
 const Thumbnail = styled(Img) `
-  width: 10%;
+  width: 30px;
   margin: 0;
-  display: inline
+`;
+
+const SuggestionDiv = styled.div `
+  display: flex;
+`;
+
+const SuggestionText = styled.div `
+  margin-left: 10px;
 `;
 
 const escapeRegexCharacters = (str) => (str.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'));
@@ -40,7 +52,7 @@ const getSuggestions = (value, allDevices) => {
     const regex = new RegExp(`${escapedValue}`, 'i');
     const results = [];
     allDevices.map((device) => {
-      if (results.length < 8) {
+      if (results.length < 100) {
         if (regex.test(device.description)) {
           results.push(device);
         }
@@ -55,10 +67,10 @@ const getSuggestions = (value, allDevices) => {
 const getSuggestionValue = (suggestion) => (suggestion.name);
 
 const renderSuggestion = (suggestion) => (
-  <div>
-    <span style={{ marginRight: '20px', display: 'inline' }}><Thumbnail src={suggestion.imageurl} /></span>
-    <span style={{ display: 'inline' }}>{suggestion.name}</span>
-  </div>
+  <SuggestionDiv>
+    <span><Thumbnail src={suggestion.imageurl} /></span>
+    <SuggestionText><Paragraph>{suggestion.name}</Paragraph></SuggestionText>
+  </SuggestionDiv>
 );
 
 const renderInputComponent = (inputProps) => (

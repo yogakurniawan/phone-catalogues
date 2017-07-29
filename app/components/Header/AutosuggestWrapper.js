@@ -23,28 +23,29 @@ const AutosuggestWrapper = styled.div`
     font-weight: 300;
     font-size: 0.875em;
     color: #2c3e50;
-    border-bottom-left-radius: 4px;
-    border-bottom-right-radius: 4px;
     z-index: 2;
+    max-height: 300px;
+    overflow: auto;
+    border: 1px solid #bdc3c7;
+    border-top: none;
   }
 
   .react-autosuggest__suggestions-list {
     margin: 0;
     padding: 0;
     color: #2c3e50
-    border: 1px solid #bdc3c7;
-    border-top: none;
     list-style-type: none;
   }
 
   .react-autosuggest__suggestion {
     cursor: pointer;
-    padding: 10px 20px;
+    padding: 5px 15px;
   }
 
   .react-autosuggest__suggestion--highlighted {
     background-color: rgba(189, 195, 199, 0.31);
   }
+
   input {
     border: 1px solid #bdc3c7;
     border-bottom: none;

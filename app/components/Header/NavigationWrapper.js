@@ -4,7 +4,7 @@ const NavigationWrapper = styled.div`
   @media only screen and (min-width: 1024px) {
     margin-left: auto;
     position: relative;
-    width: 75%;
+    width: 50%;
   }
 
   nav {
