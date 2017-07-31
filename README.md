@@ -10,11 +10,17 @@ This is project repository for [PhoneCatalogues](http://phonecatalogues.com).
 ## Author
 
 GitHub: [yogakurniawan](https://github.com/yogakurniawan)
+
 LinkedIn: [yogakurniawan](https://www.linkedin.com/in/yogakurniawan/)
+
 Twitter: [@yogkurniawan](https://twitter.com/yogkurniawan)
+
 Facebook: [yogakurniawan](http://facebook.com/yogakurniawan)
+
 Skype ID: yogkurniawan
+
 Email: [yogaygk@gmail.com](mailto:yogaygk@gmail.com)
+
 
 ## License
 
