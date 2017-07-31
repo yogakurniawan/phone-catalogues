@@ -1,4 +1,4 @@
-<img width="50%" height="50%" src="/phonecatalogues.png" alt="Phone Catalogues logo" align="center" />
+<img width="40%" height="40%" src="/phonecatalogues.png" alt="Phone Catalogues logo" align="center" />
 
 <br />
 
