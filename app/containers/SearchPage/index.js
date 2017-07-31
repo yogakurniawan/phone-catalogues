@@ -39,17 +39,23 @@ const NewH4 = styled(H4) `
 `;
 
 class SearchPage extends React.Component { // eslint-disable-line react/prefer-stateless-function
+  componentDidMount() {
+    const { searchQuery } = this.props;
+    console.log(searchQuery);
+  }
+
   componentWillReceiveProps(props) {
     const { searchQuery } = props;
     console.log(searchQuery);
   }
 
   render() {
+    const { searchQuery } = this.props;
     return (
       <div>
         <div className="row center-xs">
           <Div className="col-xs-11 col-sm-9 col-md-9 col-lg-8">
-            <NewH4>Showing results for </NewH4>
+            <NewH4>{`Showing results for "${searchQuery}"`}</NewH4>
           </Div>
         </div>
         <div className="row center-xs">

@@ -16,7 +16,7 @@ const makeSelectCurrentBrand = () => createSelector(
 
 const makeSelectSearchQuery = () => createSelector(
   selectGlobal,
-  (globalState) => globalState.get('searchQuery')
+  (globalState) => globalState.get('searchQuery') && globalState.get('searchQuery').query
 );
 
 const getSelectedDevice = () => createSelector(
