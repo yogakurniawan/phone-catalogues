@@ -3,7 +3,7 @@ import { Link } from 'react-router';
 import styled from 'styled-components';
 import Autosuggest from 'react-autosuggest';
 
-import P from 'components/P';
+import Paragraph from './P';
 import Img from './Img';
 import HeaderWrapper from './HeaderWrapper';
 import Logo from './PhoneCataloguesLogo.svg';
@@ -13,10 +13,7 @@ import NavigationWrapper from './NavigationWrapper';
 import NavSearchWrapper from './NavSearchWrapper';
 import UnorderedListWrapper from './UnorderedListWrapper';
 import ListItemWrapper from './ListItemWrapper';
-
-const Paragraph = styled(P)`
-  font-size: 0.85em;
-`;
+import RenderSuggestionsContainer from './RenderSuggestionsContainer';
 
 const InputGroupButton = styled.span`
   color: #bdc3c7;
@@ -35,11 +32,11 @@ const Thumbnail = styled(Img) `
   margin: 0;
 `;
 
-const SuggestionDiv = styled.div `
+const SuggestionDiv = styled.div`
   display: flex;
 `;
 
-const SuggestionText = styled.div `
+const SuggestionText = styled.div`
   margin-left: 10px;
 `;
 
@@ -109,11 +106,17 @@ class Header extends React.Component {
     });
   };
 
+  onFormSubmit = (event) => {
+    event.preventDefault();
+    const { onFormSubmit } = this.props;
+    onFormSubmit(this.state.value);
+  };
+
   render() {
     const { value, suggestions } = this.state;
     const { onSuggestionSelected } = this.props;
     const inputProps = {
-      placeholder: 'Search phone',
+      placeholder: 'Search PhoneCatalogues',
       value,
       onChange: this.onChange,
     };
@@ -130,16 +133,19 @@ class Header extends React.Component {
                 <UnorderedListWrapper>
                   <NavSearchWrapper>
                     <AutosuggestWrapper>
-                      <Autosuggest
-                        suggestions={suggestions}
-                        onSuggestionsFetchRequested={this.onSuggestionsFetchRequested}
-                        onSuggestionSelected={onSuggestionSelected}
-                        onSuggestionsClearRequested={this.onSuggestionsClearRequested}
-                        getSuggestionValue={getSuggestionValue}
-                        renderSuggestion={renderSuggestion}
-                        inputProps={inputProps}
-                        renderInputComponent={renderInputComponent}
-                      />
+                      <form onSubmit={this.onFormSubmit}>
+                        <Autosuggest
+                          suggestions={suggestions}
+                          onSuggestionsFetchRequested={this.onSuggestionsFetchRequested}
+                          onSuggestionSelected={onSuggestionSelected}
+                          onSuggestionsClearRequested={this.onSuggestionsClearRequested}
+                          getSuggestionValue={getSuggestionValue}
+                          renderSuggestion={renderSuggestion}
+                          inputProps={inputProps}
+                          renderSuggestionsContainer={RenderSuggestionsContainer}
+                          renderInputComponent={renderInputComponent}
+                        />
+                      </form>
                     </AutosuggestWrapper>
                   </NavSearchWrapper>
                   <ListItemWrapper>
@@ -164,6 +170,7 @@ class Header extends React.Component {
 
 Header.propTypes = {
   onSuggestionSelected: React.PropTypes.func,
+  onFormSubmit: React.PropTypes.func,
   allDevices: React.PropTypes.oneOfType([
     React.PropTypes.array,
     React.PropTypes.bool,

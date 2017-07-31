@@ -29,7 +29,6 @@ const ReactBoilerplate = {
         'minimist',
         'sanitize.css',
         'flexboxgrid',
-        'react-icons',
         'font-awesome',
       ],
 

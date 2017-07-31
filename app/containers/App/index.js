@@ -1,11 +1,3 @@
-/**
- *
- * App
- *
- * This component is the skeleton around the actual pages, and should only
- * contain code that should be seen on all pages. (e.g. navigation bar)
- */
-
 import React, { Component } from 'react';
 import Helmet from 'react-helmet';
 import styled from 'styled-components';
@@ -35,11 +27,16 @@ const ContentWrapper = styled.div`
 `;
 
 class App extends Component { // eslint-disable-line react/prefer-stateless-function
-
   componentDidMount() {
     const { findAllDevices } = this.props;
     findAllDevices();
   }
+
+  onFormSubmit = (keyword) => {
+    const { pushState, setSearchQuery } = this.props;
+    setSearchQuery(keyword);
+    pushState(`/search?query=${keyword}`);
+  };
 
   onSuggestionSelected = (evt, { suggestion, suggestionValue }) => {
     const { setSelectedDevice, pushState, loadDevice, getDeviceByName } = this.props;
@@ -62,7 +59,11 @@ class App extends Component { // eslint-disable-line react/prefer-stateless-func
             { name: 'description', content: 'Phone Catalogues - The complete resource for Handset list, details, specification and information' },
           ]}
         />
-        <Header onSuggestionSelected={this.onSuggestionSelected} allDevices={allDevices} />
+        <Header
+          onFormSubmit={this.onFormSubmit}
+          onSuggestionSelected={this.onSuggestionSelected}
+          allDevices={allDevices}
+        />
         <ContentWrapper>
           {React.Children.toArray(children)}
         </ContentWrapper>
@@ -75,6 +76,7 @@ App.propTypes = {
   children: React.PropTypes.node,
   findAllDevices: React.PropTypes.func,
   setSelectedDevice: React.PropTypes.func,
+  setSearchQuery: React.PropTypes.func,
   pushState: React.PropTypes.func,
   loadDevice: React.PropTypes.func,
   getDeviceByName: React.PropTypes.func,
@@ -87,6 +89,7 @@ App.propTypes = {
 const mapDispatchToProps = {
   findAllDevices: productActions.findAllDevices,
   setSelectedDevice: actions.setSelectedDevice,
+  setSearchQuery: actions.setSearchQuery,
   pushState: push,
   loadDevice: deviceDetailActions.loadDevice,
   getDeviceByName: actions.loadDeviceByName,

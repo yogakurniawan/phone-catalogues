@@ -1,7 +1,3 @@
-/**
- * The global state selectors
- */
-
 import { createSelector } from 'reselect';
 
 const selectGlobal = (state) => state.get('global');
@@ -18,24 +14,14 @@ const makeSelectCurrentBrand = () => createSelector(
   (globalState) => globalState.get('currentBrand')
 );
 
-const makeSelectLoading = () => createSelector(
+const makeSelectSearchQuery = () => createSelector(
   selectGlobal,
-  (globalState) => globalState.get('loading')
+  (globalState) => globalState.get('searchQuery')
 );
 
 const getSelectedDevice = () => createSelector(
   selectGlobal,
   (globalState) => globalState.get('selectedDevice')[0]
-);
-
-const makeSelectError = () => createSelector(
-  selectGlobal,
-  (globalState) => globalState.get('error')
-);
-
-const makeSelectRepos = () => createSelector(
-  selectGlobal,
-  (globalState) => globalState.getIn(['userData', 'repositories'])
 );
 
 const makeSelectLocationState = () => {
@@ -58,9 +44,7 @@ export {
   selectGlobal,
   makeSelectCurrentBrand,
   allDevices,
-  makeSelectLoading,
-  makeSelectError,
-  makeSelectRepos,
+  makeSelectSearchQuery,
   makeSelectLocationState,
   getSelectedDevice,
 };

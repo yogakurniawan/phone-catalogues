@@ -1,9 +1,10 @@
 import React, { PropTypes } from 'react';
-import { FaAngleRight } from 'react-icons/lib/fa/';
 
+import { capitalizeFirstLetter } from 'utils/common';
 import Wrapper from './Wrapper';
 import HeaderLink from './HeaderLink';
 import NavBar from './NavBar';
+import ArrowRight from './ArrowRight';
 
 function Element(props) {
   return (
@@ -16,12 +17,12 @@ function Element(props) {
                 (
                   <span key={`${link.text}-${index}`}>
                     {link.href && <HeaderLink to={link.href}>
-                      {link.text}
+                      {link.text && capitalizeFirstLetter(link.text)}
                     </HeaderLink>}
                     {!link.href && <HeaderLink>
-                      {link.text}
+                      {link.text && capitalizeFirstLetter(link.text)}
                     </HeaderLink>}
-                    {index < (props.links.length - 1) && <FaAngleRight size={16} />}
+                    {index < (props.links.length - 1) && <ArrowRight className="fa fa-chevron-right" aria-hidden />}
                   </span>
                 )
               )
