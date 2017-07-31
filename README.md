@@ -1,4 +1,4 @@
-<img src="/yogakurniawan/phone-catalogues/blob/master/phonecatalogues.png" alt="Phone Catalogues logo" align="center" />
+<img src="/phonecatalogues.png" alt="Phone Catalogues logo" align="center" />
 
 <br />
 
