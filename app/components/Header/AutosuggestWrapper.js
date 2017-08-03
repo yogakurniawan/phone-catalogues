@@ -47,7 +47,6 @@ const AutosuggestWrapper = styled.div`
   }
 
   input {
-    border: 1px solid #bdc3c7;
     border-bottom: none;
     color: #2c3e50;
     background-color: #f9f9f9;
