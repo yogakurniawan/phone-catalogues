@@ -18,7 +18,7 @@ function RenderSuggestionsContainer({ containerProps, children, query }) {
       {children}
       <Div>
         <Link to="/">
-          <Paragraph primary>{`More result about "${query}"`}</Paragraph>
+          <Paragraph primary>{`See all result for "${query}"`}</Paragraph>
         </Link>
       </Div>
     </IsolatedScroll>
