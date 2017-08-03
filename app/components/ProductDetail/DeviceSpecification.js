@@ -1,7 +1,7 @@
 import React, { PropTypes } from 'react';
 import styled from 'styled-components';
 import H4 from 'components/H4';
-import P from 'components/P';
+import P from './P';
 
 const LabelText = styled(P) `
   font-weight: bold;
