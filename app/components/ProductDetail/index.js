@@ -1,10 +1,11 @@
 import React, { PropTypes } from 'react';
 import styled from 'styled-components';
 import Dimensions from 'react-dimensions';
-import P from 'components/P';
+
 import LoadingIndicator from 'components/LoadingIndicator';
 import RoundedBoxStyle from 'components/RoundedBox';
 import { capitalizeFirstLetter } from 'utils/common';
+import P from './P';
 import Img from './Img';
 import DeviceSpecification from './DeviceSpecification';
 import H1 from './H1';
