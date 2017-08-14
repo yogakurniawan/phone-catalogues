@@ -47,6 +47,7 @@ export default function createRoutes(store) {
       name: 'search',
       getComponent(nextState, cb) {
         const importModules = Promise.all([
+          import('containers/App/actions'),
           import('containers/SearchPage/reducer'),
           import('containers/SearchPage/sagas'),
           import('containers/SearchPage'),
@@ -54,9 +55,11 @@ export default function createRoutes(store) {
 
         const renderRoute = loadModule(cb);
 
-        importModules.then(([reducer, sagas, component]) => {
+        importModules.then(([appActions, reducer, sagas, component]) => {
           injectReducer('search', reducer.default);
           injectSagas(sagas.default);
+          // console.log(nextState.location.query);
+          store.dispatch(appActions.setSearchQuery(nextState.location.query.q));
           renderRoute(component);
         });
 

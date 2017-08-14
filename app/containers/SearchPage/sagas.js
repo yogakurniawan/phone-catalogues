@@ -14,17 +14,19 @@ import {
 
 export function* search(action) {
   try {
+    const { payload } = action;
+    console.log(payload);
     const queryParams = {
-      'filter[where][description][regexp]': action.keyword,
+      'filter[where][description][regexp]': payload.keyword,
       'filter[limit]': PER_PAGE,
-      'filter[skip]': action.page > 1 ? ((action.page - 1) * PER_PAGE) : 0,
+      'filter[skip]': payload.page > 1 ? ((payload.page - 1) * PER_PAGE) : 0,
     };
 
-    const payload = yield call(request, `${BASE_API_URL}/items`, {
+    const result = yield call(request, `${BASE_API_URL}/items`, {
       queryParams,
     });
 
-    yield put(searchSuccessful(payload));
+    yield put(searchSuccessful(result));
   } catch (err) {
     yield put(searchError(err));
   }

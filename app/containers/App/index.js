@@ -35,7 +35,7 @@ class App extends Component { // eslint-disable-line react/prefer-stateless-func
   onFormSubmit = (keyword) => {
     const { pushState, setSearchQuery } = this.props;
     setSearchQuery(keyword);
-    pushState(`/search?query=${keyword}`);
+    pushState(`/search?q=${keyword}`);
   };
 
   onSuggestionSelected = (evt, { suggestion, suggestionValue }) => {

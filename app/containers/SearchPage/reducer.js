@@ -10,7 +10,9 @@ const initialState = fromJS({
   loading: false,
   error: false,
   page: 1,
-  searchResult: null,
+  payload: {
+    searchResult: [],
+  },
 });
 
 function searchReducer(state = initialState, action) {
@@ -20,11 +22,11 @@ function searchReducer(state = initialState, action) {
         .set('loading', true);
     case SEARCH_SUCCESS:
       return state
-        .set('searchResult', action.payload)
+        .setIn(['payload', 'searchResult'], action.payload)
         .set('loading', false);
     case SEARCH_ERROR:
       return state
-        .set('searchResult', null)
+        .setIn(['payload', 'searchResult'], null)
         .set('error', action.error)
         .set('loading', false);
     default:

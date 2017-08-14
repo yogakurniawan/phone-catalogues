@@ -4,7 +4,7 @@ const selectSearch = (state) => state.get('search');
 
 const selectSearchResult = () => createSelector(
   selectSearch,
-  (productsState) => productsState.get('products')
+  (state) => state.getIn(['payload', 'searchResult'])
 );
 
 export {
