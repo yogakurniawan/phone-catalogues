@@ -15,9 +15,9 @@ import {
 export function* search(action) {
   try {
     const { payload } = action;
-    console.log(payload);
+    const keyword = `/${payload.keyword}/i`;
     const queryParams = {
-      'filter[where][description][regexp]': payload.keyword,
+      'filter[where][description][regexp]': keyword,
       'filter[limit]': PER_PAGE,
       'filter[skip]': payload.page > 1 ? ((payload.page - 1) * PER_PAGE) : 0,
     };

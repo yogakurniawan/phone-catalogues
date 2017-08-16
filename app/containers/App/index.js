@@ -7,6 +7,7 @@ import { createStructuredSelector } from 'reselect';
 
 import Header from 'components/Header';
 import * as productActions from 'containers/ProductsPage/actions';
+import * as searchPageActions from 'containers/SearchPage/actions';
 import * as deviceDetailActions from 'containers/DeviceDetailPage/actions';
 import * as actions from './actions';
 import * as selectors from './selectors';
@@ -33,8 +34,9 @@ class App extends Component { // eslint-disable-line react/prefer-stateless-func
   }
 
   onFormSubmit = (keyword) => {
-    const { pushState, setSearchQuery } = this.props;
+    const { pushState, setSearchQuery, search } = this.props;
     setSearchQuery(keyword);
+    search(keyword, 1);
     pushState(`/search?q=${keyword}`);
   };
 
@@ -77,6 +79,7 @@ App.propTypes = {
   findAllDevices: React.PropTypes.func,
   setSelectedDevice: React.PropTypes.func,
   setSearchQuery: React.PropTypes.func,
+  search: React.PropTypes.func,
   pushState: React.PropTypes.func,
   loadDevice: React.PropTypes.func,
   getDeviceByName: React.PropTypes.func,
@@ -93,6 +96,7 @@ const mapDispatchToProps = {
   pushState: push,
   loadDevice: deviceDetailActions.loadDevice,
   getDeviceByName: actions.loadDeviceByName,
+  search: searchPageActions.search,
 };
 
 const mapStateToProps = createStructuredSelector({
